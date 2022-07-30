@@ -3,12 +3,23 @@
  */
 package org.gingerjake.potatogame;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class Main {
-    public String getGreeting() {
-        return "Hello World!";
+    public static void main(String[] args) {
+        JFrame gameWindow = new JFrame("Potato Game");
+        gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameWindow.setSize(800, 600);
+        gameWindow.setVisible(true);
+
+        gameWindow.add(new GamePanel(), BorderLayout.CENTER);
+        gameWindow.setVisible(true);
+
     }
 
-    public static void main(String[] args) {
-        System.out.println(new Main().getGreeting());
-    }
 }
+
+
+
+
