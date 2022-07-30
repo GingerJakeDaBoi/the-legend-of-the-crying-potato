@@ -7,7 +7,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     private boolean isRunning = false;
     public static final int width = 800; //Window Width
-    public static final int height = 300; //Window Height
+    public static final int height = 600; //Window Height
     private GameStateManager ssm;
 
     public GamePanel() {
@@ -31,9 +31,12 @@ public class GamePanel extends JPanel implements Runnable{
 
         ssm.draw(g);
     }
+    @SuppressWarnings("BusyWait")
     public void run() {
         long start,elapsed,wait;
         ssm = new GameStateManager();
+
+
 
         while(isRunning) {
             start = System.nanoTime();

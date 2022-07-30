@@ -12,10 +12,12 @@ public class StartScreen extends GameState {
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.BLACK);
+        g.setColor(new Color(0,0,0,0));
         g.fillRect(0, 0, GamePanel.width, GamePanel.height);
+
         g.setColor(Color.WHITE);
-        g.drawString("Press Space to start", GamePanel.width / 2 - 50, GamePanel.height / 2);
+        g.setFont(new Font("Arial", Font.BOLD, 50));
+        g.drawString("Press Enter to start", 0, (int) (GamePanel.height * .945));
 
     }
 
