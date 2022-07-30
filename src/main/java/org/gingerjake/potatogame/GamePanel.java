@@ -5,10 +5,11 @@ import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
 
+    public static boolean enterPressed;
     private boolean isRunning = false;
     public static final int width = 800; //Window Width
     public static final int height = 600; //Window Height
-    private GameStateManager ssm;
+    private GameStateManager ssm = new GameStateManager();
 
     public GamePanel() {
         setPreferredSize(new Dimension(width,height));

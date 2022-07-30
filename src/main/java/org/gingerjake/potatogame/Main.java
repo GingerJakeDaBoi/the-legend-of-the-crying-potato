@@ -15,6 +15,11 @@ public class Main {
         gameWindow.add(new GamePanel(), BorderLayout.CENTER);
         gameWindow.setVisible(true);
 
+        //if enter is pressed, use setState to change to enter screen
+        if(GamePanel.enterPressed) {
+            GameState.setState((GameState) GameStateManager.ENTER_SCREEN);
+        }
+
     }
 
 }
