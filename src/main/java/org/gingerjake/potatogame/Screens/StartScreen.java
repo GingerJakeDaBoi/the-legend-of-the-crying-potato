@@ -2,7 +2,6 @@ package org.gingerjake.potatogame.Screens;
 
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
-import org.gingerjake.potatogame.GameStateManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +9,7 @@ import java.awt.*;
 public class StartScreen extends GameState {
     Image PotatoMain = new ImageIcon("Assets/Potato/PotatoMain.png").getImage();
 
-    public StartScreen(GameStateManager gsm) {
+    public StartScreen() {
         super(gsm);
     }
 

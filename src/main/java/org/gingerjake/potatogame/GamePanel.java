@@ -1,11 +1,15 @@
 package org.gingerjake.potatogame;
 
+import org.gingerjake.potatogame.Actors.Potato;
+import org.gingerjake.potatogame.Screens.EndScreen;
+import org.gingerjake.potatogame.Screens.StartScreen;
+import org.gingerjake.potatogame.Screens.TestScreen;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
 
-    public static boolean enterPressed;
     private boolean isRunning = false;
     public static final int width = 800; //Window Width
     public static final int height = 600; //Window Height
@@ -16,6 +20,7 @@ public class GamePanel extends JPanel implements Runnable{
         setFocusable(true);
         start();
     }
+
 
     private void start() {
         isRunning = true;
@@ -37,8 +42,6 @@ public class GamePanel extends JPanel implements Runnable{
         long start,elapsed,wait;
         ssm = new GameStateManager();
 
-
-
         while(isRunning) {
             start = System.nanoTime();
             tick();
@@ -52,6 +55,10 @@ public class GamePanel extends JPanel implements Runnable{
             if(wait <=0) wait = 5;
             try {
                 Thread.sleep(wait);
+                if(Potato.health <= 0) {
+                    GameStateManager.setState(new EndScreen());
+                    Potato.health = 3;
+                }
             } catch(Exception e) {
                 e.printStackTrace();
             }
