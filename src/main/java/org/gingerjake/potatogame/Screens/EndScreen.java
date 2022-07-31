@@ -23,7 +23,7 @@ public class EndScreen extends GameState {
 
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 50));
-        g.drawString("You Lost!", 0, (int) (GamePanel.height * .945));
+        g.drawString("You Lost!", 0, 566);
 
         g.drawImage(PotatoMain, (int) (GamePanel.width * .65), (int) (GamePanel.height * .5), 256, 256, null);
 

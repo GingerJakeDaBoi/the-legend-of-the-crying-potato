@@ -1,5 +1,6 @@
 package org.gingerjake.potatogame;
 
+import org.gingerjake.potatogame.Actors.DummyEnemy;
 import org.gingerjake.potatogame.Actors.Fist;
 import org.gingerjake.potatogame.Actors.Potato;
 import org.gingerjake.potatogame.Screens.TestScreen;
@@ -17,7 +18,6 @@ public class Main extends KeyListener {
         gameWindow.setSize(GamePanel.width, GamePanel.height);
         gameWindow.setLocationRelativeTo(null);
         gameWindow.setVisible(true);
-
         gameWindow.add(new GamePanel(), BorderLayout.CENTER);
         gameWindow.setVisible(true);
 
@@ -66,6 +66,10 @@ public class Main extends KeyListener {
                     }
                     case KeyEvent.VK_D: {
                         Fist.right();
+                        break;
+                    }
+                    case KeyEvent.VK_SPACE: {
+                        DummyEnemy.spawn(100,100);
                         break;
                     }
                 }

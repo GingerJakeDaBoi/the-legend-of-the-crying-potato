@@ -1,7 +1,5 @@
 package org.gingerjake.potatogame.Actors;
 
-import org.gingerjake.potatogame.GamePanel;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,6 +17,7 @@ public class Fist {
         X = Potato.X + 20;
         Y = Potato.Y + 20;
     }
+
     public static void right() {
         visible = true;
         direction = "right";
@@ -26,6 +25,7 @@ public class Fist {
         X = Potato.X + 20;
         Y = Potato.Y + 20;
     }
+
     public static void up() {
         visible = true;
         direction = "up";
@@ -33,6 +33,7 @@ public class Fist {
         X = Potato.X + 20;
         Y = Potato.Y + 20;
     }
+
     public static void down() {
         visible = true;
         direction = "down";
