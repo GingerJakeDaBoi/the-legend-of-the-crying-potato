@@ -1,6 +1,5 @@
 package org.gingerjake.potatogame;
 
-import org.gingerjake.potatogame.Actors.Dummy.dummyRedProp;
 import org.gingerjake.potatogame.Actors.Player.Potato;
 import org.gingerjake.potatogame.Screens.EndScreen;
 

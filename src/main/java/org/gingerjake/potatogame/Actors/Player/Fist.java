@@ -1,5 +1,6 @@
 package org.gingerjake.potatogame.Actors.Player;
 
+import org.gingerjake.potatogame.Actors.Dummy.Enemy;
 import org.gingerjake.potatogame.GamePanel;
 
 import javax.swing.*;
@@ -12,6 +13,8 @@ public class Fist {
     public static Image FistL = new ImageIcon("Assets/Attacks/Fist/FistL.png").getImage();
     public static Image FistU = new ImageIcon("Assets/Attacks/Fist/FistU.png").getImage();
     public static Image FistD = new ImageIcon("Assets/Attacks/Fist/FistD.png").getImage();
+    public static int width = 64;
+    public static int height = 64;
     public static int X;
     public static int Y;
     public static boolean FistRunning = false;
@@ -29,6 +32,11 @@ public class Fist {
             if(X < 0) {
                 visible = false;
             }
+            if(X < Enemy.X && X < Enemy.width || Y < Enemy.Y && Y < Enemy.height) {
+                Enemy.health -= 1;
+                visible = false;
+            }
+
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) {
@@ -79,6 +87,7 @@ public class Fist {
             if(Y < 0) {
                 visible = false;
             }
+
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) {

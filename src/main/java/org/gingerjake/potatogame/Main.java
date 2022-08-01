@@ -1,5 +1,6 @@
 package org.gingerjake.potatogame;
 
+import org.gingerjake.potatogame.Actors.Dummy.Enemy;
 import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.Potato;
 import org.gingerjake.potatogame.Screens.TestScreen;
@@ -26,6 +27,23 @@ public class Main extends KeyListener {
         manager.addKeyEventDispatcher(e -> {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
                 switch (e.getKeyCode()) {
+                    case KeyEvent.VK_UP: {
+                        Potato.moveUp();
+                        break;
+                    }
+                    case KeyEvent.VK_DOWN: {
+                        Potato.moveDown();
+                        break;
+                    }
+                    case KeyEvent.VK_LEFT: {
+                        Potato.moveLeft();
+                        break;
+                    }
+                    case KeyEvent.VK_RIGHT: {
+                        Potato.moveRight();
+                        break;
+                    }
+
                     case KeyEvent.VK_A:
                         if (!Fist.FistRunning) {
                             new Thread(Fist::left).start();
@@ -56,7 +74,10 @@ public class Main extends KeyListener {
                         System.exit(0);
                         break;
                     case KeyEvent.VK_SPACE:
-                        Potato.health -= 1;
+                        Enemy.health += 1;
+                        break;
+                    case KeyEvent.VK_E:
+                        new Thread(Enemy::chase).start();
                         break;
                 }
             }
