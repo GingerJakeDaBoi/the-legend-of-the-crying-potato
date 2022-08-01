@@ -24,12 +24,12 @@ public class StartScreen extends GameState {
 
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 50));
-        g.drawString("Press Enter to start", 0, 566);
+        g.drawString("Press Enter to start", 0, GamePanel.height - 5);
         g.drawString("The Legend of the Crying Potato", 7, 49);
 
-
-
         g.drawImage(PotatoMain, (int) (GamePanel.width * .65), (int) (GamePanel.height * .5), 256, 256, null);
+
+
 
     }
 

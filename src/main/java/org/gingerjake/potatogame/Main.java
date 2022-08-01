@@ -24,27 +24,40 @@ public class Main extends KeyListener {
         gameWindow.addKeyListener(gameInput);
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(e -> {
-            if(e.getID() == KeyEvent.KEY_PRESSED) {
-                if(e.getKeyCode() == KeyEvent.VK_A) {
-                    Fist.left();
-                }
-                if(e.getKeyCode() == KeyEvent.VK_D) {
-                    Fist.right();
-                }
-                if(e.getKeyCode() == KeyEvent.VK_W) {
-                    Fist.up();
-                }
-                if(e.getKeyCode() == KeyEvent.VK_S) {
-                    Fist.down();
-                }
-                if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    Potato.health -= 1;
-                }
-                if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    System.exit(0);
-                }
-                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    GameStateManager.setState(new TestScreen());
+            if (e.getID() == KeyEvent.KEY_PRESSED) {
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_A:
+                        if (!Fist.FistRunning) {
+                            new Thread(Fist::left).start();
+                        }
+                        break;
+                    case KeyEvent.VK_D:
+                        if (!Fist.FistRunning) {
+                            new Thread(Fist::right).start();
+                        }
+                        break;
+                    case KeyEvent.VK_W:
+                        if (!Fist.FistRunning) {
+                            new Thread(Fist::up).start();
+                        }
+                        break;
+                    case KeyEvent.VK_S:
+                        if (!Fist.FistRunning) {
+                            new Thread(Fist::down).start();
+                        }
+                        break;
+                    case KeyEvent.VK_ENTER:
+                        if (!gameStarted.get()) {
+                            gameStarted.set(true);
+                            GameStateManager.setState(new TestScreen());
+                        }
+                        break;
+                    case KeyEvent.VK_ESCAPE:
+                        System.exit(0);
+                        break;
+                    case KeyEvent.VK_SPACE:
+                        Potato.health -= 1;
+                        break;
                 }
             }
             return false;

@@ -1,5 +1,6 @@
 package org.gingerjake.potatogame;
 
+import org.gingerjake.potatogame.Actors.Dummy.dummyRedProp;
 import org.gingerjake.potatogame.Actors.Player.Potato;
 import org.gingerjake.potatogame.Screens.EndScreen;
 
@@ -11,7 +12,7 @@ public class GamePanel extends JPanel implements Runnable{
     private boolean isRunning = false;
     public static int width = 800; //Window Width
     public static int height = 600; //Window Height
-    private GameStateManager ssm = new GameStateManager();
+    private GameStateManager gsm = new GameStateManager();
 
     public GamePanel() {
         setPreferredSize(new Dimension(width,height));
@@ -26,24 +27,24 @@ public class GamePanel extends JPanel implements Runnable{
         thread.start();
     }
 
-    public void tick() {ssm.tick(); }
+    public void tick() {
+        gsm.tick(); }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         g.clearRect(0,0,width,height);
-
-        ssm.draw(g);
+        gsm.draw(g);
     }
     @SuppressWarnings("BusyWait")
     public void run() {
         long start,elapsed,wait;
-        ssm = new GameStateManager();
+        gsm = new GameStateManager();
 
         while(isRunning) {
             start = System.nanoTime();
             tick();
             repaint();
+            invalidate();
 
             elapsed = System.nanoTime()-start;
             int FPS = 60;

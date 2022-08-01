@@ -4,6 +4,7 @@ package org.gingerjake.potatogame;
 import java.awt.*;
 
 public abstract class GameState {
+
     public abstract void init();
 
     public static GameStateManager gsm;
