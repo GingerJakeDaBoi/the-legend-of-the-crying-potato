@@ -1,6 +1,7 @@
 package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.Fist;
+import org.gingerjake.potatogame.Actors.Player.Potato;
 import org.gingerjake.potatogame.Screens.TestScreen;
 
 import javax.swing.*;
@@ -37,7 +38,7 @@ public class Main extends KeyListener {
                     Fist.down();
                 }
                 if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    Fist.visible = true;
+                    Potato.health -= 1;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     System.exit(0);
