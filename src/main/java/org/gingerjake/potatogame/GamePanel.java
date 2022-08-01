@@ -1,8 +1,6 @@
 package org.gingerjake.potatogame;
 
-import org.gingerjake.potatogame.Actors.DummyEnemy;
-import org.gingerjake.potatogame.Actors.Fist;
-import org.gingerjake.potatogame.Actors.Potato;
+import org.gingerjake.potatogame.Actors.Player.Potato;
 import org.gingerjake.potatogame.Screens.EndScreen;
 
 import javax.swing.*;
@@ -58,29 +56,6 @@ public class GamePanel extends JPanel implements Runnable{
                 if(Potato.health <= 0) {
                     GameStateManager.setState(new EndScreen());
                     Potato.health = 3;
-                }
-                if(DummyEnemy.X == Potato.X) {
-                    if(DummyEnemy.Y == Potato.Y) {
-                        DummyEnemy.hurt();
-                    }
-                }
-                if(DummyEnemy.Y == Potato.Y) {
-                    if(DummyEnemy.X == Potato.X) {
-                        DummyEnemy.hurt();
-                    }
-                }
-                if(DummyEnemy.health <= 0) {
-                    DummyEnemy.visible = false;
-                }
-                if(Fist.X >= DummyEnemy.X || Fist.X <= DummyEnemy.HitboxX) {
-                    if(Fist.Y == DummyEnemy.Y) {
-                        DummyEnemy.health -= 1;
-                    }
-                }
-                if(Fist.Y >= DummyEnemy.Y || Fist.Y <= DummyEnemy.HitboxY) {
-                    if(Fist.X == DummyEnemy.X) {
-                        DummyEnemy.health -= 1;
-                    }
                 }
                 //update width and height of the screen
                 width = getWidth();

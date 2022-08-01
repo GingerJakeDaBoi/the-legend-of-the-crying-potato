@@ -1,4 +1,4 @@
-package org.gingerjake.potatogame.Actors;
+package org.gingerjake.potatogame.Actors.Player;
 
 import org.gingerjake.potatogame.GamePanel;
 

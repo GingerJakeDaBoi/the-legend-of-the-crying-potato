@@ -1,9 +1,7 @@
 package org.gingerjake.potatogame.Screens;
 
-import org.gingerjake.potatogame.Actors.DummyEnemy;
-import org.gingerjake.potatogame.Actors.Fist;
-import org.gingerjake.potatogame.Actors.Potato;
-import org.gingerjake.potatogame.GamePanel;
+import org.gingerjake.potatogame.Actors.Player.Fist;
+import org.gingerjake.potatogame.Actors.Player.Potato;
 import org.gingerjake.potatogame.GameState;
 
 import java.awt.*;
@@ -40,22 +38,7 @@ public class TestScreen extends GameState {
 
         }
 
-        g.drawImage(Potato.PotatoAsset, Potato.X, Potato.Y, 96, 96, null);
-        if (DummyEnemy.visible) {
-            g.drawImage(DummyEnemy.enemyAsset, (int) DummyEnemy.X, (int) DummyEnemy.Y, 96, 96, null);
-            if (DummyEnemy.X < Potato.X) {
-                DummyEnemy.X = (int) (DummyEnemy.X + 1);
-            }
-            if (DummyEnemy.X > Potato.X) {
-                DummyEnemy.X = (int) (DummyEnemy.X - 1);
-            }
-            if (DummyEnemy.Y < Potato.Y) {
-                DummyEnemy.Y = (int) (DummyEnemy.Y + 1);
-            }
-            if (DummyEnemy.Y > Potato.Y) {
-                DummyEnemy.Y = (int) (DummyEnemy.Y - 1);
-            }
-        }
+        g.drawImage(Potato.PotatoAsset, Potato.X, Potato.Y, 128, 128, null);
 
         //draw health in the corner
         g.setColor(Color.RED);
