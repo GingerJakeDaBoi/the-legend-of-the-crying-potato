@@ -5,7 +5,6 @@ import org.gingerjake.potatogame.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
 
 public class Fist {
     public static boolean visible = false;

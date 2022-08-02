@@ -7,7 +7,6 @@ import java.awt.*;
 
 public class Enemy {
     public static Image EnemyAsset = new ImageIcon("Assets/Dummy/Red.png").getImage();
-    public static boolean hurting = false;
     public static int X;
     public static int Y;
     public static int width = 128;
@@ -34,20 +33,25 @@ public class Enemy {
             } else if (X > Potato.X) {
                 X -= speed;
             }
+
             if (Y < Potato.Y) {
                 Y += speed;
             } else if (Y > Potato.Y) {
                 Y -= speed;
             }
 
-            if (!hurting) {
+            if (!Potato.hurting) {
                 if (X == Potato.X && Y == Potato.Y) {
-                    Potato.health -= damage;
-                    //noinspection UnusedAssignment
-                    hurting = true;
+                    new Thread(Potato::damage).start();
                 }
-                hurting = false;
             }
+
+            try {
+                Thread.sleep(250);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             if (health <= 0) {
                 spawned = false;
                 Thread.currentThread().interrupt();
@@ -55,11 +59,6 @@ public class Enemy {
             }
 
 
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 }
