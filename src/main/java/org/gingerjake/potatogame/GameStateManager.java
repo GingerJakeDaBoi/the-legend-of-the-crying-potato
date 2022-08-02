@@ -1,6 +1,6 @@
 package org.gingerjake.potatogame;
 
-import org.gingerjake.potatogame.Screens.StartScreen;
+import org.gingerjake.potatogame.Levels.StartScreen;
 
 import java.awt.*;
 import java.util.Stack;

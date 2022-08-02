@@ -2,18 +2,15 @@ package org.gingerjake.potatogame.Actors.Player;
 
 import org.gingerjake.potatogame.Actors.Dummy.Enemy;
 import org.gingerjake.potatogame.GamePanel;
-import org.gingerjake.potatogame.KeyListener;
-import org.gingerjake.potatogame.Main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class Potato {
 
     public static Image PotatoAsset = new ImageIcon("Assets/Potato/PotatoMain.png").getImage();
-    public static int X = GamePanel.width / 2;
-    public static int Y = GamePanel.height / 2;
+    public static int X = 1200;
+    public static int Y = 800;
     public static int health = 3;
     public static boolean hurting;
 

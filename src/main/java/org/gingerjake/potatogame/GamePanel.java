@@ -2,8 +2,7 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Dummy.Enemy;
 import org.gingerjake.potatogame.Actors.Player.Potato;
-import org.gingerjake.potatogame.Screens.EndScreen;
-import org.gingerjake.potatogame.Screens.MapScreen;
+import org.gingerjake.potatogame.Levels.WorldHub;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,7 +54,7 @@ public class GamePanel extends JPanel implements Runnable{
             try {
                 Thread.sleep(wait);
                 if(Potato.health <= 0) {
-                    GameStateManager.setState(new MapScreen());
+                    GameStateManager.setState(new WorldHub());
                     Potato.health = 3;
                     Enemy.spawned = false;
                 }

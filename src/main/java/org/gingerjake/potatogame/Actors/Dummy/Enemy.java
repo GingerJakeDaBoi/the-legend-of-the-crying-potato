@@ -56,6 +56,7 @@ public class Enemy {
                 spawned = false;
                 Thread.currentThread().interrupt();
                 System.out.println("Enemy died");
+
             }
 
 

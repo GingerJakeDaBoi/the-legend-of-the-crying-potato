@@ -1,19 +1,23 @@
-package org.gingerjake.potatogame.Screens;
+package org.gingerjake.potatogame.Levels;
 
 import org.gingerjake.potatogame.Actors.Dummy.Enemy;
 import org.gingerjake.potatogame.Actors.GUI.Health;
 import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.Potato;
 import org.gingerjake.potatogame.GameState;
+import org.gingerjake.potatogame.GameStateManager;
 
 import java.awt.*;
 import java.util.Objects;
 
-public class TestScreen extends GameState {
+public class PotatoFarm extends GameState {
 
-    public TestScreen() {
+    public static boolean completed;
+
+    public PotatoFarm() {
         super(gsm);
         Enemy.spawn(50, 50);
+        new Thread(Enemy::chase).start();
 
     }
 
@@ -25,7 +29,6 @@ public class TestScreen extends GameState {
     @Override
     public void draw(Graphics g) {
         g.drawImage(Potato.PotatoAsset, Potato.X, Potato.Y, 128, 128, null);
-
 
         if (Fist.visible) {
             if (Objects.equals(Fist.direction, "left")) {
@@ -59,7 +62,12 @@ public class TestScreen extends GameState {
             g.drawImage(Health.playerHeartBroken, 36, 0, 32, 32, null);
             g.drawImage(Health.playerHeartBroken, 70, 0, 32, 32, null);
         }
-        g.drawString("Enemy health: " + Enemy.health, 10, 50);
+        if(!Enemy.spawned) {
+            completed = true;
+            GameState WorldHub = new WorldHub();
+            GameStateManager.setState(WorldHub);
+        }
+
 
 
     }

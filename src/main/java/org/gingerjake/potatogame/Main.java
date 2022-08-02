@@ -3,12 +3,14 @@ package org.gingerjake.potatogame;
 import org.gingerjake.potatogame.Actors.Dummy.Enemy;
 import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.Potato;
-import org.gingerjake.potatogame.Screens.MapScreen;
-import org.gingerjake.potatogame.Screens.TestScreen;
+import org.gingerjake.potatogame.Levels.PotatoFarm;
+import org.gingerjake.potatogame.Levels.WorldHub;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Main extends KeyListener {
@@ -67,20 +69,27 @@ public class Main extends KeyListener {
                     case KeyEvent.VK_ENTER:
                         if (!gameStarted.get()) {
                             gameStarted.set(true);
-                            GameStateManager.setState(new MapScreen());
+                            GameStateManager.setState(new WorldHub());
+                            try {
+                                SaveSystem.loadGame();
+                            } catch (FileNotFoundException ex) {
+                                throw new RuntimeException(ex);
+                            }
                         }
-                        if(MapScreen.FarmSelected) {
-                            GameStateManager.setState(new TestScreen());
+                        if(WorldHub.FarmSelected) {
+                            GameStateManager.setState(new PotatoFarm());
                         }
                         break;
                     case KeyEvent.VK_ESCAPE:
+                        try {
+                            SaveSystem.saveGame();
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
                         System.exit(0);
                         break;
                     case KeyEvent.VK_SPACE:
                         Enemy.health += 1;
-                        break;
-                    case KeyEvent.VK_E:
-                        new Thread(Enemy::chase).start();
                         break;
                 }
             }

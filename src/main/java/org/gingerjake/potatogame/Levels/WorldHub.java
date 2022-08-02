@@ -1,5 +1,6 @@
-package org.gingerjake.potatogame.Screens;
+package org.gingerjake.potatogame.Levels;
 
+import org.gingerjake.potatogame.Actors.GUI.Checkmark;
 import org.gingerjake.potatogame.Actors.GUI.Health;
 import org.gingerjake.potatogame.Actors.Player.Potato;
 import org.gingerjake.potatogame.Actors.World.FarmBuilding;
@@ -9,14 +10,12 @@ import org.gingerjake.potatogame.GameState;
 
 import java.awt.*;
 
-public class MapScreen extends GameState {
+public class WorldHub extends GameState {
 
     public static boolean FarmSelected;
 
-    public MapScreen() {
+    public WorldHub() {
         super(gsm);
-        Potato.X = 1200;
-        Potato.Y = 800;
     }
 
     @Override
@@ -89,6 +88,9 @@ public class MapScreen extends GameState {
             g.setColor(new Color(255, 255, 255));
             g.drawString("The Potato Farm", FarmBuilding.X - 100, FarmBuilding.Y - 50);
             g.drawString("Press Enter to Continue", FarmBuilding.X - 150, FarmBuilding.Y + 50);
+            if(PotatoFarm.completed) {
+                g.drawImage(Checkmark.Checkmark, FarmBuilding.X + 320, FarmBuilding.Y - 100, 64, 64, null);
+            }
             FarmSelected = true;
         } else {
             FarmSelected = false;
