@@ -9,7 +9,6 @@ import org.gingerjake.potatogame.GameState;
 import java.awt.*;
 import java.util.Objects;
 
-
 public class TestScreen extends GameState {
 
     public TestScreen() {

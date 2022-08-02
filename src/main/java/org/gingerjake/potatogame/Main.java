@@ -3,6 +3,7 @@ package org.gingerjake.potatogame;
 import org.gingerjake.potatogame.Actors.Dummy.Enemy;
 import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.Potato;
+import org.gingerjake.potatogame.Screens.MapScreen;
 import org.gingerjake.potatogame.Screens.TestScreen;
 
 import javax.swing.*;
@@ -11,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Main extends KeyListener {
+
     public static void main(String[] args) {
         AtomicBoolean gameStarted = new AtomicBoolean(false);
         JFrame gameWindow = new JFrame("Potato Game");
@@ -20,6 +22,7 @@ public class Main extends KeyListener {
         gameWindow.setVisible(true);
         gameWindow.add(new GamePanel(), BorderLayout.CENTER);
         gameWindow.setVisible(true);
+        gameWindow.setResizable(false);
 
         KeyListener gameInput = new KeyListener();
         gameWindow.addKeyListener(gameInput);
@@ -27,22 +30,19 @@ public class Main extends KeyListener {
         manager.addKeyEventDispatcher(e -> {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
                 switch (e.getKeyCode()) {
-                    case KeyEvent.VK_UP: {
-                        Potato.moveUp();
+                    //if the user presses two arrow keys at the same time, both will be executed
+                    case KeyEvent.VK_UP:
+                        new Thread(Potato::moveUp).start();
                         break;
-                    }
-                    case KeyEvent.VK_DOWN: {
-                        Potato.moveDown();
+                    case KeyEvent.VK_DOWN:
+                        new Thread(Potato::moveDown).start();
                         break;
-                    }
-                    case KeyEvent.VK_LEFT: {
-                        Potato.moveLeft();
+                    case KeyEvent.VK_LEFT:
+                        new Thread(Potato::moveLeft).start();
                         break;
-                    }
-                    case KeyEvent.VK_RIGHT: {
-                        Potato.moveRight();
+                    case KeyEvent.VK_RIGHT:
+                        new Thread(Potato::moveRight).start();
                         break;
-                    }
 
                     case KeyEvent.VK_A:
                         if (!Fist.FistRunning) {
@@ -67,6 +67,9 @@ public class Main extends KeyListener {
                     case KeyEvent.VK_ENTER:
                         if (!gameStarted.get()) {
                             gameStarted.set(true);
+                            GameStateManager.setState(new MapScreen());
+                        }
+                        if(MapScreen.FarmSelected) {
                             GameStateManager.setState(new TestScreen());
                         }
                         break;

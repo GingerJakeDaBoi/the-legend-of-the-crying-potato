@@ -1,16 +1,17 @@
 package org.gingerjake.potatogame;
 
+import org.gingerjake.potatogame.Actors.Dummy.Enemy;
 import org.gingerjake.potatogame.Actors.Player.Potato;
 import org.gingerjake.potatogame.Screens.EndScreen;
+import org.gingerjake.potatogame.Screens.MapScreen;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
-
     private boolean isRunning = false;
-    public static int width = 800; //Window Width
-    public static int height = 600; //Window Height
+    public static int width = 1600; //Window Width
+    public static int height = 900; //Window Height
     private GameStateManager gsm = new GameStateManager();
 
     public GamePanel() {
@@ -54,8 +55,9 @@ public class GamePanel extends JPanel implements Runnable{
             try {
                 Thread.sleep(wait);
                 if(Potato.health <= 0) {
-                    GameStateManager.setState(new EndScreen());
+                    GameStateManager.setState(new MapScreen());
                     Potato.health = 3;
+                    Enemy.spawned = false;
                 }
                 //update width and height of the screen
                 width = getWidth();
