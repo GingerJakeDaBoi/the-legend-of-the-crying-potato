@@ -1,6 +1,6 @@
 package org.gingerjake.potatogame.Levels;
 
-import org.gingerjake.potatogame.Actors.Dummy.Enemy;
+import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.Enemy;
 import org.gingerjake.potatogame.Actors.GUI.Health;
 import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.Potato;

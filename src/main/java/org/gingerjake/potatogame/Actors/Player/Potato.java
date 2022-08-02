@@ -1,7 +1,6 @@
 package org.gingerjake.potatogame.Actors.Player;
 
-import org.gingerjake.potatogame.Actors.Dummy.Enemy;
-import org.gingerjake.potatogame.GamePanel;
+import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.Enemy;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +11,7 @@ public class Potato {
     public static int X = 1200;
     public static int Y = 800;
     public static int health = 3;
+    public static int speed = 10;
     public static boolean hurting;
 
     public static void moveUp() {
@@ -24,7 +24,7 @@ public class Potato {
         }
     }
     public static void moveDown() {
-        Y += 10;
+        Y += speed;
         try {
             Thread.sleep(0);
         } catch (InterruptedException e) {
@@ -32,7 +32,7 @@ public class Potato {
         }
     }
     public static void moveLeft() {
-        X -= 10;
+        X -= speed;
         try {
             Thread.sleep(0);
         } catch (InterruptedException e) {
@@ -40,7 +40,7 @@ public class Potato {
         }
     }
     public static void moveRight() {
-        X += 10;
+        X += speed;
         try {
             Thread.sleep(0);
         } catch (InterruptedException e) {

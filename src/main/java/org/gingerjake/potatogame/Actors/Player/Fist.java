@@ -1,6 +1,6 @@
 package org.gingerjake.potatogame.Actors.Player;
 
-import org.gingerjake.potatogame.Actors.Dummy.Enemy;
+import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.Enemy;
 import org.gingerjake.potatogame.GamePanel;
 
 import javax.swing.*;
@@ -15,6 +15,7 @@ public class Fist {
     public static Image FistD = new ImageIcon("Assets/Attacks/Fist/FistD.png").getImage();
     public static int width = 64;
     public static int height = 64;
+    public static List enemyList = new List();
     public static int X;
     public static int Y;
     public static boolean FistRunning = false;
@@ -32,7 +33,8 @@ public class Fist {
             if (X < 0) {
                 visible = false;
             }
-            if(Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
+
+            if (Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
                 Enemy.health -= 1;
                 visible = false;
             }
@@ -62,7 +64,7 @@ public class Fist {
             if (X > GamePanel.width) {
                 visible = false;
             }
-            if(Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
+            if (Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
                 Enemy.health -= 1;
                 visible = false;
             }
@@ -92,7 +94,7 @@ public class Fist {
             if (Y < 0) {
                 visible = false;
             }
-            if(Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
+            if (Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
                 Enemy.health -= 1;
                 visible = false;
             }
@@ -122,7 +124,7 @@ public class Fist {
             if (Y > GamePanel.height) {
                 visible = false;
             }
-            if(Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
+            if (Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
                 Enemy.health -= 1;
                 visible = false;
             }

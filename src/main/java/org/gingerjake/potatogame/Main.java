@@ -1,9 +1,9 @@
 package org.gingerjake.potatogame;
 
-import org.gingerjake.potatogame.Actors.Dummy.Enemy;
+import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.Enemy;
 import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.Potato;
-import org.gingerjake.potatogame.Levels.PotatoFarm;
+import org.gingerjake.potatogame.Levels.PotatoFarmChase;
 import org.gingerjake.potatogame.Levels.WorldHub;
 
 import javax.swing.*;
@@ -70,6 +70,7 @@ public class Main extends KeyListener {
                         if (!gameStarted.get()) {
                             gameStarted.set(true);
                             GameStateManager.setState(new WorldHub());
+                            Fist.enemyList.add("Enemy");
                             try {
                                 SaveSystem.loadGame();
                             } catch (FileNotFoundException ex) {
@@ -77,7 +78,7 @@ public class Main extends KeyListener {
                             }
                         }
                         if(WorldHub.FarmSelected) {
-                            GameStateManager.setState(new PotatoFarm());
+                            GameStateManager.setState(new PotatoFarmChase());
                         }
                         break;
                     case KeyEvent.VK_ESCAPE:

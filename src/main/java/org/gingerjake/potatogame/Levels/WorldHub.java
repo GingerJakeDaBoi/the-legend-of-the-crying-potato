@@ -3,8 +3,8 @@ package org.gingerjake.potatogame.Levels;
 import org.gingerjake.potatogame.Actors.GUI.Checkmark;
 import org.gingerjake.potatogame.Actors.GUI.Health;
 import org.gingerjake.potatogame.Actors.Player.Potato;
-import org.gingerjake.potatogame.Actors.World.FarmBuilding;
-import org.gingerjake.potatogame.Actors.World.GameWorld;
+import org.gingerjake.potatogame.Actors.Levels.World.FarmBuilding;
+import org.gingerjake.potatogame.Actors.Levels.World.GameWorld;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 
@@ -88,7 +88,7 @@ public class WorldHub extends GameState {
             g.setColor(new Color(255, 255, 255));
             g.drawString("The Potato Farm", FarmBuilding.X - 100, FarmBuilding.Y - 50);
             g.drawString("Press Enter to Continue", FarmBuilding.X - 150, FarmBuilding.Y + 50);
-            if(PotatoFarm.completed) {
+            if(PotatoFarmChase.completed) {
                 g.drawImage(Checkmark.Checkmark, FarmBuilding.X + 320, FarmBuilding.Y - 100, 64, 64, null);
             }
             FarmSelected = true;

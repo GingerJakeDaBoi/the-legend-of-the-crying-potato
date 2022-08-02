@@ -1,4 +1,4 @@
-package org.gingerjake.potatogame.Actors.World;
+package org.gingerjake.potatogame.Actors.Levels.World;
 
 import javax.swing.*;
 import java.awt.*;
