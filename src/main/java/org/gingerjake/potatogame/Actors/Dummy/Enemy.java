@@ -21,13 +21,14 @@ public class Enemy {
         X = x;
         Y = y;
         spawned = true;
-        //add every number between X and width to an array
+        health = 3;
 
     }
 
-
+    @SuppressWarnings("BusyWait")
     public static void chase() {
         while (spawned) {
+
             if (X < Potato.X) {
                 X += speed;
             } else if (X > Potato.X) {
@@ -38,6 +39,7 @@ public class Enemy {
             } else if (Y > Potato.Y) {
                 Y -= speed;
             }
+
             if (!hurting) {
                 if (X == Potato.X && Y == Potato.Y) {
                     Potato.health -= damage;
@@ -46,13 +48,20 @@ public class Enemy {
                 }
                 hurting = false;
             }
-        }
+            if (health <= 0) {
+                spawned = false;
+                Thread.currentThread().interrupt();
+                System.out.println("Enemy died");
+            }
 
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+            try {
+                Thread.sleep(250);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
+
 

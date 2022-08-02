@@ -5,6 +5,7 @@ import org.gingerjake.potatogame.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class Fist {
     public static boolean visible = false;
@@ -27,12 +28,12 @@ public class Fist {
         Y = Potato.Y + 20;
         System.out.println("Fist left");
         FistRunning = true;
-        while(visible) {
-            X-=10;
-            if(X < 0) {
+        while (visible) {
+            X -= 10;
+            if (X < 0) {
                 visible = false;
             }
-            if(X < Enemy.X && X < Enemy.width || Y < Enemy.Y && Y < Enemy.height) {
+            if(Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
                 Enemy.health -= 1;
                 visible = false;
             }
@@ -57,11 +58,16 @@ public class Fist {
         Y = Potato.Y + 20;
         System.out.println("Fist right");
         FistRunning = true;
-        while(visible) {
-            X +=10;
-            if(X > GamePanel.width) {
+        while (visible) {
+            X += 10;
+            if (X > GamePanel.width) {
                 visible = false;
             }
+            if(Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
+                Enemy.health -= 1;
+                visible = false;
+            }
+
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) {
@@ -82,11 +88,16 @@ public class Fist {
         Y = Potato.Y + 20;
         System.out.println("Fist up");
         FistRunning = true;
-        while(visible) {
-            Y -=10;
-            if(Y < 0) {
+        while (visible) {
+            Y -= 10;
+            if (Y < 0) {
                 visible = false;
             }
+            if(Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
+                Enemy.health -= 1;
+                visible = false;
+            }
+
 
             try {
                 Thread.sleep(20);
@@ -107,11 +118,17 @@ public class Fist {
         Y = Potato.Y + 20;
         System.out.println("Fist down");
         FistRunning = true;
-        while(visible) {
-            Y +=10;
-            if(Y > GamePanel.height) {
+        while (visible) {
+            Y += 10;
+            if (Y > GamePanel.height) {
                 visible = false;
             }
+            if(Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
+                Enemy.health -= 1;
+                visible = false;
+            }
+
+
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) {

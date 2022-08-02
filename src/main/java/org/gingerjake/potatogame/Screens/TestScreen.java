@@ -42,23 +42,25 @@ public class TestScreen extends GameState {
                 g.drawImage(Fist.FistD, Fist.X, Fist.Y, Fist.width, Fist.height, null);
             }
         }
-        g.drawImage(Enemy.EnemyAsset, Enemy.X, Enemy.Y, Enemy.width, Enemy.height, null);
-        if (Enemy.health == 3) {
+        if (Enemy.spawned) {
+            g.drawImage(Enemy.EnemyAsset, Enemy.X, Enemy.Y, Enemy.width, Enemy.height, null);
+        }
+        if (Potato.health == 3) {
             g.drawImage(Health.playerHeart, 2, 0, 32, 32, null);
             g.drawImage(Health.playerHeart, 36, 0, 32, 32, null);
             g.drawImage(Health.playerHeart, 70, 0, 32, 32, null);
         }
-        if (Enemy.health == 2) {
+        if (Potato.health == 2) {
             g.drawImage(Health.playerHeart, 2, 0, 32, 32, null);
             g.drawImage(Health.playerHeart, 36, 0, 32, 32, null);
             g.drawImage(Health.playerHeartBroken, 70, 0, 32, 32, null);
         }
-        if (Enemy.health == 1) {
+        if (Potato.health == 1) {
             g.drawImage(Health.playerHeart, 2, 0, 32, 32, null);
             g.drawImage(Health.playerHeartBroken, 36, 0, 32, 32, null);
             g.drawImage(Health.playerHeartBroken, 70, 0, 32, 32, null);
         }
-
+        g.drawString("Enemy health: " + Enemy.health, 10, 50);
 
 
     }
