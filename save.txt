@@ -1,1 +1,2 @@
 PotatoFarmCompletion: true
+PotatoHealth: 2
