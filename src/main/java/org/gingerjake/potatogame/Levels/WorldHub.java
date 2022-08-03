@@ -2,7 +2,7 @@ package org.gingerjake.potatogame.Levels;
 
 import org.gingerjake.potatogame.Actors.GUI.Checkmark;
 import org.gingerjake.potatogame.Actors.GUI.Health;
-import org.gingerjake.potatogame.Actors.Player.Potato;
+import org.gingerjake.potatogame.Actors.Player.Player;
 import org.gingerjake.potatogame.Actors.Levels.World.FarmBuilding;
 import org.gingerjake.potatogame.Actors.Levels.World.GameWorld;
 import org.gingerjake.potatogame.GamePanel;
@@ -27,42 +27,42 @@ public class WorldHub extends GameState {
     public void draw(Graphics g) {
         g.drawImage(GameWorld.gameWorld, GameWorld.X, GameWorld.Y, 4 * GamePanel.width, 4 * GamePanel.height, null);
 
-        g.drawImage(Potato.PotatoAsset, Potato.X, Potato.Y, 64, 64, null);
+        g.drawImage(Player.PotatoAsset, Player.X, Player.Y, 64, 64, null);
 
         g.drawImage(FarmBuilding.FarmBuildingAsset, FarmBuilding.X, FarmBuilding.Y, FarmBuilding.width, FarmBuilding.height, null);
 
-        if (Potato.health == 3) {
+        if (Player.health == 3) {
             g.drawImage(Health.playerHeart, 2, 0, 32, 32, null);
             g.drawImage(Health.playerHeart, 36, 0, 32, 32, null);
             g.drawImage(Health.playerHeart, 70, 0, 32, 32, null);
         }
-        if (Potato.health == 2) {
+        if (Player.health == 2) {
             g.drawImage(Health.playerHeart, 2, 0, 32, 32, null);
             g.drawImage(Health.playerHeart, 36, 0, 32, 32, null);
             g.drawImage(Health.playerHeartBroken, 70, 0, 32, 32, null);
         }
-        if (Potato.health == 1) {
+        if (Player.health == 1) {
             g.drawImage(Health.playerHeart, 2, 0, 32, 32, null);
             g.drawImage(Health.playerHeartBroken, 36, 0, 32, 32, null);
             g.drawImage(Health.playerHeartBroken, 70, 0, 32, 32, null);
         }
-        if(Potato.Y > GamePanel.height - 250) {
-            Potato.Y -= 10;
+        if(Player.Y > GamePanel.height - 250) {
+            Player.Y -= 10;
             GameWorld.Y -= 20;
             FarmBuilding.Y -= 20;
         }
-        if(Potato.X > GamePanel.width - 250) {
-            Potato.X -= 10;
+        if(Player.X > GamePanel.width - 250) {
+            Player.X -= 10;
             GameWorld.X -= 20;
             FarmBuilding.X -= 20;
         }
-        if(Potato.Y < 200) {
-            Potato.Y += 10;
+        if(Player.Y < 200) {
+            Player.Y += 10;
             GameWorld.Y += 20;
             FarmBuilding.Y += 20;
         }
-        if(Potato.X < 250) {
-            Potato.X += 10;
+        if(Player.X < 250) {
+            Player.X += 10;
             GameWorld.X += 20;
             FarmBuilding.X += 20;
         }
@@ -83,7 +83,7 @@ public class WorldHub extends GameState {
             GameWorld.Y = -(4 * GamePanel.height - GamePanel.height);
             FarmBuilding.Y = -1780;
         }
-        if(Potato.X >= FarmBuilding.X && Potato.X <= FarmBuilding.X + FarmBuilding.width && Potato.Y >= FarmBuilding.Y && Potato.Y <= FarmBuilding.Y + FarmBuilding.height) {
+        if(Player.X >= FarmBuilding.X && Player.X <= FarmBuilding.X + FarmBuilding.width && Player.Y >= FarmBuilding.Y && Player.Y <= FarmBuilding.Y + FarmBuilding.height) {
             g.setFont(new Font("Arial", Font.BOLD, 50));
             g.setColor(new Color(255, 255, 255));
             g.drawString("The Potato Farm", FarmBuilding.X - 100, FarmBuilding.Y - 50);

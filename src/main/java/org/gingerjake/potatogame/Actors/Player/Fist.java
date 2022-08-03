@@ -1,6 +1,6 @@
 package org.gingerjake.potatogame.Actors.Player;
 
-import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.Enemy;
+import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.PotatoBoss;
 import org.gingerjake.potatogame.GamePanel;
 
 import javax.swing.*;
@@ -24,8 +24,8 @@ public class Fist {
     public static void left() {
         visible = true;
         direction = "left";
-        X = Potato.X + 20;
-        Y = Potato.Y + 20;
+        X = Player.X + 20;
+        Y = Player.Y + 20;
         System.out.println("Fist left");
         FistRunning = true;
         while (visible) {
@@ -34,8 +34,8 @@ public class Fist {
                 visible = false;
             }
 
-            if (Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
-                Enemy.health -= 1;
+            if (Fist.X >= PotatoBoss.X && Fist.X <= PotatoBoss.X + PotatoBoss.width && Fist.Y >= PotatoBoss.Y && Fist.Y <= PotatoBoss.Y + PotatoBoss.height) {
+                PotatoBoss.health -= 1;
                 visible = false;
             }
 
@@ -55,8 +55,8 @@ public class Fist {
     public static void right() {
         visible = true;
         direction = "right";
-        X = Potato.X + 20;
-        Y = Potato.Y + 20;
+        X = Player.X + 20;
+        Y = Player.Y + 20;
         System.out.println("Fist right");
         FistRunning = true;
         while (visible) {
@@ -64,8 +64,8 @@ public class Fist {
             if (X > GamePanel.width) {
                 visible = false;
             }
-            if (Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
-                Enemy.health -= 1;
+            if (Fist.X >= PotatoBoss.X && Fist.X <= PotatoBoss.X + PotatoBoss.width && Fist.Y >= PotatoBoss.Y && Fist.Y <= PotatoBoss.Y + PotatoBoss.height) {
+                PotatoBoss.health -= 1;
                 visible = false;
             }
 
@@ -85,8 +85,8 @@ public class Fist {
     public static void up() {
         visible = true;
         direction = "up";
-        X = Potato.X + 20;
-        Y = Potato.Y + 20;
+        X = Player.X + 20;
+        Y = Player.Y + 20;
         System.out.println("Fist up");
         FistRunning = true;
         while (visible) {
@@ -94,8 +94,8 @@ public class Fist {
             if (Y < 0) {
                 visible = false;
             }
-            if (Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
-                Enemy.health -= 1;
+            if (Fist.X >= PotatoBoss.X && Fist.X <= PotatoBoss.X + PotatoBoss.width && Fist.Y >= PotatoBoss.Y && Fist.Y <= PotatoBoss.Y + PotatoBoss.height) {
+                PotatoBoss.health -= 1;
                 visible = false;
             }
 
@@ -115,8 +115,8 @@ public class Fist {
     public static void down() {
         visible = true;
         direction = "down";
-        X = Potato.X + 20;
-        Y = Potato.Y + 20;
+        X = Player.X + 20;
+        Y = Player.Y + 20;
         System.out.println("Fist down");
         FistRunning = true;
         while (visible) {
@@ -124,8 +124,8 @@ public class Fist {
             if (Y > GamePanel.height) {
                 visible = false;
             }
-            if (Fist.X >= Enemy.X && Fist.X <= Enemy.X + Enemy.width && Fist.Y >= Enemy.Y && Fist.Y <= Enemy.Y + Enemy.height) {
-                Enemy.health -= 1;
+            if (Fist.X >= PotatoBoss.X && Fist.X <= PotatoBoss.X + PotatoBoss.width && Fist.Y >= PotatoBoss.Y && Fist.Y <= PotatoBoss.Y + PotatoBoss.height) {
+                PotatoBoss.health -= 1;
                 visible = false;
             }
 

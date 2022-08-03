@@ -1,9 +1,9 @@
 package org.gingerjake.potatogame.Levels;
 
-import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.Enemy;
+import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.PotatoBoss;
 import org.gingerjake.potatogame.Actors.GUI.Health;
 import org.gingerjake.potatogame.Actors.Player.Fist;
-import org.gingerjake.potatogame.Actors.Player.Potato;
+import org.gingerjake.potatogame.Actors.Player.Player;
 import org.gingerjake.potatogame.GameState;
 
 import java.awt.*;
@@ -13,7 +13,6 @@ public class Template extends GameState {
 
     public Template() {
         super(gsm);
-        Enemy.spawn(50, 50);
 
     }
 
@@ -24,7 +23,7 @@ public class Template extends GameState {
 
     @Override
     public void draw(Graphics g) {
-        g.drawImage(Potato.PotatoAsset, Potato.X, Potato.Y, 128, 128, null);
+        g.drawImage(Player.PotatoAsset, Player.X, Player.Y, 128, 128, null);
 
         if (Fist.visible) {
             if (Objects.equals(Fist.direction, "left")) {
@@ -40,20 +39,17 @@ public class Template extends GameState {
                 g.drawImage(Fist.FistD, Fist.X, Fist.Y, Fist.width, Fist.height, null);
             }
         }
-        if (Enemy.spawned) {
-            g.drawImage(Enemy.EnemyAsset, Enemy.X, Enemy.Y, Enemy.width, Enemy.height, null);
-        }
-        if (Potato.health == 3) {
+        if (Player.health == 3) {
             g.drawImage(Health.playerHeart, 2, 0, 32, 32, null);
             g.drawImage(Health.playerHeart, 36, 0, 32, 32, null);
             g.drawImage(Health.playerHeart, 70, 0, 32, 32, null);
         }
-        if (Potato.health == 2) {
+        if (Player.health == 2) {
             g.drawImage(Health.playerHeart, 2, 0, 32, 32, null);
             g.drawImage(Health.playerHeart, 36, 0, 32, 32, null);
             g.drawImage(Health.playerHeartBroken, 70, 0, 32, 32, null);
         }
-        if (Potato.health == 1) {
+        if (Player.health == 1) {
             g.drawImage(Health.playerHeart, 2, 0, 32, 32, null);
             g.drawImage(Health.playerHeartBroken, 36, 0, 32, 32, null);
             g.drawImage(Health.playerHeartBroken, 70, 0, 32, 32, null);

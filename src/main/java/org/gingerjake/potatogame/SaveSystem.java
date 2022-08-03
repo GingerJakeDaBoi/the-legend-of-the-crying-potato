@@ -1,6 +1,6 @@
 package org.gingerjake.potatogame;
 
-import org.gingerjake.potatogame.Actors.Player.Potato;
+import org.gingerjake.potatogame.Actors.Player.Player;
 import org.gingerjake.potatogame.Levels.PotatoFarmChase;
 
 import java.io.*;
@@ -18,8 +18,9 @@ public class SaveSystem {
         try {
             FileWriter saveWriter = new FileWriter(saveData);
             saveWriter.write("PotatoFarmCompletion: " + PotatoFarmChase.completed);
-            saveWriter.write("\nPotatoHealth: " + Potato.health);
+            saveWriter.write("\nPotatoHealth: " + Player.health);
             saveWriter.close();
+            System.out.println("Game saved");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,7 +41,7 @@ public class SaveSystem {
                 if(line.contains("PotatoHealth")) {
                     String[] splitLine = line.split(" ");
                     String value = splitLine[1];
-                    Potato.health = Integer.parseInt(value);
+                    Player.health = Integer.parseInt(value);
                 }
             }
 

@@ -1,8 +1,8 @@
 package org.gingerjake.potatogame;
 
-import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.Enemy;
 import org.gingerjake.potatogame.Actors.Player.Fist;
-import org.gingerjake.potatogame.Actors.Player.Potato;
+import org.gingerjake.potatogame.Actors.Player.Player;
+import org.gingerjake.potatogame.Levels.PauseMenu;
 import org.gingerjake.potatogame.Levels.PotatoFarmChase;
 import org.gingerjake.potatogame.Levels.WorldHub;
 
@@ -34,16 +34,33 @@ public class Main extends KeyListener {
                 switch (e.getKeyCode()) {
                     //if the user presses two arrow keys at the same time, both will be executed
                     case KeyEvent.VK_UP:
-                        new Thread(Potato::moveUp).start();
+                        if (PauseMenu.paused) {
+                            if (PauseMenu.Selection > 0) {
+                                PauseMenu.Selection --;
+                                break;
+                            }
+                            break;
+
+                        }
+                        new Thread(Player::moveUp).start();
                         break;
                     case KeyEvent.VK_DOWN:
-                        new Thread(Potato::moveDown).start();
-                        break;
+                        if (PauseMenu.paused) {
+                            if (PauseMenu.Selection < 2) {
+                                PauseMenu.Selection ++;
+                                break;
+                            }
+
+                        }
+                        if (!PauseMenu.paused) {
+                            new Thread(Player::moveDown).start();
+                            break;
+                        }
                     case KeyEvent.VK_LEFT:
-                        new Thread(Potato::moveLeft).start();
+                        new Thread(Player::moveLeft).start();
                         break;
                     case KeyEvent.VK_RIGHT:
-                        new Thread(Potato::moveRight).start();
+                        new Thread(Player::moveRight).start();
                         break;
 
                     case KeyEvent.VK_A:
@@ -77,21 +94,38 @@ public class Main extends KeyListener {
                                 throw new RuntimeException(ex);
                             }
                         }
-                        if(WorldHub.FarmSelected) {
+                        if (WorldHub.FarmSelected) {
                             GameStateManager.setState(new PotatoFarmChase());
+                        }
+                        if(PauseMenu.paused) {
+                            if(PauseMenu.Selection == 0) {
+                                PauseMenu.paused = false;
+                                GameStateManager.setState(new WorldHub());
+                            } else if(PauseMenu.Selection == 1) {
+                                try {
+                                    SaveSystem.saveGame();
+                                } catch (IOException ex) {
+                                    throw new RuntimeException(ex);
+                                }
+                                System.exit(0);
+                            } else if(PauseMenu.Selection == 2) {
+                                try {
+                                    SaveSystem.saveGame();
+                                } catch (IOException ex) {
+                                    throw new RuntimeException(ex);
+                                }
+                            }
                         }
                         break;
                     case KeyEvent.VK_ESCAPE:
-                        try {
-                            SaveSystem.saveGame();
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
+                        if (!PauseMenu.paused) {
+                            GameStateManager.setState(new PauseMenu());
+                        } else {
+                            GameStateManager.setState(new WorldHub());
+                            PauseMenu.paused = false;
                         }
-                        System.exit(0);
                         break;
-                    case KeyEvent.VK_SPACE:
-                        Enemy.health += 1;
-                        break;
+
                 }
             }
             return false;

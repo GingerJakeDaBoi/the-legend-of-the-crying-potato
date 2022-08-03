@@ -1,11 +1,11 @@
 package org.gingerjake.potatogame.Actors.Player;
 
-import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.Enemy;
+import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.PotatoBoss;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Potato {
+public class Player {
 
     public static Image PotatoAsset = new ImageIcon("Assets/Potato/PotatoMain.png").getImage();
     public static int X = 1200;
@@ -49,7 +49,7 @@ public class Potato {
     }
     public static void damage() {
         hurting = true;
-        health -= Enemy.damage;
+        health -= PotatoBoss.damage;
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

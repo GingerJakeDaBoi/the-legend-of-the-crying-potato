@@ -1,2 +1,2 @@
-# the-legend-of-the-crying-potato
-remake of original game on scratch (https://scratch.mit.edu/projects/581233636/)
+# The Legend of the Crying Potato
+Remake of one of my old Scratch games, written in Java
