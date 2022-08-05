@@ -1,7 +1,6 @@
 package org.gingerjake.potatogame.Actors.Levels.PotatoFarm;
 
 import org.gingerjake.potatogame.Actors.Player.Player;
-import org.gingerjake.potatogame.Levels.PauseMenu;
 
 import javax.swing.*;
 import java.awt.*;

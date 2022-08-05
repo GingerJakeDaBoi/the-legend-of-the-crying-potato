@@ -8,6 +8,7 @@ import org.gingerjake.potatogame.Actors.Player.Player;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
+import org.gingerjake.potatogame.Levels.Menus.LevelComplete;
 
 import java.awt.*;
 import java.util.Objects;
@@ -18,8 +19,9 @@ public class PotatoFarmChase extends GameState {
 
     public PotatoFarmChase() {
         super(gsm);
+        WorldHub.FarmSelected = false;
         PotatoFarmBG.X = 0;
-        Player.speed = 15;
+        Player.speed = 5;
         PotatoBoss.spawn(50, 50);
         new Thread(PotatoBoss::chase).start();
 
@@ -32,7 +34,7 @@ public class PotatoFarmChase extends GameState {
 
     @Override
     public void draw(Graphics g) {
-        g.drawImage(PotatoFarmBG.Background, PotatoFarmBG.X, 0, 12 *PotatoFarmBG.width, 2 * PotatoFarmBG.height, null);
+        g.drawImage(PotatoFarmBG.Background, PotatoFarmBG.X, 0, 12 * PotatoFarmBG.width, 2 * PotatoFarmBG.height, null);
 
         g.drawImage(Player.PotatoAsset, Player.X, Player.Y, 128, 128, null);
 
@@ -69,19 +71,23 @@ public class PotatoFarmChase extends GameState {
             g.drawImage(Health.playerHeartBroken, 36, 0, 32, 32, null);
             g.drawImage(Health.playerHeartBroken, 70, 0, 32, 32, null);
         }
-        if(PotatoFarmBG.X <= -2400) {
+        if (PotatoFarmBG.X <= -2400) {
             completed = true;
             Player.speed = 10;
+            LevelComplete.complete = true;
+            GameStateManager.setState(new LevelComplete());
+            if (!PotatoBoss.spawned) {
+                LevelComplete.bossKilled = true;
+            }
             PotatoBoss.spawned = false;
-            GameStateManager.setState(new WorldHub());
+
         }
 
-        if(Player.X > GamePanel.width - 200) {
+        if (Player.X > GamePanel.width - 200) {
             PotatoFarmBG.X -= 5;
             Player.X -= 5;
             PotatoBoss.X -= 5;
         }
-
 
 
     }

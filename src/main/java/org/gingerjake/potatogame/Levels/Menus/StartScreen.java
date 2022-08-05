@@ -1,4 +1,4 @@
-package org.gingerjake.potatogame.Levels;
+package org.gingerjake.potatogame.Levels.Menus;
 
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;

@@ -2,13 +2,16 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.Player;
-import org.gingerjake.potatogame.Levels.PauseMenu;
+import org.gingerjake.potatogame.Levels.Menus.LevelComplete;
+import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
+import org.gingerjake.potatogame.Levels.Menus.UpgradeMenu;
 import org.gingerjake.potatogame.Levels.PotatoFarmChase;
 import org.gingerjake.potatogame.Levels.WorldHub;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -40,6 +43,11 @@ public class Main extends KeyListener {
                             PauseMenu.Selection -= 1;
                         }
                     }
+                    if (UpgradeMenu.upgradeOpen) {
+                        if (UpgradeMenu.Selection > 0) {
+                            UpgradeMenu.Selection -= 1;
+                        }
+                    }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     if (!Player.downing) {
@@ -47,8 +55,13 @@ public class Main extends KeyListener {
                         new Thread(Player::moveDown).start();
                     }
                     if (PauseMenu.paused) {
-                        if (PauseMenu.Selection < 2) {
+                        if (PauseMenu.Selection < 3) {
                             PauseMenu.Selection += 1;
+                        }
+                    }
+                    if(UpgradeMenu.upgradeOpen) {
+                        if (UpgradeMenu.Selection < 2) {
+                            UpgradeMenu.Selection += 1;
                         }
                     }
                 }
@@ -67,6 +80,11 @@ public class Main extends KeyListener {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     if (!gameStarted.get()) {
                         gameStarted.set(true);
+                        try {
+                            SaveSystem.loadGame();
+                        } catch (FileNotFoundException ex) {
+                            throw new RuntimeException(ex);
+                        }
                         GameStateManager.setState(new WorldHub());
                     }
                     if (PauseMenu.Selection == 0) {
@@ -74,24 +92,43 @@ public class Main extends KeyListener {
                     } else if (PauseMenu.Selection == 1) {
                         System.out.println("Thanks for playing!");
                         System.exit(0);
+                    } else if (PauseMenu.Selection == 3) {
+                        try {
+                            SaveSystem.saveGame();
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     } else if (PauseMenu.Selection == 2) {
+                        GameStateManager.setState(new UpgradeMenu());
+                    }
+                    if (WorldHub.FarmSelected) {
+                        GameStateManager.setState(new PotatoFarmChase());
+                    }
+                    if(LevelComplete.complete) {
+                        LevelComplete.earned += 1;
+                        if (LevelComplete.bossKilled) {
+                            LevelComplete.earned += 1;
+                        }
+                        LevelComplete.complete = false;
+                        GameStateManager.setState(new WorldHub());
+                        Player.pointsEarned = Player.pointsEarned + LevelComplete.earned;
+                        LevelComplete.earned = 0;
                         try {
                             SaveSystem.saveGame();
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         }
                     }
-                    if (WorldHub.FarmSelected) {
-                        GameStateManager.setState(new PotatoFarmChase());
-                    }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    if (!PauseMenu.paused) {
-                        PauseMenu.paused = true;
-                        GameStateManager.setState(new PauseMenu());
-                    } else {
-                        PauseMenu.paused = false;
-                        GameStateManager.setState(new WorldHub());
+                    if(gameStarted.get()) {
+                        if (!PauseMenu.paused) {
+                            PauseMenu.paused = true;
+                            GameStateManager.setState(new PauseMenu());
+                        } else {
+                            PauseMenu.paused = false;
+                            GameStateManager.setState(new WorldHub());
+                        }
                     }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_W) {

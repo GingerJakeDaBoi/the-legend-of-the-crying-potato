@@ -7,8 +7,10 @@ import org.gingerjake.potatogame.Actors.Levels.World.FarmBuilding;
 import org.gingerjake.potatogame.Actors.Levels.World.GameWorld;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
+import org.gingerjake.potatogame.Levels.Menus.LevelComplete;
 
 import java.awt.*;
+import java.util.logging.Level;
 
 public class WorldHub extends GameState {
 
@@ -16,6 +18,7 @@ public class WorldHub extends GameState {
 
     public WorldHub() {
         super(gsm);
+        Player.speed = 15;
     }
 
     @Override
@@ -47,24 +50,24 @@ public class WorldHub extends GameState {
             g.drawImage(Health.playerHeartBroken, 70, 0, 32, 32, null);
         }
         if(Player.Y > GamePanel.height - 250) {
-            Player.Y -= 10;
-            GameWorld.Y -= 20;
-            FarmBuilding.Y -= 20;
+            Player.Y -= 5;
+            GameWorld.Y -= 1;
+            FarmBuilding.Y -= 1;
         }
         if(Player.X > GamePanel.width - 250) {
-            Player.X -= 10;
-            GameWorld.X -= 20;
-            FarmBuilding.X -= 20;
+            Player.X -= 5;
+            GameWorld.X -= 1;
+            FarmBuilding.X -= 1;
         }
         if(Player.Y < 200) {
-            Player.Y += 10;
-            GameWorld.Y += 20;
-            FarmBuilding.Y += 20;
+            Player.Y += 5;
+            GameWorld.Y += 1;
+            FarmBuilding.Y += 1;
         }
         if(Player.X < 250) {
-            Player.X += 10;
-            GameWorld.X += 20;
-            FarmBuilding.X += 20;
+            Player.X += 5;
+            GameWorld.X += 1;
+            FarmBuilding.X += 1;
         }
         //if there is any blank space on the map, move the map and buildings accordingly
         if(GameWorld.X >= 0) {
@@ -86,7 +89,7 @@ public class WorldHub extends GameState {
         if(Player.X >= FarmBuilding.X && Player.X <= FarmBuilding.X + FarmBuilding.width && Player.Y >= FarmBuilding.Y && Player.Y <= FarmBuilding.Y + FarmBuilding.height) {
             g.setFont(new Font("Arial", Font.BOLD, 50));
             g.setColor(new Color(255, 255, 255));
-            g.drawString("The Potato Farm", FarmBuilding.X - 100, FarmBuilding.Y - 50);
+            g.drawString("PotatoFarmTest", FarmBuilding.X - 100, FarmBuilding.Y - 50);
             g.drawString("Press Enter to Continue", FarmBuilding.X - 150, FarmBuilding.Y + 50);
             if(PotatoFarmChase.completed) {
                 g.drawImage(Checkmark.Checkmark, FarmBuilding.X + 320, FarmBuilding.Y - 100, 64, 64, null);

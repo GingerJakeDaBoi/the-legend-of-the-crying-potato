@@ -19,6 +19,8 @@ public class Player {
     public static boolean uping;
     public static boolean downing;
 
+    public static int pointsEarned;
+
     @SuppressWarnings("BusyWait")
     public static void moveUp() {
         while(uping) {
@@ -37,7 +39,6 @@ public class Player {
     @SuppressWarnings("BusyWait")
     public static void moveDown() {
         while (downing) {
-            System.out.println("Downing");
             Y += speed;
             try {
                 Thread.sleep(20);
@@ -50,7 +51,6 @@ public class Player {
     @SuppressWarnings("BusyWait")
     public static void moveLeft() {
         while (lefting) {
-            System.out.println("Lefting");
             X -= speed;
             try {
                 Thread.sleep(20);
@@ -63,7 +63,6 @@ public class Player {
     @SuppressWarnings("BusyWait")
     public static void moveRight() {
         while(righting) {
-            System.out.println("Righting");
             X += speed;
             try {
                 Thread.sleep(20);

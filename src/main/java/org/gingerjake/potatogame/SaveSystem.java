@@ -19,6 +19,7 @@ public class SaveSystem {
             FileWriter saveWriter = new FileWriter(saveData);
             saveWriter.write("PotatoFarmCompletion: " + PotatoFarmChase.completed);
             saveWriter.write("\nPotatoHealth: " + Player.health);
+            saveWriter.write("\nPoints: " + Player.pointsEarned);
             saveWriter.close();
             System.out.println("Game saved");
         } catch (IOException e) {
@@ -37,11 +38,19 @@ public class SaveSystem {
                     String[] splitLine = line.split(" ");
                     String value = splitLine[1];
                     PotatoFarmChase.completed = value.equals("true");
+                    System.out.println("Loaded PotatoFarmCompletion: " + PotatoFarmChase.completed);
                 }
                 if(line.contains("PotatoHealth")) {
                     String[] splitLine = line.split(" ");
                     String value = splitLine[1];
                     Player.health = Integer.parseInt(value);
+                    System.out.println("Loaded PotatoHealth: " + Player.health);
+                }
+                if(line.contains("Points")) {
+                    String[] splitLine = line.split(" ");
+                    String value = splitLine[1];
+                    Player.pointsEarned = Integer.parseInt(value);
+                    System.out.println("Loaded Points: " + Player.pointsEarned);
                 }
             }
 
