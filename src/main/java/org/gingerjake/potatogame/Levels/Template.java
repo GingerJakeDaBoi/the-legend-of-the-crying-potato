@@ -1,6 +1,6 @@
 package org.gingerjake.potatogame.Levels;
 
-import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.PotatoBoss;
+import org.gingerjake.potatogame.Actors.Enemies.RangedHunter;
 import org.gingerjake.potatogame.Actors.GUI.Health;
 import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.Player;
@@ -13,6 +13,9 @@ public class Template extends GameState {
 
     public Template() {
         super(gsm);
+        RangedHunter.spawn(100,100);
+        new Thread(RangedHunter::chase).start();
+
 
     }
 
@@ -39,6 +42,13 @@ public class Template extends GameState {
                 g.drawImage(Fist.FistD, Fist.X, Fist.Y, Fist.width, Fist.height, null);
             }
         }
+        if (RangedHunter.spawned) {
+            g.drawImage(RangedHunter.EnemyAsset, RangedHunter.X, RangedHunter.Y, RangedHunter.width, RangedHunter.height, null);
+        }
+        if(RangedHunter.shooting) {
+            g.drawImage(RangedHunter.EnemyAmmo, RangedHunter.AmmoX, RangedHunter.AmmoY, 64,64, null);
+        }
+        System.out.println(RangedHunter.health);
         if (Player.health == 3) {
             g.drawImage(Health.playerHeart, 2, 0, 32, 32, null);
             g.drawImage(Health.playerHeart, 36, 0, 32, 32, null);

@@ -1,6 +1,6 @@
 package org.gingerjake.potatogame.Levels;
 
-import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.PotatoBoss;
+import org.gingerjake.potatogame.Actors.Enemies.BigChase;
 import org.gingerjake.potatogame.Actors.GUI.Health;
 import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.PotatoFarmBG;
 import org.gingerjake.potatogame.Actors.Player.Fist;
@@ -16,14 +16,15 @@ import java.util.Objects;
 public class PotatoFarmChase extends GameState {
 
     public static boolean completed;
+    public static boolean bossKill;
 
     public PotatoFarmChase() {
         super(gsm);
         WorldHub.FarmSelected = false;
         PotatoFarmBG.X = 0;
         Player.speed = 5;
-        PotatoBoss.spawn(50, 50);
-        new Thread(PotatoBoss::chase).start();
+        BigChase.spawn(50, 50);
+        new Thread(BigChase::chase).start();
 
     }
 
@@ -52,8 +53,8 @@ public class PotatoFarmChase extends GameState {
                 g.drawImage(Fist.FistD, Fist.X, Fist.Y, Fist.width, Fist.height, null);
             }
         }
-        if (PotatoBoss.spawned) {
-            g.drawImage(PotatoBoss.EnemyAsset, PotatoBoss.X, PotatoBoss.Y, PotatoBoss.width, PotatoBoss.height, null);
+        if (BigChase.spawned) {
+            g.drawImage(BigChase.EnemyAsset, BigChase.X, BigChase.Y, BigChase.width, BigChase.height, null);
         }
 
         if (Player.health == 3) {
@@ -76,17 +77,18 @@ public class PotatoFarmChase extends GameState {
             Player.speed = 10;
             LevelComplete.complete = true;
             GameStateManager.setState(new LevelComplete());
-            if (!PotatoBoss.spawned) {
+            if (!BigChase.spawned) {
                 LevelComplete.bossKilled = true;
+                bossKill = true;
             }
-            PotatoBoss.spawned = false;
+            BigChase.spawned = false;
 
         }
 
         if (Player.X > GamePanel.width - 200) {
             PotatoFarmBG.X -= 5;
             Player.X -= 5;
-            PotatoBoss.X -= 5;
+            BigChase.X -= 5;
         }
 
 

@@ -1,6 +1,7 @@
 package org.gingerjake.potatogame.Levels.Menus;
 
 import org.gingerjake.potatogame.Actors.GUI.Health;
+import org.gingerjake.potatogame.Actors.Player.Player;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 
@@ -29,6 +30,8 @@ public class UpgradeMenu extends GameState {
         g.drawString("Speed", 0, 500);
         g.drawString("Health", 0, 550);
         g.drawString("Power", 0, 600);
+
+        g.drawString(Player.pointsEarned + " points earned", GamePanel.width - 373, 40);
 
         if(Selection == 0) {
             g.drawImage(Health.playerHeart, 150, 455, 50, 50, null);

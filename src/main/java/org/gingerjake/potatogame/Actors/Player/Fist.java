@@ -1,6 +1,7 @@
 package org.gingerjake.potatogame.Actors.Player;
 
-import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.PotatoBoss;
+import org.gingerjake.potatogame.Actors.Enemies.BigChase;
+import org.gingerjake.potatogame.Actors.Enemies.RangedHunter;
 import org.gingerjake.potatogame.GamePanel;
 
 import javax.swing.*;
@@ -34,8 +35,12 @@ public class Fist {
                 visible = false;
             }
 
-            if (Fist.X >= PotatoBoss.X && Fist.X <= PotatoBoss.X + PotatoBoss.width && Fist.Y >= PotatoBoss.Y && Fist.Y <= PotatoBoss.Y + PotatoBoss.height) {
-                PotatoBoss.health -= 1;
+            if (Fist.X >= BigChase.X && Fist.X <= BigChase.X + BigChase.width && Fist.Y >= BigChase.Y && Fist.Y <= BigChase.Y + BigChase.height) {
+                BigChase.health -= 1;
+                visible = false;
+            }
+            if (Fist.X >= RangedHunter.X && Fist.X <= RangedHunter.X + RangedHunter.width && Fist.Y >= RangedHunter.Y && Fist.Y <= RangedHunter.Y + RangedHunter.height) {
+                RangedHunter.health -= 1;
                 visible = false;
             }
 
@@ -64,8 +69,12 @@ public class Fist {
             if (X > GamePanel.width) {
                 visible = false;
             }
-            if (Fist.X >= PotatoBoss.X && Fist.X <= PotatoBoss.X + PotatoBoss.width && Fist.Y >= PotatoBoss.Y && Fist.Y <= PotatoBoss.Y + PotatoBoss.height) {
-                PotatoBoss.health -= 1;
+            if (Fist.X >= BigChase.X && Fist.X <= BigChase.X + BigChase.width && Fist.Y >= BigChase.Y && Fist.Y <= BigChase.Y + BigChase.height) {
+                BigChase.health -= 1;
+                visible = false;
+            }
+            if (Fist.X >= RangedHunter.X && Fist.X <= RangedHunter.X + RangedHunter.width && Fist.Y >= RangedHunter.Y && Fist.Y <= RangedHunter.Y + RangedHunter.height) {
+                RangedHunter.health -= 1;
                 visible = false;
             }
 
@@ -94,10 +103,15 @@ public class Fist {
             if (Y < 0) {
                 visible = false;
             }
-            if (Fist.X >= PotatoBoss.X && Fist.X <= PotatoBoss.X + PotatoBoss.width && Fist.Y >= PotatoBoss.Y && Fist.Y <= PotatoBoss.Y + PotatoBoss.height) {
-                PotatoBoss.health -= 1;
+            if (Fist.X >= BigChase.X && Fist.X <= BigChase.X + BigChase.width && Fist.Y >= BigChase.Y && Fist.Y <= BigChase.Y + BigChase.height) {
+                BigChase.health -= 1;
                 visible = false;
             }
+            if (Fist.X >= RangedHunter.X && Fist.X <= RangedHunter.X + RangedHunter.width && Fist.Y >= RangedHunter.Y && Fist.Y <= RangedHunter.Y + RangedHunter.height) {
+                RangedHunter.health -= 1;
+                visible = false;
+            }
+
 
 
             try {
@@ -124,8 +138,12 @@ public class Fist {
             if (Y > GamePanel.height) {
                 visible = false;
             }
-            if (Fist.X >= PotatoBoss.X && Fist.X <= PotatoBoss.X + PotatoBoss.width && Fist.Y >= PotatoBoss.Y && Fist.Y <= PotatoBoss.Y + PotatoBoss.height) {
-                PotatoBoss.health -= 1;
+            if (Fist.X >= BigChase.X && Fist.X <= BigChase.X + BigChase.width && Fist.Y >= BigChase.Y && Fist.Y <= BigChase.Y + BigChase.height) {
+                BigChase.health -= 1;
+                visible = false;
+            }
+            if (Fist.X >= RangedHunter.X && Fist.X <= RangedHunter.X + RangedHunter.width && Fist.Y >= RangedHunter.Y && Fist.Y <= RangedHunter.Y + RangedHunter.height) {
+                RangedHunter.health -= 1;
                 visible = false;
             }
 

@@ -1,6 +1,6 @@
 package org.gingerjake.potatogame;
 
-import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.PotatoBoss;
+import org.gingerjake.potatogame.Actors.Enemies.BigChase;
 import org.gingerjake.potatogame.Actors.Player.Player;
 import org.gingerjake.potatogame.Levels.WorldHub;
 
@@ -56,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable{
                 if(Player.health <= 0) {
                     GameStateManager.setState(new WorldHub());
                     Player.health = 3;
-                    PotatoBoss.spawned = false;
+                    BigChase.spawned = false;
                 }
                 //update width and height of the screen
                 width = getWidth();

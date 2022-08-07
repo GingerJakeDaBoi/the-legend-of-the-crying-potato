@@ -1,11 +1,11 @@
-package org.gingerjake.potatogame.Actors.Levels.PotatoFarm;
+package org.gingerjake.potatogame.Actors.Enemies;
 
 import org.gingerjake.potatogame.Actors.Player.Player;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class PotatoBoss {
+public class BigChase {
     public static Image EnemyAsset = new ImageIcon("Assets/Dummy/FarmTempIcon.png").getImage();
     public static int X;
     public static int Y;

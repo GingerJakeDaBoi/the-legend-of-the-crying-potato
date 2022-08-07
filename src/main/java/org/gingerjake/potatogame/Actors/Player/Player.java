@@ -1,9 +1,11 @@
 package org.gingerjake.potatogame.Actors.Player;
 
-import org.gingerjake.potatogame.Actors.Levels.PotatoFarm.PotatoBoss;
+import org.gingerjake.potatogame.Actors.Enemies.BigChase;
+import org.gingerjake.potatogame.Actors.Enemies.RangedHunter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class Player {
 
@@ -13,6 +15,7 @@ public class Player {
     public static int health = 3;
     public static int speed = 1;
     public static boolean hurting;
+    public static String currentHurt;
 
     public static boolean lefting;
     public static boolean righting;
@@ -29,7 +32,7 @@ public class Player {
                 Y = 0;
             }
             try {
-                Thread.sleep(20);
+                Thread.sleep(16);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -41,7 +44,7 @@ public class Player {
         while (downing) {
             Y += speed;
             try {
-                Thread.sleep(20);
+                Thread.sleep(16);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -53,7 +56,7 @@ public class Player {
         while (lefting) {
             X -= speed;
             try {
-                Thread.sleep(20);
+                Thread.sleep(16);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -65,7 +68,7 @@ public class Player {
         while(righting) {
             X += speed;
             try {
-                Thread.sleep(20);
+                Thread.sleep(16);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -74,7 +77,12 @@ public class Player {
 
     public static void damage() {
         hurting = true;
-        health -= PotatoBoss.damage;
+        if(Objects.equals(currentHurt, "BigChase")) {
+           health -= BigChase.damage;
+        }
+        if(Objects.equals(currentHurt, "RangedHunter")) {
+            health -= RangedHunter.damage;
+        }
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
