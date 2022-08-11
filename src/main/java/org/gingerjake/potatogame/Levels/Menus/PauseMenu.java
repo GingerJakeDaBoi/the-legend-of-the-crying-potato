@@ -13,7 +13,6 @@ public class PauseMenu extends GameState {
 
     public PauseMenu() {
         super(gsm);
-        UpgradeMenu.upgradeOpen = false;
         paused = true;
         Selection = 0;
 

@@ -2,7 +2,7 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Enemies.BigChase;
 import org.gingerjake.potatogame.Actors.Player.Player;
-import org.gingerjake.potatogame.Levels.WorldHub;
+import org.gingerjake.potatogame.Levels.Menus.EndScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,7 +54,7 @@ public class GamePanel extends JPanel implements Runnable{
             try {
                 Thread.sleep(wait);
                 if(Player.health <= 0) {
-                    GameStateManager.setState(new WorldHub());
+                    GameStateManager.setState(new EndScreen());
                     Player.health = 3;
                     BigChase.spawned = false;
                 }

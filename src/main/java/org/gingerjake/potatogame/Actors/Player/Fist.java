@@ -1,7 +1,6 @@
 package org.gingerjake.potatogame.Actors.Player;
 
 import org.gingerjake.potatogame.Actors.Enemies.BigChase;
-import org.gingerjake.potatogame.Actors.Enemies.RangedHunter;
 import org.gingerjake.potatogame.GamePanel;
 
 import javax.swing.*;
@@ -16,7 +15,6 @@ public class Fist {
     public static Image FistD = new ImageIcon("Assets/Attacks/Fist/FistD.png").getImage();
     public static int width = 64;
     public static int height = 64;
-    public static List enemyList = new List();
     public static int X;
     public static int Y;
     public static boolean FistRunning = false;
@@ -37,10 +35,6 @@ public class Fist {
 
             if (Fist.X >= BigChase.X && Fist.X <= BigChase.X + BigChase.width && Fist.Y >= BigChase.Y && Fist.Y <= BigChase.Y + BigChase.height) {
                 BigChase.health -= 1;
-                visible = false;
-            }
-            if (Fist.X >= RangedHunter.X && Fist.X <= RangedHunter.X + RangedHunter.width && Fist.Y >= RangedHunter.Y && Fist.Y <= RangedHunter.Y + RangedHunter.height) {
-                RangedHunter.health -= 1;
                 visible = false;
             }
 
@@ -73,10 +67,6 @@ public class Fist {
                 BigChase.health -= 1;
                 visible = false;
             }
-            if (Fist.X >= RangedHunter.X && Fist.X <= RangedHunter.X + RangedHunter.width && Fist.Y >= RangedHunter.Y && Fist.Y <= RangedHunter.Y + RangedHunter.height) {
-                RangedHunter.health -= 1;
-                visible = false;
-            }
 
             try {
                 Thread.sleep(20);
@@ -105,10 +95,6 @@ public class Fist {
             }
             if (Fist.X >= BigChase.X && Fist.X <= BigChase.X + BigChase.width && Fist.Y >= BigChase.Y && Fist.Y <= BigChase.Y + BigChase.height) {
                 BigChase.health -= 1;
-                visible = false;
-            }
-            if (Fist.X >= RangedHunter.X && Fist.X <= RangedHunter.X + RangedHunter.width && Fist.Y >= RangedHunter.Y && Fist.Y <= RangedHunter.Y + RangedHunter.height) {
-                RangedHunter.health -= 1;
                 visible = false;
             }
 
@@ -140,10 +126,6 @@ public class Fist {
             }
             if (Fist.X >= BigChase.X && Fist.X <= BigChase.X + BigChase.width && Fist.Y >= BigChase.Y && Fist.Y <= BigChase.Y + BigChase.height) {
                 BigChase.health -= 1;
-                visible = false;
-            }
-            if (Fist.X >= RangedHunter.X && Fist.X <= RangedHunter.X + RangedHunter.width && Fist.Y >= RangedHunter.Y && Fist.Y <= RangedHunter.Y + RangedHunter.height) {
-                RangedHunter.health -= 1;
                 visible = false;
             }
 
