@@ -9,9 +9,9 @@ import org.gingerjake.potatogame.GameState;
 import java.awt.*;
 import java.util.Objects;
 
-public class Template extends GameState {
+public class TestLevel extends GameState {
 
-    public Template() {
+    public TestLevel() {
         super(gsm);
         Player.X = 500;
         Player.Y = 500;
@@ -60,6 +60,7 @@ public class Template extends GameState {
             g.drawImage(Health.playerHeartBroken, 36, 0, 32, 32, null);
             g.drawImage(Health.playerHeartBroken, 70, 0, 32, 32, null);
         }
+        g.drawString("Enemy Health: " + GenericEnemy.health, 0, 100);
 
 
 

@@ -6,15 +6,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GenericEnemy {
-    public static Image EnemyAsset = new ImageIcon("Assets/Dummy/FarmTempIcon.png").getImage();
+    public static Image EnemyAsset = new ImageIcon("Assets/Dummy/Red.png").getImage();
     public static int X;
     public static int Y;
-    public static int width = 256;
-    public static int height = 256;
+    public static int width = 128;
+    public static int height = 128;
     public static boolean spawned;
     public static int health = 30;
     public static int speed = 1;
-    public static int damage = 2;
+    public static int damage = 1;
 
     public static void spawn(int x, int y) {
         X = x;
@@ -41,13 +41,14 @@ public class GenericEnemy {
             }
 
             if (!Player.hurting) {
-                if (X == Player.X && Y == Player.Y) {
+                if (Player.X >= GenericEnemy.X && Player.X <= GenericEnemy.X + GenericEnemy.width && Player.Y >= GenericEnemy.Y && Player.Y <= GenericEnemy.Y + GenericEnemy.height ) {
                     new Thread(Player::damage).start();
+                    Player.currentHurt = "GenericEnemy";
                 }
             }
 
             try {
-                Thread.sleep(5);
+                Thread.sleep(25);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

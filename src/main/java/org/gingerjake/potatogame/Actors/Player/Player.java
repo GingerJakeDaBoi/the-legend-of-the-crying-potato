@@ -4,15 +4,14 @@ import org.gingerjake.potatogame.Actors.Enemies.GenericEnemy;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
 
 public class Player {
 
-    public static Image PotatoAsset = new ImageIcon("Assets/Potato/PotatoMain.png").getImage();
+    public static Image PotatoAsset = new ImageIcon("Assets/Dummy/Green.png").getImage();
     public static int X = 1200;
     public static int Y = 800;
     public static int health = 3;
-    public static int speed = 1;
+    public static int speed = 5;
     public static boolean hurting;
     public static String currentHurt;
 
@@ -22,7 +21,6 @@ public class Player {
     public static boolean downing;
 
     public static int pointsEarned;
-
     @SuppressWarnings("BusyWait")
     public static void moveUp() {
         while(uping) {
@@ -77,7 +75,7 @@ public class Player {
 
     public static void damage() {
         hurting = true;
-        if(Objects.equals(currentHurt, "BigChase")) {
+        if(currentHurt.equals("GenericEnemy")) {
            health -= GenericEnemy.damage;
         }
         try {

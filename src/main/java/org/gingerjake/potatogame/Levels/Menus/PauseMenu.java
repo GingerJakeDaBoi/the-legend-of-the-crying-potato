@@ -33,9 +33,6 @@ public class PauseMenu extends GameState {
 
         g.drawString("Resume", 0, 500);
         g.drawString("Exit", 0, 550);
-        g.drawString("Upgrade", 0, 600);
-        g.drawString("Save", 0, 650);
-        g.drawString(Player.pointsEarned + " points earned", GamePanel.width - 373, 40);
 
         //if Selection is 0, draw a checkmark next to resume. if Selection is 1, draw a checkmark next to exit. if Selection is 2, draw a checkmark next to save.
         if(Selection == 0) {
@@ -44,12 +41,7 @@ public class PauseMenu extends GameState {
         if(Selection == 1) {
             g.drawImage(Health.playerHeart, 100, 505, 50, 50, null);
         }
-        if(Selection == 2) {
-            g.drawImage(Health.playerHeart, 210, 555, 50, 50, null);
-        }
-        if(Selection == 3) {
-            g.drawImage(Health.playerHeart, 120, 605, 50, 50, null);
-        }
+
 
     }
 
