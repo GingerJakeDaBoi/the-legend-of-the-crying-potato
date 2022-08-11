@@ -1,6 +1,6 @@
 package org.gingerjake.potatogame;
 
-import org.gingerjake.potatogame.Actors.Enemies.BigChase;
+import org.gingerjake.potatogame.Actors.Enemies.GenericEnemy;
 import org.gingerjake.potatogame.Actors.Player.Player;
 import org.gingerjake.potatogame.Levels.Menus.EndScreen;
 
@@ -56,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable{
                 if(Player.health <= 0) {
                     GameStateManager.setState(new EndScreen());
                     Player.health = 3;
-                    BigChase.spawned = false;
+                    GenericEnemy.spawned = false;
                 }
                 //update width and height of the screen
                 width = getWidth();

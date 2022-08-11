@@ -1,5 +1,6 @@
 package org.gingerjake.potatogame;
 
+import org.gingerjake.potatogame.Actors.Enemies.GenericEnemy;
 import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.Player;
 import org.gingerjake.potatogame.Levels.Menus.LevelComplete;
@@ -31,6 +32,9 @@ public class Main extends KeyListener {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
                 if (e.getKeyCode() == KeyEvent.VK_P) {
                     Player.health -= 1;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    new Thread(GenericEnemy::chase).start();
                 }
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
                     if (!Player.uping) {

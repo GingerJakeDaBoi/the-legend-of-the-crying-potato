@@ -5,7 +5,7 @@ import org.gingerjake.potatogame.Actors.Player.Player;
 import javax.swing.*;
 import java.awt.*;
 
-public class BigChase {
+public class GenericEnemy {
     public static Image EnemyAsset = new ImageIcon("Assets/Dummy/FarmTempIcon.png").getImage();
     public static int X;
     public static int Y;

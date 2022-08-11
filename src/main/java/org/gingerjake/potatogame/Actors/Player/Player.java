@@ -1,6 +1,6 @@
 package org.gingerjake.potatogame.Actors.Player;
 
-import org.gingerjake.potatogame.Actors.Enemies.BigChase;
+import org.gingerjake.potatogame.Actors.Enemies.GenericEnemy;
 
 import javax.swing.*;
 import java.awt.*;
@@ -78,7 +78,7 @@ public class Player {
     public static void damage() {
         hurting = true;
         if(Objects.equals(currentHurt, "BigChase")) {
-           health -= BigChase.damage;
+           health -= GenericEnemy.damage;
         }
         try {
             Thread.sleep(1000);

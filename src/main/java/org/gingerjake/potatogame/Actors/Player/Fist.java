@@ -1,6 +1,6 @@
 package org.gingerjake.potatogame.Actors.Player;
 
-import org.gingerjake.potatogame.Actors.Enemies.BigChase;
+import org.gingerjake.potatogame.Actors.Enemies.GenericEnemy;
 import org.gingerjake.potatogame.GamePanel;
 
 import javax.swing.*;
@@ -33,8 +33,8 @@ public class Fist {
                 visible = false;
             }
 
-            if (Fist.X >= BigChase.X && Fist.X <= BigChase.X + BigChase.width && Fist.Y >= BigChase.Y && Fist.Y <= BigChase.Y + BigChase.height) {
-                BigChase.health -= 1;
+            if (Fist.X >= GenericEnemy.X && Fist.X <= GenericEnemy.X + GenericEnemy.width && Fist.Y >= GenericEnemy.Y && Fist.Y <= GenericEnemy.Y + GenericEnemy.height) {
+                GenericEnemy.health -= 1;
                 visible = false;
             }
 
@@ -63,8 +63,8 @@ public class Fist {
             if (X > GamePanel.width) {
                 visible = false;
             }
-            if (Fist.X >= BigChase.X && Fist.X <= BigChase.X + BigChase.width && Fist.Y >= BigChase.Y && Fist.Y <= BigChase.Y + BigChase.height) {
-                BigChase.health -= 1;
+            if (Fist.X >= GenericEnemy.X && Fist.X <= GenericEnemy.X + GenericEnemy.width && Fist.Y >= GenericEnemy.Y && Fist.Y <= GenericEnemy.Y + GenericEnemy.height) {
+                GenericEnemy.health -= 1;
                 visible = false;
             }
 
@@ -93,8 +93,8 @@ public class Fist {
             if (Y < 0) {
                 visible = false;
             }
-            if (Fist.X >= BigChase.X && Fist.X <= BigChase.X + BigChase.width && Fist.Y >= BigChase.Y && Fist.Y <= BigChase.Y + BigChase.height) {
-                BigChase.health -= 1;
+            if (Fist.X >= GenericEnemy.X && Fist.X <= GenericEnemy.X + GenericEnemy.width && Fist.Y >= GenericEnemy.Y && Fist.Y <= GenericEnemy.Y + GenericEnemy.height) {
+                GenericEnemy.health -= 1;
                 visible = false;
             }
 
@@ -124,8 +124,8 @@ public class Fist {
             if (Y > GamePanel.height) {
                 visible = false;
             }
-            if (Fist.X >= BigChase.X && Fist.X <= BigChase.X + BigChase.width && Fist.Y >= BigChase.Y && Fist.Y <= BigChase.Y + BigChase.height) {
-                BigChase.health -= 1;
+            if (Fist.X >= GenericEnemy.X && Fist.X <= GenericEnemy.X + GenericEnemy.width && Fist.Y >= GenericEnemy.Y && Fist.Y <= GenericEnemy.Y + GenericEnemy.height) {
+                GenericEnemy.health -= 1;
                 visible = false;
             }
 
