@@ -1,3 +1,0 @@
-PotatoFarmCompletion: true
-PotatoHealth: 3
-Points: 6

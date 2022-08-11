@@ -9,10 +9,10 @@ import java.awt.*;
 public class Fist {
     public static boolean visible = false;
     public static String direction;
-    public static Image FistR = new ImageIcon("Assets/Attacks/Fist/FistR.png").getImage();
-    public static Image FistL = new ImageIcon("Assets/Attacks/Fist/FistL.png").getImage();
-    public static Image FistU = new ImageIcon("Assets/Attacks/Fist/FistU.png").getImage();
-    public static Image FistD = new ImageIcon("Assets/Attacks/Fist/FistD.png").getImage();
+    public static Image FistR = new ImageIcon("Assets/Dummy/Green.png").getImage();
+    public static Image FistL = new ImageIcon("Assets/Dummy/Green.png").getImage();
+    public static Image FistU = new ImageIcon("Assets/Dummy/Green.png").getImage();
+    public static Image FistD = new ImageIcon("Assets/Dummy/Green.png").getImage();
     public static int width = 64;
     public static int height = 64;
     public static int X;

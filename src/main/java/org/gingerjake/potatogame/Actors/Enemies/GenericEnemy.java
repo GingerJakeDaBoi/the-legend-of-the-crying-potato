@@ -24,6 +24,8 @@ public class GenericEnemy {
 
     }
 
+
+    //main chase thread
     @SuppressWarnings("BusyWait")
     public static void chase() {
         while (spawned) {
@@ -41,9 +43,10 @@ public class GenericEnemy {
             }
 
             if (!Player.hurting) {
-                if (Player.X >= GenericEnemy.X && Player.X <= GenericEnemy.X + GenericEnemy.width && Player.Y >= GenericEnemy.Y && Player.Y <= GenericEnemy.Y + GenericEnemy.height ) {
-                    new Thread(Player::damage).start();
-                    Player.currentHurt = "GenericEnemy";
+                //if the player and enemy sprites overlap in any point, deal damage to the player
+                if (X >= Player.X && X <= Player.X + Player.width && Y >= Player.Y && Y <= Player.Y + Player.height) {
+                    Player.health -= damage;
+                    Player.hurting = true;
                 }
             }
 
@@ -53,6 +56,7 @@ public class GenericEnemy {
                 e.printStackTrace();
             }
 
+            //when the enemy is out of health, it is killed
             if (health <= 0) {
                 spawned = false;
                 Thread.currentThread().interrupt();

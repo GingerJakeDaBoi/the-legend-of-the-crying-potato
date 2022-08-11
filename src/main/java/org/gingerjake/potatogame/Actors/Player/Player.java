@@ -10,6 +10,8 @@ public class Player {
     public static Image PotatoAsset = new ImageIcon("Assets/Dummy/Green.png").getImage();
     public static int X = 1200;
     public static int Y = 800;
+    public static int width = 128;
+    public static int height = 128;
     public static int health = 3;
     public static int speed = 5;
     public static boolean hurting;
