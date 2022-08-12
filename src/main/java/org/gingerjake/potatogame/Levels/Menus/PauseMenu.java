@@ -1,18 +1,23 @@
 package org.gingerjake.potatogame.Levels.Menus;
 
-import org.gingerjake.potatogame.Actors.GUI.Health;
+import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class PauseMenu extends GameState {
+    Image heartSelection;
     public static boolean paused;
     public static int Selection;
+    public static String previousState;
 
     public PauseMenu() {
         super(gsm);
         paused = true;
+        PlayerController.disable();
+        heartSelection = new ImageIcon("Assets/GUI/Heart.png").getImage();
         Selection = 0;
 
     }
@@ -35,10 +40,10 @@ public class PauseMenu extends GameState {
 
         //if Selection is 0, draw a checkmark next to resume. if Selection is 1, draw a checkmark next to exit. if Selection is 2, draw a checkmark next to save.
         if(Selection == 0) {
-            g.drawImage(Health.playerHeart, 200, 455, 50, 50, null);
+            g.drawImage(heartSelection, 200, 455, 50, 50, null);
         }
         if(Selection == 1) {
-            g.drawImage(Health.playerHeart, 100, 505, 50, 50, null);
+            g.drawImage(heartSelection, 100, 505, 50, 50, null);
         }
 
 

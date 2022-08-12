@@ -17,6 +17,10 @@ public class GameStateManager extends KeyListener {
         states.push(state);
     }
 
+    public static String getState() {
+        return states.peek().getClass().getSimpleName();
+    }
+
     public void tick() {
         states.peek().tick();
     }

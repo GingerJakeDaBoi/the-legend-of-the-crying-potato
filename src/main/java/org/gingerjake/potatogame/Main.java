@@ -7,12 +7,11 @@ import org.gingerjake.potatogame.Levels.TestLevel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.Objects;
 
 public class Main extends KeyListener {
 
     public static void main(String[] args) {
-        AtomicBoolean gameStarted = new AtomicBoolean(false);
         JFrame gameWindow = new JFrame("Potato Game");
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameWindow.setSize(GamePanel.width, GamePanel.height);
@@ -62,9 +61,10 @@ public class Main extends KeyListener {
                     }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    if (gameStarted.get()) {
+                    if (GamePanel.gameStarted) {
                         if (!PauseMenu.paused) {
                             PauseMenu.paused = true;
+                            PauseMenu.previousState = GameStateManager.getState();
                             GameStateManager.setState(new PauseMenu());
                         } else {
                             PauseMenu.paused = false;
@@ -73,12 +73,14 @@ public class Main extends KeyListener {
                     }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    if (!gameStarted.get()) {
-                        gameStarted.set(true);
+                    if (!GamePanel.gameStarted) {
                         GameStateManager.setState(new TestLevel());
                     }
                     if (PauseMenu.Selection == 0) {
-                        GameStateManager.setState(new TestLevel());
+                        if(Objects.equals(PauseMenu.previousState, "TestLevel")) {
+                            GameStateManager.setState(new TestLevel());
+                        }
+                        PlayerController.enable();
                     } else if (PauseMenu.Selection == 1) {
                         System.out.println("Thanks for playing!");
                         System.exit(0);
@@ -88,28 +90,30 @@ public class Main extends KeyListener {
                 }
 
             }
-//            if (e.getID() == KeyEvent.KEY_RELEASED) {
-//                if (e.getKeyCode() == KeyEvent.VK_UP) {
-//                    if (Player.uping) {
-//                        Player.uping = false;
-//                    }
-//                }
-//                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-//                    if (Player.downing) {
-//                        Player.downing = false;
-//                    }
-//                }
-//                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-//                    if (Player.lefting) {
-//                        Player.lefting = false;
-//                    }
-//                }
-//                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-//                    if (Player.righting) {
-//                        Player.righting = false;
-//                    }
-//                }
+            if (e.getID() == KeyEvent.KEY_RELEASED) {
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    if (PlayerController.uping) {
+                        PlayerController.uping = false;
+                    }
+                }
+                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    if (PlayerController.downing) {
+                        PlayerController.downing = false;
+                    }
+                }
+                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    if (PlayerController.lefting) {
+                        PlayerController.lefting = false;
+                    }
+                }
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    if (PlayerController.righting) {
+                        PlayerController.righting = false;
+                    }
+                }
 
+
+            }
             return false;
         });
     }
