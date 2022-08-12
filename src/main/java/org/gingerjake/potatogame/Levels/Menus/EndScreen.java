@@ -1,7 +1,5 @@
 package org.gingerjake.potatogame.Levels.Menus;
 
-import org.gingerjake.potatogame.Actors.GUI.Health;
-import org.gingerjake.potatogame.Actors.Player.Player;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 

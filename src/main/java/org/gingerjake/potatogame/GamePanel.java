@@ -1,7 +1,6 @@
 package org.gingerjake.potatogame;
 
-import org.gingerjake.potatogame.Actors.Enemies.GenericEnemy;
-import org.gingerjake.potatogame.Actors.Player.Player;
+import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.Menus.EndScreen;
 
 import javax.swing.*;
@@ -53,10 +52,9 @@ public class GamePanel extends JPanel implements Runnable{
             if(wait <=0) wait = 5;
             try {
                 Thread.sleep(wait);
-                if(Player.health <= 0) {
+                if(PlayerController.health <= 0) {
                     GameStateManager.setState(new EndScreen());
-                    Player.health = 3;
-                    GenericEnemy.spawned = false;
+                    PlayerController.health = 3;
                 }
                 //update width and height of the screen
                 width = getWidth();
