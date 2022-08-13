@@ -2,12 +2,7 @@ package org.gingerjake.potatogame.Actors.Player;
 
 import org.gingerjake.potatogame.GamePanel;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class PlayerController {
-    public static Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
-    public static Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     public static int x;
     public static int y;
     public static int width;

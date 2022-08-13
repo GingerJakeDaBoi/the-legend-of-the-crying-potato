@@ -3,11 +3,9 @@ package org.gingerjake.potatogame.Levels.Menus;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class StartScreen extends GameState {
-    Image PotatoMain = new ImageIcon("Assets/Potato/PotatoMain.png").getImage();
 
     public StartScreen() {
         super(gsm);

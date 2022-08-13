@@ -1,5 +1,6 @@
 package org.gingerjake.potatogame;
 
+import org.gingerjake.potatogame.Actors.Enemies.Chaser;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 import org.gingerjake.potatogame.Levels.TestLevel;
@@ -12,7 +13,7 @@ import java.util.Objects;
 public class Main extends KeyListener {
 
     public static void main(String[] args) {
-        JFrame gameWindow = new JFrame("Potato Game");
+        JFrame gameWindow = new JFrame("The Legend of the Crying Potato");
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameWindow.setSize(GamePanel.width, GamePanel.height);
         gameWindow.setLocationRelativeTo(null);
@@ -26,6 +27,12 @@ public class Main extends KeyListener {
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(e -> {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    if (!Chaser.enabled) {
+                        Chaser.enable();
+                        new Thread(Chaser::chase).start();
+                    }
+                }
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
                     if (!PlayerController.uping) {
                         PlayerController.uping = true;
@@ -77,7 +84,7 @@ public class Main extends KeyListener {
                         GameStateManager.setState(new TestLevel());
                     }
                     if (PauseMenu.Selection == 0) {
-                        if(Objects.equals(PauseMenu.previousState, "TestLevel")) {
+                        if (Objects.equals(PauseMenu.previousState, "TestLevel")) {
                             GameStateManager.setState(new TestLevel());
                         }
                         PlayerController.enable();

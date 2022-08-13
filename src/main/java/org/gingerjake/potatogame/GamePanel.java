@@ -13,7 +13,7 @@ public class GamePanel extends JPanel implements Runnable{
     public static int height = 900; //Window Height
     public static int FPS = 60; //Frames Per Second
     public static long TARGET_TIME = 1000 / FPS; //Target Time
-    private GameStateManager gsm = new GameStateManager();
+    private GameStateManager gsm = new GameStateManager(); //Game State Manager
 
     public GamePanel() {
         setPreferredSize(new Dimension(width,height));
