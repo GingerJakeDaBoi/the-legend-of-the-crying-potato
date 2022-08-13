@@ -2,7 +2,11 @@ package org.gingerjake.potatogame.Actors.Player;
 
 import org.gingerjake.potatogame.GamePanel;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class PlayerController {
+    public static Image playerAsset = new ImageIcon("Assets/Potato/PotatoMainL.png").getImage();
     public static int x;
     public static int y;
     public static int width;
@@ -71,6 +75,7 @@ public class PlayerController {
 
     @SuppressWarnings("BusyWait")
     public static void moveLeft() {
+        playerAsset = new ImageIcon("Assets/Potato/PotatoMainL.png").getImage();
         if (enabled) {
             while (lefting) {
                 x -= 1;
@@ -85,6 +90,7 @@ public class PlayerController {
 
     @SuppressWarnings("BusyWait")
     public static void moveRight() {
+        playerAsset = new ImageIcon("Assets/Potato/PotatoMainR.png").getImage();
         if (enabled) {
             while (righting) {
                 x += 1;

@@ -10,7 +10,7 @@ public class Chaser {
     public static int width;
     public static int height;
     public static int speed = 2;
-    public static int health = 3;
+    public static int health = 8;
     public static boolean enabled;
 
     public static void spawn(int x, int y, int width, int height) {

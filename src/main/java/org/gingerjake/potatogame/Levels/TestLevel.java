@@ -8,13 +8,13 @@ import org.gingerjake.potatogame.GameState;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class TestLevel extends GameState {
-    Image player = new ImageIcon("Assets/Dummy/Green.png").getImage();
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
-    Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
-    Image fist = new ImageIcon("Assets/Dummy/Green.png").getImage();
+    Image chaser = new ImageIcon("Assets/Dummy/FarmTempIcon.png").getImage();
+    Image fist;
 
     public TestLevel() {
         super(gsm);
@@ -37,13 +37,25 @@ public class TestLevel extends GameState {
     @Override
     public void draw(Graphics g) {
 
-        g.drawImage(player, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
+        g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
 
-        if(Chaser.enabled) {
+        if (Chaser.enabled) {
             g.drawImage(chaser, Chaser.x, Chaser.y, Chaser.width, Chaser.height, null);
         }
 
         if (Fist.visible) {
+            if (Objects.equals(Fist.direction, "left")) {
+                fist = new ImageIcon("Assets/Attacks/Fist/FistL.png").getImage();
+            }
+            if (Objects.equals(Fist.direction, "right")) {
+                fist = new ImageIcon("Assets/Attacks/Fist/FistR.png").getImage();
+            }
+            if (Objects.equals(Fist.direction, "up")) {
+                fist = new ImageIcon("Assets/Attacks/Fist/FistU.png").getImage();
+            }
+            if (Objects.equals(Fist.direction, "down")) {
+                fist = new ImageIcon("Assets/Attacks/Fist/FistD.png").getImage();
+            }
             g.drawImage(fist, Fist.x, Fist.y, Fist.width, Fist.height, null);
         }
 
