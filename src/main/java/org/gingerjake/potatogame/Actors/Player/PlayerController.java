@@ -9,12 +9,23 @@ public class PlayerController {
     public static int height;
     public static int health = 3;
     public static int speed = 10;
+    public static boolean hurting;
     public static boolean enabled;
     public static boolean uping;
     public static boolean downing;
     public static boolean lefting;
     public static boolean righting;
 
+    public static void hurt() {
+        health -= 1;
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        hurting = false;
+
+    }
     public static void spawn(int x, int y, int width, int height) {
         PlayerController.x = x;
         PlayerController.y = y;

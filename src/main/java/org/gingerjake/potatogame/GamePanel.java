@@ -57,9 +57,11 @@ public class GamePanel extends JPanel implements Runnable{
                     GameStateManager.setState(new EndScreen());
                     PlayerController.health = 3;
                 }
+
                 //update width and height of the screen
                 width = getWidth();
                 height = getHeight();
+
             } catch(Exception e) {
                 e.printStackTrace();
             }

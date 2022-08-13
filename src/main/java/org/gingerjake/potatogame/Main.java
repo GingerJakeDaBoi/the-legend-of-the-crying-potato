@@ -1,6 +1,7 @@
 package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Enemies.Chaser;
+import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 import org.gingerjake.potatogame.Levels.TestLevel;
@@ -27,7 +28,7 @@ public class Main extends KeyListener {
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(e -> {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
-                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                if (e.getKeyCode() == KeyEvent.VK_P) {
                     if (!Chaser.enabled) {
                         Chaser.enable();
                         new Thread(Chaser::chase).start();
@@ -65,6 +66,26 @@ public class Main extends KeyListener {
                     if (!PlayerController.righting) {
                         PlayerController.righting = true;
                         new Thread(PlayerController::moveRight).start();
+                    }
+                }
+                if (e.getKeyCode() == KeyEvent.VK_W) {
+                    if (!Fist.visible) {
+                        new Thread(Fist::up).start();
+                    }
+                }
+                if (e.getKeyCode() == KeyEvent.VK_S) {
+                    if (!Fist.visible) {
+                        new Thread(Fist::down).start();
+                    }
+                }
+                if (e.getKeyCode() == KeyEvent.VK_A) {
+                    if (!Fist.visible) {
+                        new Thread(Fist::left).start();
+                    }
+                }
+                if (e.getKeyCode() == KeyEvent.VK_D) {
+                    if (!Fist.visible) {
+                        new Thread(Fist::right).start();
                     }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
