@@ -30,6 +30,11 @@ public class Main extends KeyListener {
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(e -> {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
+                if(e.getKeyCode() == KeyEvent.VK_P) {
+                    new Thread(PlayerController::giveDamage).start();
+                    new Thread(PlayerController::giveHeart).start();
+                    new Thread(PlayerController::giveSpeed).start();
+                }
                 if (e.getKeyCode() == KeyEvent.VK_P) {
                     if (!SlowChaser.enabled) {
                         SlowChaser.enable();
@@ -114,7 +119,7 @@ public class Main extends KeyListener {
                         GameStateManager.setState(new HubSpace());
                     }
                     if (PauseMenu.Selection == 0) {
-                        if (Objects.equals(PauseMenu.previousState, "TestLevel")) {
+                        if (Objects.equals(PauseMenu.previousState, "HubSpace")) {
                             GameStateManager.setState(new HubSpace());
                         }
                         PlayerController.enable();
