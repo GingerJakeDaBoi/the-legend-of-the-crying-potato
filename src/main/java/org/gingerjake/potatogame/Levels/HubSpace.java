@@ -4,6 +4,9 @@ import org.gingerjake.potatogame.Actors.Enemies.Chaser;
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
+import org.gingerjake.potatogame.Actors.Upgrades.ExtraHeart;
+import org.gingerjake.potatogame.Actors.Upgrades.SpeedBoots;
+import org.gingerjake.potatogame.Actors.Upgrades.StrengthChalice;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 
@@ -11,18 +14,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class TestLevel extends GameState {
+public class HubSpace extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
+    Image background = new ImageIcon("Assets/Dummy/GreenDitherBG.png").getImage();
+    Image boots = new ImageIcon("Assets/Dummy/potion.png").getImage();
+    Image chalice = new ImageIcon("Assets/Dummy/rock.jpg").getImage();
+
     Image fist;
 
-    public TestLevel() {
+    public HubSpace() {
         super(gsm);
         if (!GamePanel.gameStarted) {
             PlayerController.spawn(500, 500, 192, 192);
-            Chaser.spawn(400, 400, 64, 64);
-            SlowChaser.spawn(400,500,64,64);
+            Chaser.spawn(400, 400, 64, 64);SlowChaser.spawn(400,500,64,64);
+            ExtraHeart.spawn(300,300,64,64);
+            SpeedBoots.spawn(300,200,64,64);
+            StrengthChalice.spawn(300,400,64,64);
+
         }
         PlayerController.enable();
         GamePanel.gameStarted = true;
@@ -38,8 +48,19 @@ public class TestLevel extends GameState {
     @Override
     public void draw(Graphics g) {
 
+        g.drawImage(background, 0, 0, GamePanel.width, GamePanel.height, null);
+
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
 
+        if(StrengthChalice.enabled) {
+            g.drawImage(chalice, StrengthChalice.x, StrengthChalice.y, StrengthChalice.width, StrengthChalice.height, null);
+        }
+        if(SpeedBoots.enabled) {
+            g.drawImage(boots, SpeedBoots.x, SpeedBoots.y, SpeedBoots.width, SpeedBoots.height, null);
+        }
+        if(ExtraHeart.enabled) {
+            g.drawImage(playerHeart, ExtraHeart.x, ExtraHeart.y, ExtraHeart.width, ExtraHeart.height, null);
+        }
         if (Chaser.enabled) {
             g.drawImage(chaser, Chaser.x, Chaser.y, Chaser.width, Chaser.height, null);
         }
@@ -63,6 +84,9 @@ public class TestLevel extends GameState {
             g.drawImage(fist, Fist.x, Fist.y, Fist.width, Fist.height, null);
         }
 
+        //TODO: Remove these strings when features are done
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.setColor(Color.WHITE);
         g.drawString("Chaser Health: " + Chaser.health, 0, 80);
         g.drawString("Slow Chaser Health: " + SlowChaser.health, 0, 120);
         g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 160);

@@ -6,7 +6,7 @@ import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.Menus.EndScreen;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
-import org.gingerjake.potatogame.Levels.TestLevel;
+import org.gingerjake.potatogame.Levels.HubSpace;
 
 import javax.swing.*;
 import java.awt.*;
@@ -118,18 +118,18 @@ public class Main extends KeyListener {
                                 GameStateManager.setState(new PauseMenu());
                             } else {
                                 PauseMenu.paused = false;
-                                GameStateManager.setState(new TestLevel());
+                                GameStateManager.setState(new HubSpace());
                             }
                         }
                     }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     if (!GamePanel.gameStarted) {
-                        GameStateManager.setState(new TestLevel());
+                        GameStateManager.setState(new HubSpace());
                     }
                     if (PauseMenu.Selection == 0) {
                         if (Objects.equals(PauseMenu.previousState, "TestLevel")) {
-                            GameStateManager.setState(new TestLevel());
+                            GameStateManager.setState(new HubSpace());
                         }
                         PlayerController.enable();
                     } else if (PauseMenu.Selection == 1) {
