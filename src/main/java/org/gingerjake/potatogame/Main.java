@@ -1,8 +1,10 @@
 package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Enemies.Chaser;
+import org.gingerjake.potatogame.Actors.Enemies.SlowChaser;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
+import org.gingerjake.potatogame.Levels.Menus.EndScreen;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 import org.gingerjake.potatogame.Levels.TestLevel;
 
@@ -28,11 +30,30 @@ public class Main extends KeyListener {
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(e -> {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
+                if(e.getKeyCode() == KeyEvent.VK_Z) {
+                    PlayerController.giveHeart();
+                }
+                if(e.getKeyCode() == KeyEvent.VK_X) {
+                    PlayerController.giveSpeed();
+                }
+                if(e.getKeyCode() == KeyEvent.VK_C) {
+                    PlayerController.giveDamage();
+                }
                 if (e.getKeyCode() == KeyEvent.VK_P) {
                     if (!Chaser.enabled) {
                         Chaser.enable();
                         new Thread(Chaser::chase).start();
+                        Chaser.health = 8;
                     }
+                    if (!SlowChaser.enabled) {
+                        SlowChaser.enable();
+                        new Thread(SlowChaser::chase).start();
+                        SlowChaser.health = 8;
+                    }
+                }
+                if (e.getKeyCode() == KeyEvent.VK_O) {
+                    PlayerController.health += 1;
+                    Chaser.health += 1;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
                     if (!PlayerController.uping) {
@@ -90,13 +111,15 @@ public class Main extends KeyListener {
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     if (GamePanel.gameStarted) {
-                        if (!PauseMenu.paused) {
-                            PauseMenu.paused = true;
-                            PauseMenu.previousState = GameStateManager.getState();
-                            GameStateManager.setState(new PauseMenu());
-                        } else {
-                            PauseMenu.paused = false;
-                            GameStateManager.setState(new TestLevel());
+                        if (!EndScreen.gameEnded) {
+                            if (!PauseMenu.paused) {
+                                PauseMenu.paused = true;
+                                PauseMenu.previousState = GameStateManager.getState();
+                                GameStateManager.setState(new PauseMenu());
+                            } else {
+                                PauseMenu.paused = false;
+                                GameStateManager.setState(new TestLevel());
+                            }
                         }
                     }
                 }
@@ -110,6 +133,10 @@ public class Main extends KeyListener {
                         }
                         PlayerController.enable();
                     } else if (PauseMenu.Selection == 1) {
+                        System.out.println("Thanks for playing!");
+                        System.exit(0);
+                    }
+                    if (EndScreen.gameEnded) {
                         System.out.println("Thanks for playing!");
                         System.exit(0);
                     }

@@ -4,20 +4,20 @@ import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 
-public class Chaser {
+public class SlowChaser {
     public static int x;
     public static int y;
     public static int width;
     public static int height;
-    public static int speed = 2;
+    public static int speed = 1;
     public static int health = 8;
     public static boolean enabled;
 
     public static void spawn(int x, int y, int width, int height) {
-        org.gingerjake.potatogame.Actors.Enemies.Chaser.x = x;
-        org.gingerjake.potatogame.Actors.Enemies.Chaser.y = y;
-        org.gingerjake.potatogame.Actors.Enemies.Chaser.width = width;
-        org.gingerjake.potatogame.Actors.Enemies.Chaser.height = height;
+        SlowChaser.x = x;
+        SlowChaser.y = y;
+        SlowChaser.width = width;
+        SlowChaser.height = height;
     }
 
     public static void enable() {
@@ -43,6 +43,7 @@ public class Chaser {
             if (PlayerController.y + PlayerController.height / 2 < y) {
                 y -= speed;
             }
+
 
             //if either PlayerController or Chaser overlap, damage the player.
             if (PlayerController.x + PlayerController.width > x && PlayerController.x < x + width && PlayerController.y + PlayerController.height > y && PlayerController.y < y + height) {

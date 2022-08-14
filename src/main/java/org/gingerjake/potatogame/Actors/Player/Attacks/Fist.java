@@ -8,6 +8,7 @@ public class Fist {
     public static int y;
     public static int width;
     public static int height;
+    public static int power = 1;
     public static int speed = 5;
     public static boolean visible;
     public static String direction;
@@ -16,8 +17,8 @@ public class Fist {
     public static void left() {
         visible = true;
         direction = "left";
-        x = PlayerController.x;
-        y = PlayerController.y;
+        x = PlayerController.x + PlayerController.width / 3;
+        y = PlayerController.y + PlayerController.height / 3;
         width = PlayerController.width / 2;
         height = PlayerController.height / 2;
         System.out.println("Fist left");
@@ -39,8 +40,8 @@ public class Fist {
     public static void right() {
         visible = true;
         direction = "right";
-        x = PlayerController.x + PlayerController.width;
-        y = PlayerController.y;
+        x = PlayerController.x + PlayerController.width / 3;
+        y = PlayerController.y + PlayerController.height / 3;
         width = PlayerController.width / 2;
         height = PlayerController.height / 2;
         System.out.println("Fist right");
@@ -61,8 +62,8 @@ public class Fist {
     public static void up() {
         visible = true;
         direction = "up";
-        x = PlayerController.x;
-        y = PlayerController.y;
+        x = PlayerController.x + PlayerController.width / 3;
+        y = PlayerController.y + PlayerController.height / 3;
         width = PlayerController.width / 2;
         height = PlayerController.height / 2;
         System.out.println("Fist up");
@@ -83,8 +84,8 @@ public class Fist {
     public static void down() {
         visible = true;
         direction = "down";
-        x = PlayerController.x;
-        y = PlayerController.y + PlayerController.height;
+        x = PlayerController.x + PlayerController.width / 3;
+        y = PlayerController.y + PlayerController.height / 3;
         width = PlayerController.width / 2;
         height = PlayerController.height / 2;
         System.out.println("Fist down");

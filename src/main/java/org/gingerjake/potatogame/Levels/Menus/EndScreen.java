@@ -6,9 +6,11 @@ import org.gingerjake.potatogame.GameState;
 import java.awt.*;
 
 public class EndScreen extends GameState {
+    public static boolean gameEnded;
 
     public EndScreen() {
         super(gsm);
+        gameEnded = true;
 
     }
 

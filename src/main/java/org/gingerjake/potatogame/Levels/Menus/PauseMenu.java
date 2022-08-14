@@ -1,5 +1,7 @@
 package org.gingerjake.potatogame.Levels.Menus;
 
+import org.gingerjake.potatogame.Actors.Enemies.Chaser;
+import org.gingerjake.potatogame.Actors.Enemies.SlowChaser;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
@@ -17,7 +19,8 @@ public class PauseMenu extends GameState {
         super(gsm);
         paused = true;
         PlayerController.disable();
-        org.gingerjake.potatogame.Actors.Enemies.Chaser.disable();
+        Chaser.disable();
+        SlowChaser.disable();
         heartSelection = new ImageIcon("Assets/GUI/Heart.png").getImage();
         Selection = 0;
 

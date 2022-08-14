@@ -1,18 +1,22 @@
 package org.gingerjake.potatogame.Actors.Player;
 
+import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class PlayerController {
-    public static Image playerAsset = new ImageIcon("Assets/Potato/PotatoMainL.png").getImage();
+    public static Image playerAsset = new ImageIcon("Assets/Potato/PotatoMainR.png").getImage();
     public static int x;
     public static int y;
     public static int width;
     public static int height;
     public static int health = 3;
-    public static int speed = 10;
+    public static int speed = 5;
+    public static boolean heartGiven;
+    public static boolean speedGiven;
+    public static boolean powerGiven;
     public static boolean hurting;
     public static boolean enabled;
     public static boolean uping;
@@ -64,6 +68,7 @@ public class PlayerController {
         if (enabled) {
             while (downing) {
                 y += 1;
+
                 try {
                     Thread.sleep(GamePanel.TARGET_TIME / speed);
                 } catch (InterruptedException e) {
@@ -100,6 +105,27 @@ public class PlayerController {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public static void giveHeart() {
+        if(!heartGiven) {
+            health += 1;
+            heartGiven = true;
+        }
+    }
+
+    public static void giveSpeed() {
+        if(!speedGiven) {
+            speed += 10;
+            speedGiven = true;
+        }
+    }
+
+    public static void giveDamage() {
+        if(!powerGiven) {
+            Fist.power += 1;
+            powerGiven = true;
         }
     }
 
