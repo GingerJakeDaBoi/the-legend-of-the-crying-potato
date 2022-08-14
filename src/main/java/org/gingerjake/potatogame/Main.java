@@ -30,25 +30,11 @@ public class Main extends KeyListener {
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(e -> {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
-                if(e.getKeyCode() == KeyEvent.VK_Z) {
-                    PlayerController.giveHeart();
-                }
-                if(e.getKeyCode() == KeyEvent.VK_X) {
-                    PlayerController.giveSpeed();
-                }
-                if(e.getKeyCode() == KeyEvent.VK_C) {
-                    PlayerController.giveDamage();
-                }
                 if (e.getKeyCode() == KeyEvent.VK_P) {
-                    if (!Chaser.enabled) {
-                        Chaser.enable();
-                        new Thread(Chaser::chase).start();
-                        Chaser.health = 8;
-                    }
                     if (!SlowChaser.enabled) {
                         SlowChaser.enable();
                         new Thread(SlowChaser::chase).start();
-                        SlowChaser.health = 8;
+                        SlowChaser.health = 12;
                     }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_O) {

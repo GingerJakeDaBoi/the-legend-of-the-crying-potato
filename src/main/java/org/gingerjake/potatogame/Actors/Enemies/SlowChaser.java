@@ -10,7 +10,7 @@ public class SlowChaser {
     public static int width;
     public static int height;
     public static int speed = 1;
-    public static int health = 8;
+    public static int health = 12;
     public static boolean enabled;
 
     public static void spawn(int x, int y, int width, int height) {
