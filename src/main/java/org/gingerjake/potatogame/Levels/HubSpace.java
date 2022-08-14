@@ -84,23 +84,20 @@ public class HubSpace extends GameState {
             g.drawImage(fist, Fist.x, Fist.y, Fist.width, Fist.height, null);
         }
 
-        //TODO: Remove these strings when features are done
-        g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.setColor(Color.WHITE);
-        g.drawString("Chaser Health: " + Chaser.health, 0, 80);
-        g.drawString("Slow Chaser Health: " + SlowChaser.health, 0, 120);
-        g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 160);
-        g.drawString("Chaser Location: " + Chaser.x + ", " + Chaser.y, 0, 200);
-        g.drawString("Slow Chaser Location: " + SlowChaser.x + ", " + SlowChaser.y, 0, 240);
-        g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 280);
-        g.drawString("Fist direction: " + Fist.direction, 0, 320);
-
-        g.drawString("Z: Give Heart, X: Give Speed, C: Give Power",0, 360);
-        g.drawString("Heart Given: " + PlayerController.heartGiven, 0, 400);
-        g.drawString("Speed Given: " + PlayerController.speedGiven, 0, 440);
-        g.drawString("Power Given: " + PlayerController.powerGiven, 0, 480);
-
-
+//        g.setFont(new Font("Arial", Font.BOLD, 20));
+//        g.setColor(Color.WHITE);
+//        g.drawString("Chaser Health: " + Chaser.health, 0, 80);
+//        g.drawString("Slow Chaser Health: " + SlowChaser.health, 0, 120);
+//        g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 160);
+//        g.drawString("Chaser Location: " + Chaser.x + ", " + Chaser.y, 0, 200);
+//        g.drawString("Slow Chaser Location: " + SlowChaser.x + ", " + SlowChaser.y, 0, 240);
+//        g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 280);
+//        g.drawString("Fist direction: " + Fist.direction, 0, 320);
+//
+//        g.drawString("Z: Give Heart, X: Give Speed, C: Give Power",0, 360);
+//        g.drawString("Heart Given: " + PlayerController.heartGiven, 0, 400);
+//        g.drawString("Speed Given: " + PlayerController.speedGiven, 0, 440);
+//        g.drawString("Power Given: " + PlayerController.powerGiven, 0, 480);
 
         if(PlayerController.health == 4) {
             g.drawImage(playerHeart, 3, 0,48,48, null);
@@ -131,6 +128,19 @@ public class HubSpace extends GameState {
             if(PlayerController.heartGiven) {
                 g.drawImage(playerHeartBroken, 156, 0, 48, 48, null);
             }
+        }
+
+        if(PlayerController.x > GamePanel.width - PlayerController.width) {
+            PlayerController.x = GamePanel.width - PlayerController.width;
+        }
+        if(PlayerController.x < 0) {
+            PlayerController.x = 0;
+        }
+        if(PlayerController.y > GamePanel.height - PlayerController.height) {
+            PlayerController.y = GamePanel.height - PlayerController.height;
+        }
+        if(PlayerController.y < 0) {
+            PlayerController.y = 0;
         }
 
 
