@@ -4,20 +4,20 @@ import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 
-public class SlowChaser {
+public class SlowChaser2 {
     public static int x;
     public static int y;
     public static int width;
     public static int height;
     public static int speed = 1;
-    public static int health = 12;
+    public static int health;
     public static boolean enabled;
 
     public static void spawn(int x, int y, int width, int height) {
-        SlowChaser.x = x;
-        SlowChaser.y = y;
-        SlowChaser.width = width;
-        SlowChaser.height = height;
+        SlowChaser2.x = x;
+        SlowChaser2.y = y;
+        SlowChaser2.width = width;
+        SlowChaser2.height = height;
     }
 
     public static void enable() {
@@ -49,8 +49,8 @@ public class SlowChaser {
             if (PlayerController.x + PlayerController.width > x && PlayerController.x < x + width && PlayerController.y + PlayerController.height > y && PlayerController.y < y + height) {
                 if(!PlayerController.hurting) {
                     PlayerController.hurting = true;
+                    System.out.println("Hit by slow chaser 2");
                     new Thread(PlayerController::hurt).start();
-                    System.out.println("Hit by slow chaser");
                 }
             }
 

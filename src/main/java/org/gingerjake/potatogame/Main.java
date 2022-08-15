@@ -1,12 +1,10 @@
 package org.gingerjake.potatogame;
 
-import org.gingerjake.potatogame.Actors.Enemies.Chaser;
-import org.gingerjake.potatogame.Actors.Enemies.SlowChaser;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
+import org.gingerjake.potatogame.Levels.HubSpace;
 import org.gingerjake.potatogame.Levels.Menus.EndScreen;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
-import org.gingerjake.potatogame.Levels.HubSpace;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +21,6 @@ public class Main extends KeyListener {
         gameWindow.setVisible(true);
         gameWindow.add(new GamePanel(), BorderLayout.CENTER);
         gameWindow.setVisible(true);
-        gameWindow.setResizable(false);
 
         KeyListener gameInput = new KeyListener();
         gameWindow.addKeyListener(gameInput);
@@ -34,17 +31,6 @@ public class Main extends KeyListener {
                     new Thread(PlayerController::giveDamage).start();
                     new Thread(PlayerController::giveHeart).start();
                     new Thread(PlayerController::giveSpeed).start();
-                }
-                if (e.getKeyCode() == KeyEvent.VK_P) {
-                    if (!SlowChaser.enabled) {
-                        SlowChaser.enable();
-                        new Thread(SlowChaser::chase).start();
-                        SlowChaser.health = 12;
-                    }
-                }
-                if (e.getKeyCode() == KeyEvent.VK_O) {
-                    PlayerController.health += 1;
-                    Chaser.health += 1;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
                     if (!PlayerController.uping) {

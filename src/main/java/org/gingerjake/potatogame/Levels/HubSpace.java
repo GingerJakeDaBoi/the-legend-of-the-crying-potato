@@ -10,7 +10,7 @@ import org.gingerjake.potatogame.Actors.Upgrades.StrengthChalice;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedFork;
+import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEntrance;
 
 import javax.swing.*;
 import java.awt.*;
@@ -123,7 +123,7 @@ public class HubSpace extends GameState {
             PlayerController.y = GamePanel.height - PlayerController.height;
         }
         if (PlayerController.y < 0) {
-            GameStateManager.setState(new SpeedFork());
+            GameStateManager.setState(new SpeedEntrance());
         }
 
 

@@ -21,9 +21,10 @@ public class SpeedEntrance extends GameState {
 
     public SpeedEntrance() {
         super(gsm);
+        SlowChaser.health = 4;
         SlowChaser.spawn(400, SlowChaser.height,96,96);
-//        SlowChaser.enable();
-//        new Thread(SlowChaser::chase).start();
+        SlowChaser.enable();
+        new Thread(SlowChaser::chase).start();
         PlayerController.x = 400;
         PlayerController.y = GamePanel.height - PlayerController.height;
 

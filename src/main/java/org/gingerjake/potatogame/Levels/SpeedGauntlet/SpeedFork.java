@@ -1,6 +1,7 @@
 package org.gingerjake.potatogame.Levels.SpeedGauntlet;
 
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser;
+import org.gingerjake.potatogame.Actors.Enemies.SlowChaser2;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
@@ -20,13 +21,19 @@ public class SpeedFork extends GameState {
 
     public SpeedFork() {
         super(gsm);
-//        SlowChaser.spawn(400, SlowChaser.height,96,96);
-//        SlowChaser.enable();
-//        new Thread(SlowChaser::chase).start();
+
+        SlowChaser.health = 3;
+        SlowChaser.spawn(400, SlowChaser.height,96,96);
+        SlowChaser.enable();
+        new Thread(SlowChaser::chase).start();
+
+        SlowChaser2.health = 3;
+        SlowChaser2.spawn(900, 300,96,96);
+        SlowChaser2.enable();
+        new Thread(SlowChaser2::chase).start();
+
         PlayerController.x = 400;
         PlayerController.y = GamePanel.height - PlayerController.height;
-
-
         PlayerController.enable();
 
     }
@@ -46,6 +53,9 @@ public class SpeedFork extends GameState {
 
         if (SlowChaser.enabled) {
             g.drawImage(chaser, SlowChaser.x, SlowChaser.y, SlowChaser.width, SlowChaser.height, null);
+        }
+        if(SlowChaser2.enabled) {
+            g.drawImage(chaser, SlowChaser2.x, SlowChaser2.y, SlowChaser2.width, SlowChaser2.height, null);
         }
 
         if (Fist.visible) {
@@ -95,12 +105,29 @@ public class SpeedFork extends GameState {
             }
         }
 
-        if (PlayerController.x > GamePanel.width - 995) {
+        if (PlayerController.x > GamePanel.width - 990) {
             if (!(PlayerController.y > 210)) {
+                System.out.println("1");
                 PlayerController.y = 210;
             }
-        }
+            if (PlayerController.y > 425) {
+                System.out.println("2");
+                PlayerController.y = 425;
+            }
 
+        }
+        if (PlayerController.x > GamePanel.width - 1000) {
+            if (!(PlayerController.y > 205)) {
+                System.out.println("3");
+                PlayerController.x = GamePanel.width - 1000;
+            }
+        }
+        if(PlayerController.x > GamePanel.width - 1000){
+            if(PlayerController.y > 425){
+                System.out.println("4");
+                PlayerController.x = GamePanel.width - 1000;
+            }
+        }
 
         if (PlayerController.x <= 255) {
             PlayerController.x = 255;
@@ -111,6 +138,9 @@ public class SpeedFork extends GameState {
         if (PlayerController.y < 0) {
             PlayerController.y = 0;
         }
+
+
+
 
 
     }
