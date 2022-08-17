@@ -6,6 +6,8 @@ import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
+import org.gingerjake.potatogame.GameStateManager;
+import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEnd;
 
 import javax.swing.*;
 import java.awt.*;
@@ -106,7 +108,7 @@ public class SpeedSide2 extends GameState {
             PlayerController.y = 427;
         }
         if(PlayerController.x > GamePanel.width - PlayerController.width){
-            System.out.println("You Win");
+            GameStateManager.setState(new SpeedEnd());
         }
         if (PlayerController.y < 216) {
             PlayerController.y = 216;

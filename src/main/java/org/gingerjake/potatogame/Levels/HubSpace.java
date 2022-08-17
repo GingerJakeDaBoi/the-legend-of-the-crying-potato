@@ -11,6 +11,8 @@ import org.gingerjake.potatogame.Actors.Upgrades.StrengthChalice;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
+import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedVertical2;
+import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEnd;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEntrance;
 
 import javax.swing.*;
@@ -124,7 +126,11 @@ public class HubSpace extends GameState {
             PlayerController.y = GamePanel.height - PlayerController.height;
         }
         if (PlayerController.y < 0) {
-            GameStateManager.setState(new SpeedEntrance());
+            if (!SpeedEnd.finished) {
+                GameStateManager.setState(new SpeedEntrance());
+            } else {
+                PlayerController.y = 0;
+            }
         }
 
         g.setFont(new Font("Arial", Font.BOLD, 20));
