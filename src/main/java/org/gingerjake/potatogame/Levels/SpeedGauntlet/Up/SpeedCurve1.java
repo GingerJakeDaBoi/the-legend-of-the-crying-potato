@@ -1,4 +1,4 @@
-package org.gingerjake.potatogame.Levels.SpeedGauntlet;
+package org.gingerjake.potatogame.Levels.SpeedGauntlet.Up;
 
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser;
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser2;
@@ -7,22 +7,20 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedSide1;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedVertical1;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class SpeedFork extends GameState {
+public class SpeedCurve1 extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
-    Image background = new ImageIcon("Assets/SpeedGauntlet/PathFork.png").getImage();
+    Image background = new ImageIcon("Assets/SpeedGauntlet/Curve1.png").getImage();
 
     Image fist;
 
-    public SpeedFork() {
+    public SpeedCurve1() {
         super(gsm);
 
         PlayerController.x = 400;
@@ -129,6 +127,9 @@ public class SpeedFork extends GameState {
                 PlayerController.x = GamePanel.width - 1000;
             }
         }
+        if(!(PlayerController.y > 210)){
+            PlayerController.y = 210;
+        }
 
         if (PlayerController.x <= 255) {
             PlayerController.x = 255;
@@ -137,11 +138,12 @@ public class SpeedFork extends GameState {
             PlayerController.y = GamePanel.height - PlayerController.height;
         }
         if(PlayerController.x > GamePanel.width - PlayerController.width){
-            GameStateManager.setState(new SpeedSide1());
+            GameStateManager.setState(new SpeedSide2());
         }
         if (PlayerController.y < 0) {
             GameStateManager.setState(new SpeedVertical1());
         }
+
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.setColor(Color.WHITE);
         g.drawString("Chaser 1 Health: " + SlowChaser.health, 0, 80);

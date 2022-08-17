@@ -5,6 +5,8 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.HubSpace;
 import org.gingerjake.potatogame.Levels.Menus.EndScreen;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
+import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEntrance;
+import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedFork;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +20,9 @@ public class Main extends KeyListener {
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameWindow.setSize(GamePanel.width, GamePanel.height);
         gameWindow.setLocationRelativeTo(null);
-        gameWindow.setVisible(true);
+
         gameWindow.add(new GamePanel(), BorderLayout.CENTER);
+        gameWindow.setResizable(false);
         gameWindow.setVisible(true);
 
         KeyListener gameInput = new KeyListener();
@@ -27,7 +30,7 @@ public class Main extends KeyListener {
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(e -> {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
-                if(e.getKeyCode() == KeyEvent.VK_P) {
+                if (e.getKeyCode() == KeyEvent.VK_P) {
                     new Thread(PlayerController::giveDamage).start();
                     new Thread(PlayerController::giveHeart).start();
                     new Thread(PlayerController::giveSpeed).start();
@@ -95,7 +98,15 @@ public class Main extends KeyListener {
                                 GameStateManager.setState(new PauseMenu());
                             } else {
                                 PauseMenu.paused = false;
-                                GameStateManager.setState(new HubSpace());
+                                if (Objects.equals(PauseMenu.previousState, "HubSpace")) {
+                                    GameStateManager.setState(new HubSpace());
+                                }
+                                if (Objects.equals(PauseMenu.previousState, "SpeedEntrance")) {
+                                    GameStateManager.setState(new SpeedEntrance());
+                                }
+                                if(Objects.equals(PauseMenu.previousState, "SpeedFork")) {
+                                    GameStateManager.setState(new SpeedFork());
+                                }
                             }
                         }
                     }
@@ -107,6 +118,12 @@ public class Main extends KeyListener {
                     if (PauseMenu.Selection == 0) {
                         if (Objects.equals(PauseMenu.previousState, "HubSpace")) {
                             GameStateManager.setState(new HubSpace());
+                        }
+                        if (Objects.equals(PauseMenu.previousState, "SpeedEntrance")) {
+                            GameStateManager.setState(new SpeedEntrance());
+                        }
+                        if(Objects.equals(PauseMenu.previousState, "SpeedFork")) {
+                            GameStateManager.setState(new SpeedFork());
                         }
                         PlayerController.enable();
                     } else if (PauseMenu.Selection == 1) {

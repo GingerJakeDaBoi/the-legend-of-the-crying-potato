@@ -1,4 +1,4 @@
-package org.gingerjake.potatogame.Levels.SpeedGauntlet;
+package org.gingerjake.potatogame.Levels.SpeedGauntlet.Up;
 
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser;
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser2;
@@ -6,37 +6,29 @@ import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
-import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedSide1;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedVertical1;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class SpeedFork extends GameState {
+public class SpeedSide2 extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
-    Image background = new ImageIcon("Assets/SpeedGauntlet/PathFork.png").getImage();
+    Image background = new ImageIcon("Assets/SpeedGauntlet/Horizontal.png").getImage();
 
     Image fist;
 
-    public SpeedFork() {
+    public SpeedSide2() {
         super(gsm);
 
-        PlayerController.x = 400;
-        PlayerController.y = GamePanel.height - PlayerController.height;
+        PlayerController.x = 65;
+        PlayerController.y = 313;
         PlayerController.enable();
-
-        SlowChaser.health = 3;
-        SlowChaser.spawn(400, SlowChaser.height,96,96);
+        SlowChaser.health = 4;
+        SlowChaser.spawn(841, 313,96,96);
         SlowChaser.enable();
         new Thread(SlowChaser::chase).start();
-
-        SlowChaser2.health = 3;
-        SlowChaser2.spawn(900, 300,96,96);
-        SlowChaser2.enable();
         new Thread(SlowChaser2::chase).start();
 
 
@@ -110,37 +102,17 @@ public class SpeedFork extends GameState {
             }
         }
 
-        if (PlayerController.x > GamePanel.width - 990) {
-            if (!(PlayerController.y > 210)) {
-                PlayerController.y = 210;
-            }
-            if (PlayerController.y > 425) {
-                PlayerController.y = 425;
-            }
-
-        }
-        if (PlayerController.x > GamePanel.width - 1000) {
-            if (!(PlayerController.y > 205)) {
-                PlayerController.x = GamePanel.width - 1000;
-            }
-        }
-        if(PlayerController.x > GamePanel.width - 1000){
-            if(PlayerController.y > 425){
-                PlayerController.x = GamePanel.width - 1000;
-            }
-        }
-
-        if (PlayerController.x <= 255) {
-            PlayerController.x = 255;
-        }
-        if (PlayerController.y > GamePanel.height - PlayerController.height) {
-            PlayerController.y = GamePanel.height - PlayerController.height;
+        if (PlayerController.y > 427) {
+            PlayerController.y = 427;
         }
         if(PlayerController.x > GamePanel.width - PlayerController.width){
-            GameStateManager.setState(new SpeedSide1());
+            System.out.println("You Win");
         }
-        if (PlayerController.y < 0) {
-            GameStateManager.setState(new SpeedVertical1());
+        if (PlayerController.y < 216) {
+            PlayerController.y = 216;
+        }
+        if (PlayerController.x < 0) {
+            PlayerController.x = 0;
         }
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.setColor(Color.WHITE);

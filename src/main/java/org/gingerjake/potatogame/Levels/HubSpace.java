@@ -2,6 +2,7 @@ package org.gingerjake.potatogame.Levels;
 
 import org.gingerjake.potatogame.Actors.Enemies.Chaser;
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser;
+import org.gingerjake.potatogame.Actors.Enemies.SlowChaser2;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Actors.Upgrades.ExtraHeart;
@@ -125,6 +126,16 @@ public class HubSpace extends GameState {
         if (PlayerController.y < 0) {
             GameStateManager.setState(new SpeedEntrance());
         }
+
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.setColor(Color.WHITE);
+        g.drawString("Chaser 1 Health: " + SlowChaser.health, 0, 80);
+        g.drawString("Chaser 2 Health: " + SlowChaser2.health, 0, 120);
+        g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 160);
+        g.drawString("Chaser 1 Location: " + SlowChaser2.x + ", " + SlowChaser2.y, 0, 200);
+        g.drawString("Chaser 2 Location: " + SlowChaser.x + ", " + SlowChaser.y, 0, 240);
+        g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 280);
+        g.drawString("Fist direction: " + Fist.direction, 0, 320);
 
 
     }
