@@ -6,30 +6,31 @@ import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
-import org.gingerjake.potatogame.GameStateManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class SpeedSide1 extends GameState {
+public class SpeedVertical2 extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
-    Image background = new ImageIcon("Assets/SpeedGauntlet/Horizontal.png").getImage();
+    Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
 
     Image fist;
+    boolean finished;
 
-    public SpeedSide1() {
+    public SpeedVertical2() {
         super(gsm);
-
-        PlayerController.x = 65;
-        PlayerController.y = 313;
-        PlayerController.enable();
         SlowChaser.health = 4;
-        SlowChaser.spawn(841, 313,96,96);
+        SlowChaser.spawn(400, SlowChaser.height, 96, 96);
         SlowChaser.enable();
         new Thread(SlowChaser::chase).start();
+        PlayerController.x = 400;
+        PlayerController.y = GamePanel.height - PlayerController.height;
+
+
+        PlayerController.enable();
 
     }
 
@@ -48,9 +49,8 @@ public class SpeedSide1 extends GameState {
 
         if (SlowChaser.enabled) {
             g.drawImage(chaser, SlowChaser.x, SlowChaser.y, SlowChaser.width, SlowChaser.height, null);
-        }
-        if(SlowChaser2.enabled) {
-            g.drawImage(chaser, SlowChaser2.x, SlowChaser2.y, SlowChaser2.width, SlowChaser2.height, null);
+        } else {
+            finished = true;
         }
 
         if (Fist.visible) {
@@ -100,18 +100,25 @@ public class SpeedSide1 extends GameState {
             }
         }
 
-        if (PlayerController.y > 427) {
-            PlayerController.y = 427;
+        if (PlayerController.x > GamePanel.width - 995) {
+            PlayerController.x = GamePanel.width - 995;
         }
-        if(PlayerController.x > GamePanel.width - PlayerController.width){
-            GameStateManager.setState(new SpeedCurve2());
+        if (PlayerController.x <= 255) {
+            PlayerController.x = 255;
         }
-        if (PlayerController.y < 216) {
-            PlayerController.y = 216;
+        if (PlayerController.y > GamePanel.height - PlayerController.height) {
+            PlayerController.y = GamePanel.height - PlayerController.height;
         }
-        if (PlayerController.x < 0) {
-            PlayerController.x = 0;
+        if (PlayerController.y < 0) {
+            if (!finished) {
+                PlayerController.y = 0;
+            } else
+                System.out.println("You Win");
         }
+        if(PlayerController.x > GamePanel.width - PlayerController.width) {
+            PlayerController.x = GamePanel.width;
+        }
+
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.setColor(Color.WHITE);
         g.drawString("Chaser 1 Health: " + SlowChaser.health, 0, 80);
@@ -121,10 +128,8 @@ public class SpeedSide1 extends GameState {
         g.drawString("Chaser 2 Location: " + SlowChaser.x + ", " + SlowChaser.y, 0, 240);
         g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 280);
         g.drawString("Fist direction: " + Fist.direction, 0, 320);
-
-
-
     }
+
 
     @Override
     public void tick() {
