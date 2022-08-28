@@ -1,58 +1,49 @@
-package org.gingerjake.potatogame.Levels.SpeedGauntlet;
+package org.gingerjake.potatogame.Levels;
 
-import org.gingerjake.potatogame.Actors.Enemies.SlowChaser;
-import org.gingerjake.potatogame.Actors.Enemies.SlowChaser2;
+import org.gingerjake.potatogame.Actors.Enemies.Final.FinalAmmo;
+import org.gingerjake.potatogame.Actors.Enemies.Final.FinalBoss;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Actors.Upgrades.SpeedBoots;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
-import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.HubSpace;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class SpeedEnd extends GameState {
-    public static boolean finished = false;
+public class FinalFight extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
-    Image boots = new ImageIcon("Assets/Dummy/potion.png").getImage();
-    Image background = new ImageIcon("Assets/SpeedGauntlet/End.png").getImage();
-
+    Image background = new ImageIcon("Assets/Dummy/GreenDitherBG.png").getImage();
+    Image boss = new ImageIcon("Assets/Dummy/Red.png").getImage();
+    Image bossAmmo = new ImageIcon("Assets/Dummy/Green.png").getImage();
     Image fist;
 
-    public SpeedEnd() {
-        super(gsm);
-        PlayerController.y = GamePanel.height - PlayerController.height;
-        PlayerController.x = GamePanel.width / 2 - PlayerController.width / 2;
-        PlayerController.enable();
-        SlowChaser.disable();
-        SlowChaser2.disable();
-        SpeedBoots.spawn(1318, 75,128,128);
-        new Thread(SpeedBoots::enable).start();
 
+    public FinalFight() {
+        super(gsm);
+        FinalBoss.health = 3;
+        FinalBoss.spawn(900, 300,96,96);
+        FinalBoss.enable();
+        new Thread(FinalBoss::chase).start();
     }
 
     @Override
     public void init() {
 
-
     }
 
     @Override
     public void draw(Graphics g) {
-
-        g.drawImage(background, 0, 0, GamePanel.width, GamePanel.height, null);
+//        g.drawImage(background, 0, 0, GamePanel.width, GamePanel.height, null);
 
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
 
-        if (SpeedBoots.enabled) {
-            g.drawImage(boots, SpeedBoots.x, SpeedBoots.y, SpeedBoots.width, SpeedBoots.height, null);
-        } else {
-            finished = true;
-            GameStateManager.setState(new HubSpace());
+        if (FinalBoss.enabled) {
+            g.drawImage(boss, FinalBoss.x, FinalBoss.y, FinalBoss.width, FinalBoss.height, null);
+        }
+        if(FinalAmmo.enabled){
+            g.drawImage(bossAmmo, FinalAmmo.x, FinalAmmo.y, FinalAmmo.width, FinalAmmo.height, null);
         }
 
         if (Fist.visible) {
@@ -113,19 +104,18 @@ public class SpeedEnd extends GameState {
         }
         if (PlayerController.y < 0) {
             PlayerController.y = 0;
-
         }
 
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.setColor(Color.WHITE);
-        g.drawString("Chaser 1 Health: " + SlowChaser.health, 0, 80);
-        g.drawString("Chaser 2 Health: " + SlowChaser2.health, 0, 120);
-        g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 160);
-        g.drawString("Chaser 1 Location: " + SlowChaser2.x + ", " + SlowChaser2.y, 0, 200);
-        g.drawString("Chaser 2 Location: " + SlowChaser.x + ", " + SlowChaser.y, 0, 240);
-        g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 280);
-        g.drawString("Fist direction: " + Fist.direction, 0, 320);
-
+        g.setColor(Color.BLACK);
+        g.drawString("Boss Health: " + FinalBoss.health, 0, 80);
+        g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 120);
+        g.drawString("Boss Location: " + FinalBoss.x + ", " + FinalBoss.y, 0, 160);
+        g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 200);
+        g.drawString("Fist direction: " + Fist.direction, 0, 240);
+        g.drawString("FinalAmmo enabled: " + FinalAmmo.enabled, 0, 280);
+        g.drawString("FinalAmmo Location: " + FinalAmmo.x + ", " + FinalAmmo.y, 0, 320);
+        g.drawString("FinalAmmo randomX: " + FinalAmmo.randomX + " FinalAmmo randomY: " + FinalAmmo.randomY, 0, 360);
 
     }
 
