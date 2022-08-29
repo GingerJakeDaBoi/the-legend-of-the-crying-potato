@@ -11,7 +11,6 @@ import org.gingerjake.potatogame.Actors.Upgrades.StrengthChalice;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedVertical2;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEnd;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEntrance;
 
