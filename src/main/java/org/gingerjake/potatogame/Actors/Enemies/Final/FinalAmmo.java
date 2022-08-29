@@ -45,11 +45,6 @@ public class FinalAmmo {
                 y += 1;
             }
 
-
-
-
-
-
             try {
                 Thread.sleep(GamePanel.TARGET_TIME / speed);
             } catch (InterruptedException e) {

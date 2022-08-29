@@ -5,14 +5,10 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.FinalFight;
 import org.gingerjake.potatogame.Levels.HubSpace;
 import org.gingerjake.potatogame.Levels.Menus.EndScreen;
-import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEntrance;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedFork;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.Objects;
 
 public class Main extends KeyListener {
 
@@ -42,21 +38,11 @@ public class Main extends KeyListener {
                         PlayerController.uping = true;
                         new Thread(PlayerController::moveUp).start();
                     }
-                    if (PauseMenu.paused) {
-                        if (PauseMenu.Selection > 0) {
-                            PauseMenu.Selection -= 1;
-                        }
-                    }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     if (!PlayerController.downing) {
                         PlayerController.downing = true;
                         new Thread(PlayerController::moveDown).start();
-                    }
-                    if (PauseMenu.paused) {
-                        if (PauseMenu.Selection < 1) {
-                            PauseMenu.Selection += 1;
-                        }
                     }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -92,45 +78,12 @@ public class Main extends KeyListener {
                     }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    if (GamePanel.gameStarted) {
-                        if (!EndScreen.gameEnded) {
-                            if (!PauseMenu.paused) {
-                                PauseMenu.paused = true;
-                                PauseMenu.previousState = GameStateManager.getState();
-                                GameStateManager.setState(new PauseMenu());
-                            } else {
-                                PauseMenu.paused = false;
-                                if (Objects.equals(PauseMenu.previousState, "HubSpace")) {
-                                    GameStateManager.setState(new HubSpace());
-                                }
-                                if (Objects.equals(PauseMenu.previousState, "SpeedEntrance")) {
-                                    GameStateManager.setState(new SpeedEntrance());
-                                }
-                                if(Objects.equals(PauseMenu.previousState, "SpeedFork")) {
-                                    GameStateManager.setState(new SpeedFork());
-                                }
-                            }
-                        }
-                    }
+                    System.out.println("Thanks for playing!");
+                    System.exit(0);
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     if (!GamePanel.gameStarted) {
                         GameStateManager.setState(new HubSpace());
-                    }
-                    if (PauseMenu.Selection == 0) {
-                        if (Objects.equals(PauseMenu.previousState, "HubSpace")) {
-                            GameStateManager.setState(new HubSpace());
-                        }
-                        if (Objects.equals(PauseMenu.previousState, "SpeedEntrance")) {
-                            GameStateManager.setState(new SpeedEntrance());
-                        }
-                        if(Objects.equals(PauseMenu.previousState, "SpeedFork")) {
-                            GameStateManager.setState(new SpeedFork());
-                        }
-                        PlayerController.enable();
-                    } else if (PauseMenu.Selection == 1) {
-                        System.out.println("Thanks for playing!");
-                        System.exit(0);
                     }
                     if (EndScreen.gameEnded) {
                         System.out.println("Thanks for playing!");
