@@ -67,9 +67,9 @@ public class FinalBoss {
             }
 
             if (health <= 0) {
-                phase = 2;
+                phase = 1;
                 new Thread(FinalBoss::phase2).start();
-                health = 3;
+                health = 8;
                 Thread.currentThread().interrupt();
             }
         }
@@ -100,7 +100,7 @@ public class FinalBoss {
             }
 
             if (!FinalAmmo.enabled) {
-                FinalAmmo.spawn(x + width / 3, y + height / 3, width / 2, height / 2);
+                FinalAmmo.spawn(x + width / 4, y + height / 4, width / 4, height / 4);
                 FinalAmmo.enable();
                 new Thread(FinalAmmo::chase).start();
             }
@@ -120,8 +120,14 @@ public class FinalBoss {
             }
 
             if (health <= 0) {
-                enabled = false;
-                Thread.currentThread().interrupt();
+                if (phase == 1) {
+                    phase = 2;
+                    speed += 3;
+                    health = 12;
+                } else {
+                    disable();
+                    FinalAmmo.disable();
+                }
             }
         }
         Thread.currentThread().interrupt();

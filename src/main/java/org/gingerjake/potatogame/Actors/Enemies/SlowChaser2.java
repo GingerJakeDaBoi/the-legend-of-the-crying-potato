@@ -49,7 +49,6 @@ public class SlowChaser2 {
             if (PlayerController.x + PlayerController.width > x && PlayerController.x < x + width && PlayerController.y + PlayerController.height > y && PlayerController.y < y + height) {
                 if(!PlayerController.hurting) {
                     PlayerController.hurting = true;
-                    System.out.println("Hit by slow chaser 2");
                     new Thread(PlayerController::hurt).start();
                 }
             }

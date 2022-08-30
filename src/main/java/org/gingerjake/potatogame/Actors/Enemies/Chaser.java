@@ -1,5 +1,6 @@
 package org.gingerjake.potatogame.Actors.Enemies;
 
+import org.gingerjake.potatogame.Actors.Enemies.Final.FinalAmmo;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
@@ -24,10 +25,6 @@ public class Chaser {
         enabled = true;
     }
 
-    public static void disable() {
-        enabled = false;
-    }
-
     @SuppressWarnings("BusyWait")
     public static void chase() {
         while (enabled) {
@@ -45,12 +42,7 @@ public class Chaser {
             }
 
             //if either PlayerController or Chaser overlap, damage the player.
-            if (PlayerController.x + PlayerController.width > x && PlayerController.x < x + width && PlayerController.y + PlayerController.height > y && PlayerController.y < y + height) {
-                if(!PlayerController.hurting) {
-                    PlayerController.hurting = true;
-                    new Thread(PlayerController::hurt).start();
-                }
-            }
+            FinalAmmo.hit(x, width, y, height);
 
             //if either Fist or Chaser overlap, damage the chaser.
             if (Fist.x + Fist.width > x && Fist.x < x + width && Fist.y + Fist.height > y && Fist.y < y + height) {

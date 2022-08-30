@@ -14,7 +14,7 @@ import java.util.Objects;
 public class FinalFight extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
-    Image background = new ImageIcon("Assets/Dummy/GreenDitherBG.png").getImage();
+    //Image background = new ImageIcon("Assets/Dummy/GreenDitherBG.png").getImage();
     Image boss = new ImageIcon("Assets/Dummy/Red.png").getImage();
     Image bossAmmo = new ImageIcon("Assets/Dummy/Green.png").getImage();
     Image fist;
@@ -22,8 +22,8 @@ public class FinalFight extends GameState {
 
     public FinalFight() {
         super(gsm);
-        FinalBoss.health = 3;
-        FinalBoss.spawn(1255, 300,96,96);
+        FinalBoss.health = 2;
+        FinalBoss.spawn(1255, 300,128,128);
         FinalBoss.enable();
         new Thread(FinalBoss::phase1).start();
     }
@@ -93,6 +93,8 @@ public class FinalFight extends GameState {
             }
         }
 
+        g.drawString("Press space to cancel your attack", GamePanel.width / 2 - 100, GamePanel.height / 2);
+
         if (PlayerController.x > GamePanel.width - PlayerController.width) {
             PlayerController.x = GamePanel.width - PlayerController.width;
         }
@@ -115,8 +117,8 @@ public class FinalFight extends GameState {
         g.drawString("Fist direction: " + Fist.direction, 0, 240);
         g.drawString("FinalAmmo enabled: " + FinalAmmo.enabled, 0, 280);
         g.drawString("FinalAmmo Location: " + FinalAmmo.x + ", " + FinalAmmo.y, 0, 320);
-        g.drawString("FinalAmmo randomX: " + FinalAmmo.randomX + " FinalAmmo randomY: " + FinalAmmo.randomY, 0, 360);
-        g.drawString("Phase: " + FinalBoss.phase, 0, 400);
+        g.drawString("Phase: " + FinalBoss.phase, 0, 360);
+        g.drawString("FinalAmmo direction" + FinalAmmo.direction, 0, 400);
 
     }
 
