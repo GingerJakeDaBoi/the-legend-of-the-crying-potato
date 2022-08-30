@@ -8,11 +8,12 @@ public class FinalBoss {
     public static int y;
     public static int width;
     public static int height;
-    public static int speed = 2;
+    public static int speed = 3;
     public static int health = 8;
     private static int randomX = (int) (Math.random() * GamePanel.width);
     private static int randomY = (int) (Math.random() * GamePanel.height);
     public static boolean enabled;
+    public static int phase;
 
     public static void spawn(int x, int y, int width, int height) {
         FinalBoss.x = x;
@@ -30,7 +31,52 @@ public class FinalBoss {
     }
 
     @SuppressWarnings("BusyWait")
-    public static void chase() {
+    public static void phase1() {
+        phase = 0;
+        boolean direction = true;
+        while (enabled) {
+            if (!direction) {
+                y += speed;
+            } else {
+                y -= speed;
+            }
+
+            if (y <= 0) {
+                direction = false;
+            } else if (y >= GamePanel.height - height) {
+                direction = true;
+            }
+
+            if (Fist.x + Fist.width > x && Fist.x < x + width && Fist.y + Fist.height > y && Fist.y < y + height) {
+                if (Fist.visible) {
+                    health -= Fist.power;
+                    Fist.visible = false;
+                }
+            }
+
+            if (!FinalAmmo.enabled) {
+                FinalAmmo.spawn(x + width / 3, y + height / 3, width / 2, height / 2);
+                FinalAmmo.enable();
+                new Thread(FinalAmmo::chase).start();
+            }
+
+            try {
+                Thread.sleep(GamePanel.TARGET_TIME / speed);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            if (health <= 0) {
+                phase = 2;
+                new Thread(FinalBoss::phase2).start();
+                health = 3;
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
+    @SuppressWarnings("BusyWait")
+    public static void phase2() {
         while (enabled) {
 
             if (x == randomX || x == 0 || x == GamePanel.width - width) {
@@ -53,8 +99,8 @@ public class FinalBoss {
                 y -= 1;
             }
 
-            if(!FinalAmmo.enabled) {
-                FinalAmmo.spawn(x + width / 3, y + height / 3, width /2, height / 2);
+            if (!FinalAmmo.enabled) {
+                FinalAmmo.spawn(x + width / 3, y + height / 3, width / 2, height / 2);
                 FinalAmmo.enable();
                 new Thread(FinalAmmo::chase).start();
             }

@@ -7,7 +7,7 @@ public class FinalAmmo {
     public static int y;
     public static int width;
     public static int height;
-    public static int speed = 5;
+    public static int speed = 2;
     public static int health = 8;
     public static int randomX = (int) (Math.random() * GamePanel.width);
     public static int randomY = (int) (Math.random() * GamePanel.height);
@@ -30,38 +30,31 @@ public class FinalAmmo {
 
     @SuppressWarnings("BusyWait")
     public static void chase() {
-        randomY = (int) (Math.random() * GamePanel.height);
-        randomX = (int) (Math.random() * GamePanel.width);
+        x = FinalBoss.x;
+        y = FinalBoss.y;
         while (enabled) {
+            if (FinalBoss.phase == 0) {
 
-            if(x < randomX) {
-                x -= 1;
-            } else if (x > randomX) {
-                x += 1;
-            }
-            if(y < randomY) {
-                y -= 1;
-            } else if (y > randomY) {
-                y += 1;
-            }
+                if (x != 0) {
+                    x -= speed;
+                }
 
-            try {
-                Thread.sleep(GamePanel.TARGET_TIME / speed);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            if (x == 0 || x == GamePanel.width - width || x == randomX) {
-                enabled = false;
-                Thread.currentThread().interrupt();
-            }
-            if (y == 0 || y == GamePanel.height - height || y == randomY) {
-                enabled = false;
-                Thread.currentThread().interrupt();
+                if (x <= 0) {
+                    enabled = false;
+                    Thread.currentThread().interrupt();
+                }
+                if (y == 0 || y == GamePanel.height - height || y == randomY) {
+                    enabled = false;
+                    Thread.currentThread().interrupt();
+                }
+
+                try {
+                    Thread.sleep(GamePanel.TARGET_TIME / speed);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
             }
         }
-
-
     }
-
 }
-

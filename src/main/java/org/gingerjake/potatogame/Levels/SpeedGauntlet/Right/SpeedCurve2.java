@@ -28,12 +28,12 @@ public class SpeedCurve2 extends GameState {
         PlayerController.enable();
 
         SlowChaser.health = 3;
-        SlowChaser.spawn(400, SlowChaser.height, 96, 96);
+        SlowChaser.spawn(490, 351, 96, 96);
         SlowChaser.enable();
         new Thread(SlowChaser::chase).start();
 
         SlowChaser2.health = 3;
-        SlowChaser2.spawn(900, 300, 96, 96);
+        SlowChaser2.spawn(1000, 100, 96, 96);
         SlowChaser2.enable();
         new Thread(SlowChaser2::chase).start();
 

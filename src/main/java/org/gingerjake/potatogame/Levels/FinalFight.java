@@ -23,9 +23,9 @@ public class FinalFight extends GameState {
     public FinalFight() {
         super(gsm);
         FinalBoss.health = 3;
-        FinalBoss.spawn(900, 300,96,96);
+        FinalBoss.spawn(1255, 300,96,96);
         FinalBoss.enable();
-        new Thread(FinalBoss::chase).start();
+        new Thread(FinalBoss::phase1).start();
     }
 
     @Override
@@ -116,6 +116,7 @@ public class FinalFight extends GameState {
         g.drawString("FinalAmmo enabled: " + FinalAmmo.enabled, 0, 280);
         g.drawString("FinalAmmo Location: " + FinalAmmo.x + ", " + FinalAmmo.y, 0, 320);
         g.drawString("FinalAmmo randomX: " + FinalAmmo.randomX + " FinalAmmo randomY: " + FinalAmmo.randomY, 0, 360);
+        g.drawString("Phase: " + FinalBoss.phase, 0, 400);
 
     }
 
