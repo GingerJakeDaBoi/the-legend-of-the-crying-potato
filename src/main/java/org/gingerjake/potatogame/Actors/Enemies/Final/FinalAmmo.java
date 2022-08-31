@@ -57,15 +57,20 @@ public class FinalAmmo {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            if (x <= 0 || x >= GamePanel.width - width) {
+            if (FinalBoss.phase == 0) {
+                if (x <= 0 || x >= GamePanel.width - width) {
+                    enabled = false;
+                    Thread.currentThread().interrupt();
+                }
+                if (y <= 0 || y >= GamePanel.height - height) {
+                    enabled = false;
+                    Thread.currentThread().interrupt();
+                }
+            }
+            if(!FinalBoss.enabled) {
                 enabled = false;
                 Thread.currentThread().interrupt();
             }
-            if (y <= 0 || y >= GamePanel.height - height) {
-                enabled = false;
-                Thread.currentThread().interrupt();
-            }
-
         }
         Thread.currentThread().interrupt();
     }

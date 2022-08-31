@@ -89,8 +89,9 @@ public class Main extends KeyListener {
                         System.out.println("Thanks for playing!");
                         System.exit(0);
                     }
-
-
+                }
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    Fist.visible = false;
                 }
 
             }
