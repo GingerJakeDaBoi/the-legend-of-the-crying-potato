@@ -39,10 +39,6 @@ public class FinalAmmo {
                 if (x != 0) {
                     x -= speed;
                 }
-
-                if (x <= 0) {
-                    enabled = false;
-                }
             }
             if (FinalBoss.phase == 1 || FinalBoss.phase == 2) {
                 if (PlayerController.x > x) {
@@ -63,9 +59,11 @@ public class FinalAmmo {
             }
             if (x <= 0 || x >= GamePanel.width - width) {
                 enabled = false;
+                Thread.currentThread().interrupt();
             }
             if (y <= 0 || y >= GamePanel.height - height) {
                 enabled = false;
+                Thread.currentThread().interrupt();
             }
 
         }
