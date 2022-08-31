@@ -30,8 +30,6 @@ public class FinalAmmo {
 
     @SuppressWarnings("BusyWait")
     public static void chase() {
-        x = FinalBoss.x;
-        y = FinalBoss.y;
         while (enabled) {
 
             //if either PlayerController or Ammo overlap, damage the player.
@@ -47,31 +45,27 @@ public class FinalAmmo {
                 }
             }
             if (FinalBoss.phase == 1 || FinalBoss.phase == 2) {
-                int playerX = PlayerController.x;
-                int playerY = PlayerController.y;
-                if (playerX > x) {
+                if (PlayerController.x > x) {
                     x += speed;
-                } else if (playerX < x) {
+                } else if (PlayerController.x < x) {
                     x -= speed;
                 }
-                if (playerY > y) {
+                if (PlayerController.y > y) {
                     y += speed;
-                } else if (playerY < y) {
+                } else if (PlayerController.y < y) {
                     y -= speed;
                 }
-
-                if (x <= 0 || x >= GamePanel.width - width) {
-                    enabled = false;
-                }
-                if (y <= 0 || y >= GamePanel.height - height) {
-                    enabled = false;
-                }
-
             }
             try {
                 Thread.sleep(GamePanel.TARGET_TIME / speed);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
+            }
+            if (x <= 0 || x >= GamePanel.width - width) {
+                enabled = false;
+            }
+            if (y <= 0 || y >= GamePanel.height - height) {
+                enabled = false;
             }
 
         }

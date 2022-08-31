@@ -35,42 +35,44 @@ public class FinalBoss {
         phase = 0;
         boolean direction = true;
         while (enabled) {
-            if (!direction) {
-                y += speed;
-            } else {
-                y -= speed;
-            }
-
-            if (y <= 0) {
-                direction = false;
-            } else if (y >= GamePanel.height - height) {
-                direction = true;
-            }
-
-            if (Fist.x + Fist.width > x && Fist.x < x + width && Fist.y + Fist.height > y && Fist.y < y + height) {
-                if (Fist.visible) {
-                    health -= Fist.power;
-                    Fist.visible = false;
+            if (phase == 0) {
+                if (!direction) {
+                    y += speed;
+                } else {
+                    y -= speed;
                 }
-            }
 
-            if (!FinalAmmo.enabled) {
-                FinalAmmo.spawn(x + width / 3, y + height / 3, width / 2, height / 2);
-                FinalAmmo.enable();
-                new Thread(FinalAmmo::chase).start();
-            }
+                if (y <= 0) {
+                    direction = false;
+                } else if (y >= GamePanel.height - height) {
+                    direction = true;
+                }
 
-            try {
-                Thread.sleep(GamePanel.TARGET_TIME / speed);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+                if (Fist.x + Fist.width > x && Fist.x < x + width && Fist.y + Fist.height > y && Fist.y < y + height) {
+                    if (Fist.visible) {
+                        health -= Fist.power;
+                        Fist.visible = false;
+                    }
+                }
 
-            if (health <= 0) {
-                phase = 1;
-                new Thread(FinalBoss::phase2).start();
-                health = 8;
-                Thread.currentThread().interrupt();
+                if (!FinalAmmo.enabled) {
+                    FinalAmmo.spawn(x + width / 3, y + height / 3, width / 2, height / 2);
+                    FinalAmmo.enable();
+                    new Thread(FinalAmmo::chase).start();
+                }
+
+                try {
+                    Thread.sleep(GamePanel.TARGET_TIME / speed);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                if (health <= 0) {
+                    phase = 1;
+                    new Thread(FinalBoss::phase2).start();
+                    health = 8;
+                    Thread.currentThread().interrupt();
+                }
             }
         }
     }

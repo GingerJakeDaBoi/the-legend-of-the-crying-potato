@@ -14,7 +14,7 @@ import java.util.Objects;
 public class FinalFight extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
-    //Image background = new ImageIcon("Assets/Dummy/GreenDitherBG.png").getImage();
+    Image background = new ImageIcon("Assets/SpeedGauntlet/End.png").getImage();
     Image boss = new ImageIcon("Assets/Dummy/Red.png").getImage();
     Image bossAmmo = new ImageIcon("Assets/Dummy/Green.png").getImage();
     Image fist;
@@ -35,7 +35,7 @@ public class FinalFight extends GameState {
 
     @Override
     public void draw(Graphics g) {
-//        g.drawImage(background, 0, 0, GamePanel.width, GamePanel.height, null);
+        g.drawImage(background, 0, 0, GamePanel.width, GamePanel.height, null);
 
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
 
