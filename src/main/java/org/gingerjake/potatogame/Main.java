@@ -19,7 +19,7 @@ public class Main extends KeyListener {
         gameWindow.setLocationRelativeTo(null);
 
         gameWindow.add(new GamePanel(), BorderLayout.CENTER);
-        gameWindow.setResizable(false);
+        gameWindow.setResizable(true);
         gameWindow.setVisible(true);
 
         KeyListener gameInput = new KeyListener();
@@ -116,8 +116,9 @@ public class Main extends KeyListener {
                         PlayerController.righting = false;
                     }
                 }
-
-
+                }
+                if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    Fist.visible = false;
             }
             return false;
         });

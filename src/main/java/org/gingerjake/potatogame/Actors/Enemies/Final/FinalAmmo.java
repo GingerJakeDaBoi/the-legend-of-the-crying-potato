@@ -55,7 +55,7 @@ public class FinalAmmo {
             try {
                 Thread.sleep(GamePanel.TARGET_TIME / speed);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                Thread.currentThread().interrupt();
             }
             if (FinalBoss.phase == 0) {
                 if (x <= 0 || x >= GamePanel.width - width) {

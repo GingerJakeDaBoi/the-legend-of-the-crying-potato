@@ -95,7 +95,8 @@ public class FinalFight extends GameState {
             }
         }
 
-        g.drawString("Press space to cancel your attack", GamePanel.width / 2 - 100, GamePanel.height / 2);
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.drawString("Press space to cancel your attack", GamePanel.width - 350, 45);
 
         if (PlayerController.x > GamePanel.width - PlayerController.width) {
             PlayerController.x = GamePanel.width - PlayerController.width;
