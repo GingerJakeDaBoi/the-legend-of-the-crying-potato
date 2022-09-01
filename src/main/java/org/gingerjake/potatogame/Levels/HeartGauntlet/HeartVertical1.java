@@ -6,41 +6,37 @@ import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
-import org.gingerjake.potatogame.GameStateManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class HeartEntrance extends GameState {
+public class HeartVertical1 extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
-    Image background = new ImageIcon("Assets/SpeedGauntlet/Curve2.png").getImage();
+    Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical2.png").getImage();
 
     Image fist;
+    boolean finished;
 
-    public HeartEntrance() {
+    public HeartVertical1() {
         super(gsm);
-
-        PlayerController.x = 49;
-        PlayerController.y = 348;
-        PlayerController.enable();
-
-        SlowChaser.health = 3;
-        SlowChaser.spawn(490, 351, 96, 96);
+        SlowChaser.health = 4;
+        SlowChaser.spawn(940, 55, 96, 96);
         SlowChaser.enable();
         new Thread(SlowChaser::chase).start();
+        PlayerController.x = 957;
+        PlayerController.y = 598;
 
-        SlowChaser2.health = 3;
-        SlowChaser2.spawn(1000, 100, 96, 96);
-        SlowChaser2.enable();
-        new Thread(SlowChaser2::chase).start();
+
+        PlayerController.enable();
 
     }
 
     @Override
     public void init() {
+
 
     }
 
@@ -53,9 +49,8 @@ public class HeartEntrance extends GameState {
 
         if (SlowChaser.enabled) {
             g.drawImage(chaser, SlowChaser.x, SlowChaser.y, SlowChaser.width, SlowChaser.height, null);
-        }
-        if (SlowChaser2.enabled) {
-            g.drawImage(chaser, SlowChaser2.x, SlowChaser2.y, SlowChaser2.width, SlowChaser2.height, null);
+        } else {
+            finished = true;
         }
 
         if (Fist.visible) {
@@ -105,37 +100,23 @@ public class HeartEntrance extends GameState {
             }
         }
 
-        //TODO: Fix wall collision
-        if (!(PlayerController.x > 785)){
-            if(PlayerController.y < 240) {
-                System.out.println("Moving because the player is at x: " + PlayerController.x + " and y: " + PlayerController.y);
-                PlayerController.y = 240;
-            }
-        } else {
-            if(PlayerController.x < 790) {
-                PlayerController.x = 790;
-            }
-
+        if (PlayerController.x > 1134) {
+            PlayerController.x = 1134;
         }
-
-        //TODO: Change collision and background to VerticalFlipped
-        if (PlayerController.y > 450) {
-            PlayerController.y = 450;
-        }
-        if (PlayerController.x > 1133) {
-            PlayerController.x = 1133;
-        }
-        if (PlayerController.x <= 0) {
-            PlayerController.x = 0;
+        if (PlayerController.x <= 815) {
+            PlayerController.x = 815;
         }
         if (PlayerController.y > GamePanel.height - PlayerController.height) {
             PlayerController.y = GamePanel.height - PlayerController.height;
         }
-        if (PlayerController.x > GamePanel.width - PlayerController.width) {
-            PlayerController.x = GamePanel.width - PlayerController.width;
-        }
         if (PlayerController.y < 0) {
-            GameStateManager.setState(new HeartVertical1());
+            if (!finished) {
+                PlayerController.y = 0;
+            }
+
+        }
+        if(PlayerController.x > GamePanel.width - PlayerController.width) {
+            PlayerController.x = GamePanel.width;
         }
 
         g.setFont(new Font("Arial", Font.BOLD, 20));
@@ -147,8 +128,8 @@ public class HeartEntrance extends GameState {
         g.drawString("Chaser 2 Location: " + SlowChaser.x + ", " + SlowChaser.y, 0, 240);
         g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 280);
         g.drawString("Fist direction: " + Fist.direction, 0, 320);
-
     }
+
 
     @Override
     public void tick() {
