@@ -124,7 +124,7 @@ public class FinalBoss {
             if (health <= 0) {
                 if (phase == 1) {
                     phase = 2;
-                    speed += 3;
+                    speed += 6;
                     health = 12;
                 } else {
                     disable();
