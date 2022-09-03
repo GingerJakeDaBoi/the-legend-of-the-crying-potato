@@ -1,6 +1,7 @@
 package org.gingerjake.potatogame.Actors.Enemies.Final;
 
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
+import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 
 public class FinalBoss {
@@ -112,6 +113,13 @@ public class FinalBoss {
                 if (Fist.visible) {
                     health -= Fist.power;
                     Fist.visible = false;
+                }
+            }
+
+            if (PlayerController.x + PlayerController.width > x && PlayerController.x < x + width && PlayerController.y + PlayerController.height > y && PlayerController.y < y + height) {
+                if (!PlayerController.hurting) {
+                    PlayerController.hurting = true;
+                    new Thread(PlayerController::hurt).start();
                 }
             }
 

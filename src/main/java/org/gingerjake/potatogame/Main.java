@@ -116,9 +116,9 @@ public class Main extends KeyListener {
                         PlayerController.righting = false;
                     }
                 }
-                }
-                if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    Fist.visible = false;
+            }
+            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                Fist.visible = false;
             }
             return false;
         });

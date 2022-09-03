@@ -11,7 +11,6 @@ import org.gingerjake.potatogame.Actors.Upgrades.StrengthChalice;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.HeartGauntlet.HeartEntrance;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEnd;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEntrance;
 
@@ -117,7 +116,7 @@ public class HubSpace extends GameState {
         }
 
         if (PlayerController.x > GamePanel.width - PlayerController.width) {
-            GameStateManager.setState(new HeartEntrance());
+            PlayerController.x = GamePanel.width - PlayerController.width;
         }
         if (PlayerController.x < 0) {
             PlayerController.x = 0;
