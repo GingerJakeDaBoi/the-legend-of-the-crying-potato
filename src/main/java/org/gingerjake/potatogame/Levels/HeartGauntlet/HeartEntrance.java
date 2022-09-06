@@ -1,13 +1,11 @@
 package org.gingerjake.potatogame.Levels.HeartGauntlet;
 
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser;
-import org.gingerjake.potatogame.Actors.Enemies.SlowChaser2;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedFork;
 
 import javax.swing.*;
 import java.awt.*;
@@ -121,15 +119,15 @@ public class HeartEntrance extends GameState {
             PlayerController.x = GamePanel.width;
         }
 
-        g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.setColor(Color.WHITE);
-        g.drawString("Chaser 1 Health: " + SlowChaser.health, 0, 80);
-        g.drawString("Chaser 2 Health: " + SlowChaser2.health, 0, 120);
-        g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 160);
-        g.drawString("Chaser 1 Location: " + SlowChaser2.x + ", " + SlowChaser2.y, 0, 200);
-        g.drawString("Chaser 2 Location: " + SlowChaser.x + ", " + SlowChaser.y, 0, 240);
-        g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 280);
-        g.drawString("Fist direction: " + Fist.direction, 0, 320);
+//        g.setFont(new Font("Arial", Font.BOLD, 20));
+//        g.setColor(Color.WHITE);
+//        g.drawString("Chaser 1 Health: " + SlowChaser.health, 0, 80);
+//        g.drawString("Chaser 2 Health: " + SlowChaser2.health, 0, 120);
+//        g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 160);
+//        g.drawString("Chaser 1 Location: " + SlowChaser2.x + ", " + SlowChaser2.y, 0, 200);
+//        g.drawString("Chaser 2 Location: " + SlowChaser.x + ", " + SlowChaser.y, 0, 240);
+//        g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 280);
+//        g.drawString("Fist direction: " + Fist.direction, 0, 320);
     }
 
 

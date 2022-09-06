@@ -1,5 +1,6 @@
 package org.gingerjake.potatogame.Levels.Menus;
 
+import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 
@@ -25,7 +26,11 @@ public class EndScreen extends GameState {
         g.fillRect(0, 0, GamePanel.width, GamePanel.height);
         g.setFont(new Font("Arial", Font.BOLD, 50));
         g.setColor(Color.WHITE);
-        g.drawString("YOU LOST", 0, 40);
+        if (PlayerController.heartGiven && PlayerController.speedGiven && PlayerController.powerGiven) {
+            g.drawString("You Win!", GamePanel.width / 2 - 100, GamePanel.height / 2);
+        } else {
+            g.drawString("YOU LOST", 0, 40);
+        }
 
     }
 

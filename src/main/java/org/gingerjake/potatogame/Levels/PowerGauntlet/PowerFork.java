@@ -1,4 +1,4 @@
-package org.gingerjake.potatogame.Levels.SpeedGauntlet;
+package org.gingerjake.potatogame.Levels.PowerGauntlet;
 
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser;
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser2;
@@ -7,14 +7,14 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedSide1;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedVertical1;
+import org.gingerjake.potatogame.Levels.PowerGauntlet.Right.PowerSide1;
+import org.gingerjake.potatogame.Levels.PowerGauntlet.Up.PowerVertical1;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class SpeedFork extends GameState {
+public class PowerFork extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
@@ -22,7 +22,7 @@ public class SpeedFork extends GameState {
 
     Image fist;
 
-    public SpeedFork() {
+    public PowerFork() {
         super(gsm);
 
         PlayerController.x = 400;
@@ -135,10 +135,10 @@ public class SpeedFork extends GameState {
             PlayerController.y = GamePanel.height - PlayerController.height;
         }
         if(PlayerController.x > GamePanel.width - PlayerController.width){
-            GameStateManager.setState(new SpeedSide1());
+            GameStateManager.setState(new PowerSide1());
         }
         if (PlayerController.y < 0) {
-            GameStateManager.setState(new SpeedVertical1());
+            GameStateManager.setState(new PowerVertical1());
         }
 //        g.setFont(new Font("Arial", Font.BOLD, 20));
 //        g.setColor(Color.WHITE);

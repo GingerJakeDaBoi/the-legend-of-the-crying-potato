@@ -1,43 +1,36 @@
-package org.gingerjake.potatogame.Levels.SpeedGauntlet;
+package org.gingerjake.potatogame.Levels.PowerGauntlet.Up;
 
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser;
-import org.gingerjake.potatogame.Actors.Enemies.SlowChaser2;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedSide1;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedVertical1;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class SpeedFork extends GameState {
+public class PowerVertical1 extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
-    Image background = new ImageIcon("Assets/SpeedGauntlet/PathFork.png").getImage();
+    Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
 
     Image fist;
+    boolean finished;
 
-    public SpeedFork() {
+    public PowerVertical1() {
         super(gsm);
-
-        PlayerController.x = 400;
-        PlayerController.y = GamePanel.height - PlayerController.height;
-        PlayerController.enable();
-
-        SlowChaser.health = 3;
-        SlowChaser.spawn(400, SlowChaser.height,96,96);
+        SlowChaser.health = 4;
+        SlowChaser.spawn(400, SlowChaser.height, 96, 96);
         SlowChaser.enable();
         new Thread(SlowChaser::chase).start();
+        PlayerController.x = 400;
+        PlayerController.y = GamePanel.height - PlayerController.height;
 
-        SlowChaser2.health = 3;
-        SlowChaser2.spawn(900, 300,96,96);
-        SlowChaser2.enable();
-        new Thread(SlowChaser2::chase).start();
+
+        PlayerController.enable();
 
     }
 
@@ -56,9 +49,8 @@ public class SpeedFork extends GameState {
 
         if (SlowChaser.enabled) {
             g.drawImage(chaser, SlowChaser.x, SlowChaser.y, SlowChaser.width, SlowChaser.height, null);
-        }
-        if(SlowChaser2.enabled) {
-            g.drawImage(chaser, SlowChaser2.x, SlowChaser2.y, SlowChaser2.width, SlowChaser2.height, null);
+        } else {
+            finished = true;
         }
 
         if (Fist.visible) {
@@ -108,38 +100,25 @@ public class SpeedFork extends GameState {
             }
         }
 
-        if (PlayerController.x > GamePanel.width - 990) {
-            if (!(PlayerController.y > 210)) {
-                PlayerController.y = 210;
-            }
-            if (PlayerController.y > 425) {
-                PlayerController.y = 425;
-            }
-
+        if (PlayerController.x > GamePanel.width - 995) {
+            PlayerController.x = GamePanel.width - 995;
         }
-        if (PlayerController.x > GamePanel.width - 1000) {
-            if (!(PlayerController.y > 205)) {
-                PlayerController.x = GamePanel.width - 1000;
-            }
-        }
-        if(PlayerController.x > GamePanel.width - 1000){
-            if(PlayerController.y > 425){
-                PlayerController.x = GamePanel.width - 1000;
-            }
-        }
-
         if (PlayerController.x <= 255) {
             PlayerController.x = 255;
         }
         if (PlayerController.y > GamePanel.height - PlayerController.height) {
             PlayerController.y = GamePanel.height - PlayerController.height;
         }
-        if(PlayerController.x > GamePanel.width - PlayerController.width){
-            GameStateManager.setState(new SpeedSide1());
-        }
         if (PlayerController.y < 0) {
-            GameStateManager.setState(new SpeedVertical1());
+            if (!finished) {
+                PlayerController.y = 0;
+            } else
+                GameStateManager.setState(new PowerCurve1());
         }
+        if(PlayerController.x > GamePanel.width - PlayerController.width) {
+            PlayerController.x = GamePanel.width;
+        }
+
 //        g.setFont(new Font("Arial", Font.BOLD, 20));
 //        g.setColor(Color.WHITE);
 //        g.drawString("Chaser 1 Health: " + SlowChaser.health, 0, 80);
@@ -149,10 +128,8 @@ public class SpeedFork extends GameState {
 //        g.drawString("Chaser 2 Location: " + SlowChaser.x + ", " + SlowChaser.y, 0, 240);
 //        g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 280);
 //        g.drawString("Fist direction: " + Fist.direction, 0, 320);
-
-
-
     }
+
 
     @Override
     public void tick() {
