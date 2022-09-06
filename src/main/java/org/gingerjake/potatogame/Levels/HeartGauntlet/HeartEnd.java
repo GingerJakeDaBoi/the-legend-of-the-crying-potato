@@ -1,43 +1,37 @@
-package org.gingerjake.potatogame.Levels;
+package org.gingerjake.potatogame.Levels.HeartGauntlet;
 
-import org.gingerjake.potatogame.Actors.Enemies.Chaser;
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser;
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser2;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Actors.Upgrades.ExtraHeart;
 import org.gingerjake.potatogame.Actors.Upgrades.SpeedBoots;
-import org.gingerjake.potatogame.Actors.Upgrades.StrengthChalice;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.HeartGauntlet.HeartEnd;
-import org.gingerjake.potatogame.Levels.HeartGauntlet.HeartEntrance;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEnd;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEntrance;
+import org.gingerjake.potatogame.Levels.HubSpace;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class HubSpace extends GameState {
+public class HeartEnd extends GameState {
+    public static boolean finished = false;
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
-    Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
-    Image background = new ImageIcon("Assets/Dummy/GreenDitherBG.png").getImage();
-    Image boots = new ImageIcon("Assets/Dummy/potion.png").getImage();
-    Image chalice = new ImageIcon("Assets/Dummy/rock.jpg").getImage();
+    Image background = new ImageIcon("Assets/SpeedGauntlet/End.png").getImage();
 
     Image fist;
 
-    public HubSpace() {
+    public HeartEnd() {
         super(gsm);
-        if (!GamePanel.gameStarted) {
-            PlayerController.spawn(500, 500, 192, 192);
-
-        }
+        PlayerController.y = GamePanel.height - PlayerController.height;
+        PlayerController.x = GamePanel.width / 2 - PlayerController.width / 2;
         PlayerController.enable();
-        GamePanel.gameStarted = true;
+        SlowChaser.disable();
+        SlowChaser2.disable();
+        ExtraHeart .spawn(1318, 75,128,128);
+        new Thread(SpeedBoots::enable).start();
 
     }
 
@@ -54,20 +48,11 @@ public class HubSpace extends GameState {
 
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
 
-        if (StrengthChalice.enabled) {
-            g.drawImage(chalice, StrengthChalice.x, StrengthChalice.y, StrengthChalice.width, StrengthChalice.height, null);
-        }
         if (SpeedBoots.enabled) {
             g.drawImage(boots, SpeedBoots.x, SpeedBoots.y, SpeedBoots.width, SpeedBoots.height, null);
-        }
-        if (ExtraHeart.enabled) {
-            g.drawImage(playerHeart, ExtraHeart.x, ExtraHeart.y, ExtraHeart.width, ExtraHeart.height, null);
-        }
-        if (Chaser.enabled) {
-            g.drawImage(chaser, Chaser.x, Chaser.y, Chaser.width, Chaser.height, null);
-        }
-        if (SlowChaser.enabled) {
-            g.drawImage(chaser, SlowChaser.x, SlowChaser.y, SlowChaser.width, SlowChaser.height, null);
+        } else {
+            finished = true;
+            GameStateManager.setState(new HubSpace());
         }
 
         if (Fist.visible) {
@@ -118,11 +103,7 @@ public class HubSpace extends GameState {
         }
 
         if (PlayerController.x > GamePanel.width - PlayerController.width) {
-            if(!HeartEnd.finished) {
-                GameStateManager.setState(new HeartEntrance());
-            } else {
-                PlayerController.x = GamePanel.width - PlayerController.width;
-            }
+            PlayerController.x = GamePanel.width - PlayerController.width;
         }
         if (PlayerController.x < 0) {
             PlayerController.x = 0;
@@ -131,11 +112,8 @@ public class HubSpace extends GameState {
             PlayerController.y = GamePanel.height - PlayerController.height;
         }
         if (PlayerController.y < 0) {
-            if (!SpeedEnd.finished) {
-                GameStateManager.setState(new SpeedEntrance());
-            } else {
-                PlayerController.y = 0;
-            }
+            PlayerController.y = 0;
+
         }
 
         g.setFont(new Font("Arial", Font.BOLD, 20));

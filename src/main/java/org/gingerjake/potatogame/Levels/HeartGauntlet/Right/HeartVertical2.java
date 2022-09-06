@@ -1,43 +1,39 @@
-package org.gingerjake.potatogame.Levels;
+package org.gingerjake.potatogame.Levels.HeartGauntlet.Right;
 
-import org.gingerjake.potatogame.Actors.Enemies.Chaser;
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser;
 import org.gingerjake.potatogame.Actors.Enemies.SlowChaser2;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Actors.Upgrades.ExtraHeart;
-import org.gingerjake.potatogame.Actors.Upgrades.SpeedBoots;
-import org.gingerjake.potatogame.Actors.Upgrades.StrengthChalice;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
 import org.gingerjake.potatogame.Levels.HeartGauntlet.HeartEnd;
-import org.gingerjake.potatogame.Levels.HeartGauntlet.HeartEntrance;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEnd;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEntrance;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class HubSpace extends GameState {
+public class HeartVertical2 extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
-    Image background = new ImageIcon("Assets/Dummy/GreenDitherBG.png").getImage();
-    Image boots = new ImageIcon("Assets/Dummy/potion.png").getImage();
-    Image chalice = new ImageIcon("Assets/Dummy/rock.jpg").getImage();
+    Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical2.png").getImage();
 
     Image fist;
+    boolean finished;
 
-    public HubSpace() {
+    public HeartVertical2() {
         super(gsm);
-        if (!GamePanel.gameStarted) {
-            PlayerController.spawn(500, 500, 192, 192);
+        SlowChaser.health = 4;
+        SlowChaser.spawn(940, 55, 96, 96);
+        SlowChaser.enable();
+        new Thread(SlowChaser::chase).start();
+        PlayerController.x = 957;
+        PlayerController.y = 598;
 
-        }
+
         PlayerController.enable();
-        GamePanel.gameStarted = true;
 
     }
 
@@ -54,20 +50,10 @@ public class HubSpace extends GameState {
 
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
 
-        if (StrengthChalice.enabled) {
-            g.drawImage(chalice, StrengthChalice.x, StrengthChalice.y, StrengthChalice.width, StrengthChalice.height, null);
-        }
-        if (SpeedBoots.enabled) {
-            g.drawImage(boots, SpeedBoots.x, SpeedBoots.y, SpeedBoots.width, SpeedBoots.height, null);
-        }
-        if (ExtraHeart.enabled) {
-            g.drawImage(playerHeart, ExtraHeart.x, ExtraHeart.y, ExtraHeart.width, ExtraHeart.height, null);
-        }
-        if (Chaser.enabled) {
-            g.drawImage(chaser, Chaser.x, Chaser.y, Chaser.width, Chaser.height, null);
-        }
         if (SlowChaser.enabled) {
             g.drawImage(chaser, SlowChaser.x, SlowChaser.y, SlowChaser.width, SlowChaser.height, null);
+        } else {
+            finished = true;
         }
 
         if (Fist.visible) {
@@ -117,25 +103,23 @@ public class HubSpace extends GameState {
             }
         }
 
-        if (PlayerController.x > GamePanel.width - PlayerController.width) {
-            if(!HeartEnd.finished) {
-                GameStateManager.setState(new HeartEntrance());
-            } else {
-                PlayerController.x = GamePanel.width - PlayerController.width;
-            }
+        if (PlayerController.x > 1134) {
+            PlayerController.x = 1134;
         }
-        if (PlayerController.x < 0) {
-            PlayerController.x = 0;
+        if (PlayerController.x <= 815) {
+            PlayerController.x = 815;
         }
         if (PlayerController.y > GamePanel.height - PlayerController.height) {
             PlayerController.y = GamePanel.height - PlayerController.height;
         }
         if (PlayerController.y < 0) {
-            if (!SpeedEnd.finished) {
-                GameStateManager.setState(new SpeedEntrance());
-            } else {
+            if (!finished) {
                 PlayerController.y = 0;
-            }
+            } else
+                GameStateManager.setState(new HeartEnd());
+        }
+        if(PlayerController.x > GamePanel.width - PlayerController.width) {
+            PlayerController.x = GamePanel.width;
         }
 
         g.setFont(new Font("Arial", Font.BOLD, 20));
@@ -147,9 +131,8 @@ public class HubSpace extends GameState {
         g.drawString("Chaser 2 Location: " + SlowChaser.x + ", " + SlowChaser.y, 0, 240);
         g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 280);
         g.drawString("Fist direction: " + Fist.direction, 0, 320);
-
-
     }
+
 
     @Override
     public void tick() {

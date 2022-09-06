@@ -39,8 +39,6 @@ public class SpeedFork extends GameState {
         SlowChaser2.enable();
         new Thread(SlowChaser2::chase).start();
 
-
-
     }
 
     @Override
