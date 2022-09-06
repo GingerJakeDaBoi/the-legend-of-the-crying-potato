@@ -8,9 +8,7 @@ import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
 import org.gingerjake.potatogame.Levels.HeartGauntlet.Right.HeartSide1;
-import org.gingerjake.potatogame.Levels.HeartGauntlet.Right.HeartVertical2;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedSide1;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedVertical1;
+import org.gingerjake.potatogame.Levels.HeartGauntlet.Up.HeartVertical1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -140,7 +138,7 @@ public class HeartFork extends GameState {
             GameStateManager.setState(new HeartSide1());
         }
         if (PlayerController.y < 0) {
-            GameStateManager.setState(new HeartVertical2());
+            GameStateManager.setState(new HeartVertical1());
         }
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.setColor(Color.WHITE);

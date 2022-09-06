@@ -2,7 +2,6 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Levels.FinalFight;
 import org.gingerjake.potatogame.Levels.HubSpace;
 import org.gingerjake.potatogame.Levels.Menus.EndScreen;
 
@@ -31,7 +30,6 @@ public class Main extends KeyListener {
                     new Thread(PlayerController::giveDamage).start();
                     new Thread(PlayerController::giveHeart).start();
                     new Thread(PlayerController::giveSpeed).start();
-                    GameStateManager.setState(new FinalFight());
                 }
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
                     if (!PlayerController.uping) {

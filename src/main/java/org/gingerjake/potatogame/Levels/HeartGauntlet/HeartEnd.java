@@ -5,7 +5,6 @@ import org.gingerjake.potatogame.Actors.Enemies.SlowChaser2;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Actors.Upgrades.ExtraHeart;
-import org.gingerjake.potatogame.Actors.Upgrades.SpeedBoots;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
@@ -30,8 +29,8 @@ public class HeartEnd extends GameState {
         PlayerController.enable();
         SlowChaser.disable();
         SlowChaser2.disable();
-        ExtraHeart .spawn(1318, 75,128,128);
-        new Thread(SpeedBoots::enable).start();
+        ExtraHeart.spawn(1318, 75,128,128);
+        new Thread(ExtraHeart::enable).start();
 
     }
 
@@ -48,8 +47,8 @@ public class HeartEnd extends GameState {
 
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
 
-        if (SpeedBoots.enabled) {
-            g.drawImage(boots, SpeedBoots.x, SpeedBoots.y, SpeedBoots.width, SpeedBoots.height, null);
+        if (ExtraHeart.enabled) {
+            g.drawImage(playerHeart, ExtraHeart.x, ExtraHeart.y, ExtraHeart.width, ExtraHeart.height, null);
         } else {
             finished = true;
             GameStateManager.setState(new HubSpace());
