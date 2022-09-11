@@ -4,24 +4,28 @@ import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 
-public class Chaser {
+public class Enemy {
     public static int x;
     public static int y;
     public static int width;
     public static int height;
-    public static int speed = 2;
-    public static int health = 8;
+    public static int speed = 1;
+    public static int health = 12;
     public static boolean enabled;
 
     public static void spawn(int x, int y, int width, int height) {
-        org.gingerjake.potatogame.Actors.Enemies.Chaser.x = x;
-        org.gingerjake.potatogame.Actors.Enemies.Chaser.y = y;
-        org.gingerjake.potatogame.Actors.Enemies.Chaser.width = width;
-        org.gingerjake.potatogame.Actors.Enemies.Chaser.height = height;
+        Enemy.x = x;
+        Enemy.y = y;
+        Enemy.width = width;
+        Enemy.height = height;
     }
 
     public static void enable() {
         enabled = true;
+    }
+
+    public static void disable() {
+        enabled = false;
     }
 
     @SuppressWarnings("BusyWait")
@@ -40,6 +44,15 @@ public class Chaser {
                 y -= speed;
             }
 
+            //if either PlayerController or Chaser overlap, damage the player.
+            if (PlayerController.x + PlayerController.width > x && PlayerController.x < x + width && PlayerController.y + PlayerController.height > y && PlayerController.y < y + height) {
+                if(!PlayerController.hurting) {
+                    PlayerController.hurting = true;
+                    new Thread(PlayerController::hurt).start();
+                    System.out.println("Hit by slow chaser");
+                }
+            }
+
             //if either Fist or Chaser overlap, damage the chaser.
             if (Fist.x + Fist.width > x && Fist.x < x + width && Fist.y + Fist.height > y && Fist.y < y + height) {
                 if(Fist.visible) {
@@ -55,7 +68,7 @@ public class Chaser {
             }
 
             if(health <= 0) {
-                enabled = false;
+                disable();
                 Thread.currentThread().interrupt();
             }
         }

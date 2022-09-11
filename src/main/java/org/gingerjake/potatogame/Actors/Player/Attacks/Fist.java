@@ -19,8 +19,8 @@ public class Fist {
         direction = "left";
         x = PlayerController.x + PlayerController.width / 3;
         y = PlayerController.y + PlayerController.height / 3;
-        width = PlayerController.width / 2;
-        height = PlayerController.height / 2;
+        width = 192 / 2;
+        height = 192 / 2;
         while (visible) {
             x -= 1;
             if (x < 0) {
@@ -41,8 +41,8 @@ public class Fist {
         direction = "right";
         x = PlayerController.x + PlayerController.width / 3;
         y = PlayerController.y + PlayerController.height / 3;
-        width = PlayerController.width / 2;
-        height = PlayerController.height / 2;
+        width = 192 / 2;
+        height = 192 / 2;
         while (visible) {
             x += 1;
             if (x > GamePanel.width) {
@@ -62,8 +62,8 @@ public class Fist {
         direction = "up";
         x = PlayerController.x + PlayerController.width / 3;
         y = PlayerController.y + PlayerController.height / 3;
-        width = PlayerController.width / 2;
-        height = PlayerController.height / 2;
+        width = 192 / 2;
+        height = 192 / 2;
         while (visible) {
             y -= 1;
             if (y < 0) {
@@ -83,8 +83,8 @@ public class Fist {
         direction = "down";
         x = PlayerController.x + PlayerController.width / 3;
         y = PlayerController.y + PlayerController.height / 3;
-        width = PlayerController.width / 2;
-        height = PlayerController.height / 2;
+        width = 192 / 2;
+        height = 192 / 2;
         while (visible) {
             y += 1;
             if (y > GamePanel.height) {

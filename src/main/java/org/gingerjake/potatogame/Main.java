@@ -2,7 +2,8 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Levels.HubSpace;
+import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
+import org.gingerjake.potatogame.Levels.TestSpace;
 import org.gingerjake.potatogame.Levels.Menus.EndScreen;
 
 import javax.swing.*;
@@ -17,6 +18,7 @@ public class Main extends KeyListener {
         gameWindow.setSize(GamePanel.width, GamePanel.height);
         gameWindow.setLocationRelativeTo(null);
 
+        gameWindow.setIconImage(Toolkit.getDefaultToolkit().getImage("Assets/GUI/Heart.png"));
         gameWindow.add(new GamePanel(), BorderLayout.CENTER);
         gameWindow.setResizable(false);
         gameWindow.setVisible(true);
@@ -27,15 +29,29 @@ public class Main extends KeyListener {
         manager.addKeyEventDispatcher(e -> {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    if (!PlayerController.uping) {
-                        PlayerController.uping = true;
-                        new Thread(PlayerController::moveUp).start();
+                    if (PlayerController.enabled) {
+                        if (!PlayerController.uping) {
+                            PlayerController.uping = true;
+                            new Thread(PlayerController::moveUp).start();
+                        }
+                    }
+                    if (PauseMenu.paused) {
+                        if (PauseMenu.Selection > 0) {
+                            PauseMenu.Selection--;
+                        }
                     }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    if (!PlayerController.downing) {
-                        PlayerController.downing = true;
-                        new Thread(PlayerController::moveDown).start();
+                    if (PlayerController.enabled) {
+                        if (!PlayerController.downing) {
+                            PlayerController.downing = true;
+                            new Thread(PlayerController::moveDown).start();
+                        }
+                    }
+                    if (PauseMenu.paused) {
+                        if (PauseMenu.Selection < 1) {
+                            PauseMenu.Selection++;
+                        }
                     }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -71,16 +87,28 @@ public class Main extends KeyListener {
                     }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    System.out.println("Thanks for playing!");
-                    System.exit(0);
+                    if (!PauseMenu.paused) {
+                        GameStateManager.pause();
+                    } else {
+                        GameStateManager.resume();
+                    }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     if (!GamePanel.gameStarted) {
-                        GameStateManager.setState(new HubSpace());
+                        GameStateManager.setState(new TestSpace());
                     }
                     if (EndScreen.gameEnded) {
                         System.out.println("Thanks for playing!");
                         System.exit(0);
+                    }
+                    if (PauseMenu.paused) {
+                        if (PauseMenu.Selection == 0) {
+                            GameStateManager.resume();
+                        }
+                        if (PauseMenu.Selection == 1) {
+                            System.out.println("Thanks for playing!");
+                            System.exit(0);
+                        }
                     }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
