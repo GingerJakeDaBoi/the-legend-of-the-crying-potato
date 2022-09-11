@@ -2,9 +2,9 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
-import org.gingerjake.potatogame.Levels.TestSpace;
+import org.gingerjake.potatogame.Levels.BigLevelTest;
 import org.gingerjake.potatogame.Levels.Menus.EndScreen;
+import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -66,6 +66,7 @@ public class Main extends KeyListener {
                         new Thread(PlayerController::moveRight).start();
                     }
                 }
+
                 if (e.getKeyCode() == KeyEvent.VK_W) {
                     if (!Fist.visible) {
                         new Thread(Fist::up).start();
@@ -86,6 +87,7 @@ public class Main extends KeyListener {
                         new Thread(Fist::right).start();
                     }
                 }
+
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     if (!PauseMenu.paused) {
                         GameStateManager.pause();
@@ -95,7 +97,7 @@ public class Main extends KeyListener {
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     if (!GamePanel.gameStarted) {
-                        GameStateManager.setState(new TestSpace());
+                        GameStateManager.setState(new BigLevelTest());
                     }
                     if (EndScreen.gameEnded) {
                         System.out.println("Thanks for playing!");
@@ -111,6 +113,7 @@ public class Main extends KeyListener {
                         }
                     }
                 }
+
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     Fist.visible = false;
                 }
@@ -137,9 +140,6 @@ public class Main extends KeyListener {
                         PlayerController.righting = false;
                     }
                 }
-            }
-            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                Fist.visible = false;
             }
             return false;
         });
