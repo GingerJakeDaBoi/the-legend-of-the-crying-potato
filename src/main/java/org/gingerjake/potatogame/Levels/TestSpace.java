@@ -3,6 +3,7 @@ package org.gingerjake.potatogame.Levels;
 import org.gingerjake.potatogame.Actors.Enemies.Enemy;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
+import org.gingerjake.potatogame.Controls;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 
@@ -112,6 +113,7 @@ public class TestSpace extends GameState {
         g.drawString("Enemy Location: " + Enemy.x + ", " + Enemy.y, 0, 160);
         g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 200);
         g.drawString("Fist direction: " + Fist.direction, 0, 240);
+        g.drawString("Control Mode: " + Controls.controlMode, 0, 280);
 
 
     }

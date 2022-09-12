@@ -1,6 +1,7 @@
 package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
+import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 
 import javax.swing.*;
@@ -27,19 +28,46 @@ public class Main extends KeyListener {
 
         manager.addKeyEventDispatcher(e -> {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
-                if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    Controls.moveUp();
-                    Controls.menuUp();
+                if (Controls.controlMode == 0) {
+                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                        Controls.moveUp();
+                        Controls.menuUp();
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                        Controls.moveDown();
+                        Controls.menuDown();
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                        Controls.moveLeft();
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                        Controls.moveRight();
+                    }
                 }
-                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    Controls.moveDown();
-                    Controls.menuDown();
+                if (Controls.controlMode == 1) {
+                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                        Controls.menuUp();
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                        Controls.menuDown();
+                    }
+
+                    if (e.getKeyCode() == KeyEvent.VK_I) {
+                        Controls.moveUp();
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_K) {
+                        Controls.moveDown();
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_J) {
+                        Controls.moveLeft();
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_L) {
+                        Controls.moveRight();
+                    }
                 }
-                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    Controls.moveLeft();
-                }
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    Controls.moveRight();
+
+                if (e.getKeyCode() == KeyEvent.VK_P) {
+                    Controls.switchControls();
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_W) {
@@ -73,28 +101,51 @@ public class Main extends KeyListener {
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     Controls.cancelFist();
                 }
-
             }
             if (e.getID() == KeyEvent.KEY_RELEASED) {
-                if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    if (PlayerController.uping) {
-                        PlayerController.uping = false;
+                if (!ControlMenu.enabled) {
+                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                        if (PlayerController.uping) {
+                            PlayerController.uping = false;
+                        }
                     }
-                }
-                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    if (PlayerController.downing) {
-                        PlayerController.downing = false;
+                    if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                        if (PlayerController.downing) {
+                            PlayerController.downing = false;
+                        }
                     }
-                }
-                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    if (PlayerController.lefting) {
-                        PlayerController.lefting = false;
+                    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                        if (PlayerController.lefting) {
+                            PlayerController.lefting = false;
+                        }
                     }
-                }
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    if (PlayerController.righting) {
-                        PlayerController.righting = false;
+                    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                        if (PlayerController.righting) {
+                            PlayerController.righting = false;
+                        }
                     }
+
+                    if (e.getKeyCode() == KeyEvent.VK_I) {
+                        if (PlayerController.uping) {
+                            PlayerController.uping = false;
+                        }
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_K) {
+                        if (PlayerController.downing) {
+                            PlayerController.downing = false;
+                        }
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_J) {
+                        if (PlayerController.lefting) {
+                            PlayerController.lefting = false;
+                        }
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_L) {
+                        if (PlayerController.righting) {
+                            PlayerController.righting = false;
+                        }
+                    }
+
                 }
             }
             return false;

@@ -2,14 +2,20 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Levels.BigLevelTest;
+import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.EndScreen;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
+import org.gingerjake.potatogame.Levels.TestSpace;
 
 public class Controls {
+    public static int controlMode;
     public static void menuUp() {
         if (PauseMenu.paused) {
-            if (PauseMenu.Selection > 0) {
+            if(ControlMenu.enabled) {
+                if (ControlMenu.Selection > 0) {
+                    ControlMenu.Selection--;
+                }
+            } else if (PauseMenu.Selection > 0) {
                 PauseMenu.Selection--;
             }
         }
@@ -17,7 +23,11 @@ public class Controls {
 
     public static void menuDown() {
         if (PauseMenu.paused) {
-            if (PauseMenu.Selection < 1) {
+            if(ControlMenu.enabled) {
+                if (ControlMenu.Selection < 1) {
+                    ControlMenu.Selection++;
+                }
+            } else if (PauseMenu.Selection < 2) {
                 PauseMenu.Selection++;
             }
         }
@@ -110,7 +120,7 @@ public class Controls {
 
     public static void startGame() {
         if (!GamePanel.gameStarted) {
-            GameStateManager.setState(new BigLevelTest());
+            GameStateManager.setState(new TestSpace());
         }
     }
 
@@ -123,14 +133,35 @@ public class Controls {
 
     public static void select() {
         if (PauseMenu.paused) {
-            if (PauseMenu.Selection == 0) {
+            if(ControlMenu.enabled) {
+                if(ControlMenu.Selection == 0) {
+                    controlMode = 0;
+                }
+                if(ControlMenu.Selection == 1) {
+                    controlMode = 1;
+                }
+            } else if (PauseMenu.Selection == 0) {
                 GameStateManager.resume();
-            } else {
+            } else if (PauseMenu.Selection == 1) {
+                GameStateManager.setState(new ControlMenu());
+            } else if (PauseMenu.Selection == 2) {
                 System.out.println("Thanks for playing!");
                 System.exit(0);
+            } else {
+                System.out.println("Error: Invalid selection");
+                System.exit(1);
             }
         }
     }
+
+    public static void switchControls() {
+        if(controlMode == 0) {
+            controlMode = 1;
+        } else {
+            controlMode = 0;
+        }
+    }
+
 }
 
 

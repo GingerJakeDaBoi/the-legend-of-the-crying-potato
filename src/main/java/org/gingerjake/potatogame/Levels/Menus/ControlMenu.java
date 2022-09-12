@@ -1,22 +1,21 @@
 package org.gingerjake.potatogame.Levels.Menus;
 
+import org.gingerjake.potatogame.Controls;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class PauseMenu extends GameState {
+public class ControlMenu extends GameState {
     Image select = new ImageIcon("Assets/GUI/Heart.png").getImage();
-    public static boolean paused;
     public static int Selection;
+    public static boolean enabled;
 
-    public PauseMenu() {
+    public ControlMenu() {
         super(gsm);
-        paused = true;
         Selection = 0;
-        ControlMenu.enabled = false;
-
+        ControlMenu.enabled = true;
     }
 
     @Override
@@ -30,23 +29,23 @@ public class PauseMenu extends GameState {
         g.fillRect(0, 0, GamePanel.width, GamePanel.height);
         g.setFont(new Font("Arial", Font.BOLD, 50));
         g.setColor(Color.WHITE);
-        g.drawString("PAUSED", 0, 40);
+        g.drawString("CONTROLS", 0, 40);
+        if(Controls.controlMode == 1) {
+            g.drawString("IJKL to move", 0, 90);
+        }
+        if(Controls.controlMode == 0) {
+            g.drawString("Arrow keys to move", 0, 90);
+        }
 
-        g.drawString("Resume", 0, 500);
-        g.drawString("Controls", 0, 550);
-        g.drawString("Exit", 0, 600);
+        g.drawString("Move with arrow keys", 0, 500);
+        g.drawString("Move with IJKL", 0, 550);
 
-        //if Selection is 0, draw a checkmark next to resume. if Selection is 1, draw a checkmark next to exit.
         if(Selection == 0) {
-            g.drawImage(select, 200, 455, 50, 50, null);
+            g.drawImage(select, 520, 455, 50, 50, null);
         }
         if(Selection == 1) {
-            g.drawImage(select, 220, 505, 50, 50, null);
+            g.drawImage(select, 360, 505, 50, 50, null);
         }
-        if(Selection == 2) {
-            g.drawImage(select, 100, 555, 50, 50, null);
-        }
-
 
     }
 
@@ -55,3 +54,4 @@ public class PauseMenu extends GameState {
 
     }
 }
+
