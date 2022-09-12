@@ -28,13 +28,13 @@ public class GameStateManager extends KeyListener {
     }
 
     public static void pause() {
+        //TODO: Record X and Y of enemy and player, and then resume from that point in case levels set those values themselves.
         PauseMenu.paused = true;
         currentLevel = getState();
 
         setState(new PauseMenu());
         PlayerController.disable();
         Enemy.disable();
-
     }
 
     public static void resume() {

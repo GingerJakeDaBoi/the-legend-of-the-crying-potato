@@ -41,7 +41,9 @@ public class BigLevelTest extends GameState {
 
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
 
-        g.drawImage(Enemy.enemyAsset, Enemy.x, Enemy.y, Enemy.width, Enemy.height, null);
+        if(Enemy.enabled){
+            g.drawImage(Enemy.enemyAsset, Enemy.x, Enemy.y, Enemy.width, Enemy.height, null);
+        }
 
         if (Fist.visible) {
             if (Objects.equals(Fist.direction, "left")) {
@@ -91,13 +93,14 @@ public class BigLevelTest extends GameState {
         }
 
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.setColor(Color.WHITE);
+        g.setColor(Color.BLACK);
         g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 80);
         g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 120);
         g.drawString("Fist direction: " + Fist.direction, 0, 160);
         g.drawString("Map Location: " + biglevelx + ", " + biglevely, 0, 200);
         g.drawString("Enemy Location: " + Enemy.x + ", " + Enemy.y, 0, 240);
 
+        //The rest of the If statements are for collision in this level.
         if (PlayerController.x > 1366) {
             PlayerController.x = 1366;
             biglevelx = biglevelx - 2;
@@ -117,6 +120,19 @@ public class BigLevelTest extends GameState {
             PlayerController.y = 100;
             Enemy.y = Enemy.y + 2;
             biglevely = biglevely + 2;
+        }
+        if(biglevelx > 0){
+            biglevelx = 0;
+        }
+        if(biglevelx < -5578){
+            biglevelx = -5578;
+        }
+        if(biglevely > 0){
+            biglevely = 0;
+        }
+        if(biglevely < -3392){
+            biglevely = -3392;
+
         }
     }
 
