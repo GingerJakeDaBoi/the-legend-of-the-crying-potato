@@ -21,7 +21,6 @@ public class GamePanel extends JPanel implements Runnable{
         start();
     }
 
-
     private void start() {
         isRunning = true;
         Thread thread = new Thread(this);

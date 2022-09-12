@@ -108,9 +108,9 @@ public class TestSpace extends GameState {
 
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.setColor(Color.WHITE);
-        g.drawString("Chaser 1 Health: " + Enemy.health, 0, 80);
+        g.drawString("Enemy Health: " + Enemy.health, 0, 80);
         g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 120);
-        g.drawString("Chaser 2 Location: " + Enemy.x + ", " + Enemy.y, 0, 160);
+        g.drawString("Enemy Location: " + Enemy.x + ", " + Enemy.y, 0, 160);
         g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 200);
         g.drawString("Fist direction: " + Fist.direction, 0, 240);
 

@@ -1,5 +1,6 @@
 package org.gingerjake.potatogame.Levels;
 
+import org.gingerjake.potatogame.Actors.Enemies.Enemy;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
@@ -10,8 +11,8 @@ import java.awt.*;
 import java.util.Objects;
 
 public class BigLevelTest extends GameState {
-    int biglevelx = 0;
-    int biglevely = 0;
+    public static int biglevelx;
+    public static int biglevely;
     int biglevelwidth = 7164;
     int biglevelheight = 4254;
     Image biglevelimage = new ImageIcon("Assets/WorldMap/WorldMap.png").getImage();
@@ -23,10 +24,10 @@ public class BigLevelTest extends GameState {
         super(gsm);
         if (!GamePanel.gameStarted) {
             PlayerController.spawn(500, 500, 108, 192);
-
         }
         PlayerController.enable();
         GamePanel.gameStarted = true;
+        Enemy.spawn(2000,2000, 64,64);
     }
 
     @Override
@@ -39,6 +40,9 @@ public class BigLevelTest extends GameState {
         g.drawImage(biglevelimage, biglevelx, biglevely, biglevelwidth, biglevelheight, null);
 
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
+
+        g.drawImage(Enemy.enemyAsset, Enemy.x, Enemy.y, Enemy.width, Enemy.height, null);
+
         if (Fist.visible) {
             if (Objects.equals(Fist.direction, "left")) {
                 fist = new ImageIcon("Assets/Attacks/Fist/FistL.png").getImage();
@@ -91,22 +95,28 @@ public class BigLevelTest extends GameState {
         g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 80);
         g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 120);
         g.drawString("Fist direction: " + Fist.direction, 0, 160);
+        g.drawString("Map Location: " + biglevelx + ", " + biglevely, 0, 200);
+        g.drawString("Enemy Location: " + Enemy.x + ", " + Enemy.y, 0, 240);
 
-        if (PlayerController.x > GamePanel.width - PlayerController.width) {
-            PlayerController.x = GamePanel.width - PlayerController.width;
-            biglevelx = biglevelx - 4;
+        if (PlayerController.x > 1366) {
+            PlayerController.x = 1366;
+            biglevelx = biglevelx - 2;
+            Enemy.x = Enemy.x - 2;
         }
-        if (PlayerController.x < 0) {
-            PlayerController.x = 0;
-            biglevelx = biglevelx + 4;
+        if (PlayerController.x < 200) {
+            PlayerController.x = 200;
+            biglevelx = biglevelx + 2;
+            Enemy.x = Enemy.x + 2;
         }
-        if (PlayerController.y > GamePanel.height - PlayerController.height) {
-            PlayerController.y = GamePanel.height - PlayerController.height;
-            biglevely = biglevely - 4;
+        if (PlayerController.y > 560) {
+            PlayerController.y = 560;
+            biglevely = biglevely - 2;
+            Enemy.y = Enemy.y - 2;
         }
-        if (PlayerController.y < 0) {
-            PlayerController.y = 0;
-            biglevely = biglevely + 4;
+        if (PlayerController.y < 100) {
+            PlayerController.y = 100;
+            Enemy.y = Enemy.y + 2;
+            biglevely = biglevely + 2;
         }
     }
 

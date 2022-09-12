@@ -2,6 +2,7 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Enemies.Enemy;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
+import org.gingerjake.potatogame.Levels.BigLevelTest;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 import org.gingerjake.potatogame.Levels.Menus.StartScreen;
 import org.gingerjake.potatogame.Levels.TestSpace;
@@ -40,10 +41,15 @@ public class GameStateManager extends KeyListener {
         PauseMenu.paused = false;
         PlayerController.enable();
 
-        if (currentLevel.equals("StartScreen")) {
-            setState(new StartScreen());
-        } else {
-            setState(new TestSpace());
+        switch (currentLevel) {
+            case "StartScreen" -> setState(new StartScreen());
+            case "TestSpace" -> setState(new TestSpace());
+            case "PauseMenu" -> setState(new PauseMenu());
+            case "BigLevelTest" -> setState(new BigLevelTest());
+            default -> {
+                System.out.println("Error: Level not specified in GameStateManager. If you are a player of the game, please report this to the developer!");
+                System.exit(4108);
+            }
         }
     }
 

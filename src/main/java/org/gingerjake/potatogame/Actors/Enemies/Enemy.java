@@ -4,6 +4,9 @@ import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class Enemy {
     public static int x;
     public static int y;
@@ -12,16 +15,15 @@ public class Enemy {
     public static int speed = 1;
     public static int health = 12;
     public static boolean enabled;
+    public static Image enemyAsset = new ImageIcon("Assets/Dummy/Red.png").getImage();
 
     public static void spawn(int x, int y, int width, int height) {
         Enemy.x = x;
         Enemy.y = y;
         Enemy.width = width;
         Enemy.height = height;
-    }
-
-    public static void enable() {
         enabled = true;
+        new Thread(Enemy::chase).start();
     }
 
     public static void disable() {
