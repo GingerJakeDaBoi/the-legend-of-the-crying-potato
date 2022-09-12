@@ -7,6 +7,8 @@ import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Main extends KeyListener {
 
@@ -91,10 +93,18 @@ public class Main extends KeyListener {
                     }
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    Controls.startGame();
+                    try {
+                        Controls.startGame();
+                    } catch (FileNotFoundException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     Controls.endGame();
                     if (PauseMenu.paused) {
-                        Controls.select();
+                        try {
+                            Controls.select();
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 }
 

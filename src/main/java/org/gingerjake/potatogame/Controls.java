@@ -7,6 +7,9 @@ import org.gingerjake.potatogame.Levels.Menus.EndScreen;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 import org.gingerjake.potatogame.Levels.TestSpace;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class Controls {
     public static int controlMode;
     public static void menuUp() {
@@ -118,8 +121,9 @@ public class Controls {
         }
     }
 
-    public static void startGame() {
+    public static void startGame() throws FileNotFoundException {
         if (!GamePanel.gameStarted) {
+            SaveSystem.loadGame();
             GameStateManager.setState(new TestSpace());
         }
     }
@@ -131,14 +135,16 @@ public class Controls {
         }
     }
 
-    public static void select() {
+    public static void select() throws IOException {
         if (PauseMenu.paused) {
             if(ControlMenu.enabled) {
                 if(ControlMenu.Selection == 0) {
                     controlMode = 0;
+                    SaveSystem.saveGame();
                 }
                 if(ControlMenu.Selection == 1) {
                     controlMode = 1;
+                    SaveSystem.saveGame();
                 }
             } else if (PauseMenu.Selection == 0) {
                 GameStateManager.resume();
