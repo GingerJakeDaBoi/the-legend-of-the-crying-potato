@@ -11,11 +11,11 @@ import java.awt.*;
 import java.util.Objects;
 
 public class BigLevelTest extends GameState {
-    public static int biglevelx;
-    public static int biglevely;
-    int biglevelwidth = 7164;
-    int biglevelheight = 4254;
-    Image biglevelimage = new ImageIcon("Assets/WorldMap/WorldMap.png").getImage();
+    public static int bgx;
+    public static int bgy;
+    int bgwidth = 7164;
+    int bgheight = 4254;
+    Image background = new ImageIcon("Assets/WorldMap/WorldMap.png").getImage();
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image fist;
@@ -37,7 +37,7 @@ public class BigLevelTest extends GameState {
 
     @Override
     public void draw(Graphics g) {
-        g.drawImage(biglevelimage, biglevelx, biglevely, biglevelwidth, biglevelheight, null);
+        g.drawImage(background, bgx, bgy, bgwidth, bgheight, null);
 
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
 
@@ -97,41 +97,41 @@ public class BigLevelTest extends GameState {
         g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 80);
         g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 120);
         g.drawString("Fist direction: " + Fist.direction, 0, 160);
-        g.drawString("Map Location: " + biglevelx + ", " + biglevely, 0, 200);
+        g.drawString("Map Location: " + bgx + ", " + bgy, 0, 200);
         g.drawString("Enemy Location: " + Enemy.x + ", " + Enemy.y, 0, 240);
 
         //The rest of the If statements are for collision in this level.
         if (PlayerController.x > 1366) {
             PlayerController.x = 1366;
-            biglevelx = biglevelx - 2;
+            bgx = bgx - 2;
             Enemy.x = Enemy.x - 2;
         }
         if (PlayerController.x < 200) {
             PlayerController.x = 200;
-            biglevelx = biglevelx + 2;
+            bgx = bgx + 2;
             Enemy.x = Enemy.x + 2;
         }
         if (PlayerController.y > 560) {
             PlayerController.y = 560;
-            biglevely = biglevely - 2;
+            bgy = bgy - 2;
             Enemy.y = Enemy.y - 2;
         }
         if (PlayerController.y < 100) {
             PlayerController.y = 100;
             Enemy.y = Enemy.y + 2;
-            biglevely = biglevely + 2;
+            bgy = bgy + 2;
         }
-        if(biglevelx > 0){
-            biglevelx = 0;
+        if(bgx > 0){
+            bgx = 0;
         }
-        if(biglevelx < -5578){
-            biglevelx = -5578;
+        if(bgx < -5578){
+            bgx = -5578;
         }
-        if(biglevely > 0){
-            biglevely = 0;
+        if(bgy > 0){
+            bgy = 0;
         }
-        if(biglevely < -3392){
-            biglevely = -3392;
+        if(bgy < -3392){
+            bgy = -3392;
 
         }
     }

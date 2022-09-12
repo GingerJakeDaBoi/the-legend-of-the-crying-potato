@@ -15,7 +15,6 @@ public class TestSpace extends GameState {
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
     Image background = new ImageIcon("Assets/Dummy/GreenDitherBG.png").getImage();
-
     Image fist;
 
     public TestSpace() {
