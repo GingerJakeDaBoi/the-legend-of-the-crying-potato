@@ -114,6 +114,7 @@ public class TestSpace extends GameState {
         g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 200);
         g.drawString("Fist direction: " + Fist.direction, 0, 240);
         g.drawString("Control Mode: " + Controls.controlMode, 0, 280);
+        g.drawString("GamePanel width: " + GamePanel.width + "GamePanel Height: " + GamePanel.height, 0, 320);
 
 
     }
