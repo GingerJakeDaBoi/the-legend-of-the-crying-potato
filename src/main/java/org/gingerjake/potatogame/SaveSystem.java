@@ -10,10 +10,12 @@ public class SaveSystem {
     static FileWriter saveWriter;
     static File saveData = new File("save.txt");
 
+    //TODO: Currently, when the control method is switched in-game, controls are broken until the game is restarted. Fix this.
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void saveGame() throws IOException {
         if (!saveData.exists()) {
             saveData.createNewFile();
+
         }
 
         try {
