@@ -123,6 +123,7 @@ public class BigLevelTest extends GameState {
         }
         if(bgx > 0){
             bgx = 0;
+
         }
         if(bgx < -5578){
             bgx = -5578;

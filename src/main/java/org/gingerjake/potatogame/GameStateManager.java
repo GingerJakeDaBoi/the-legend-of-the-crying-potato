@@ -3,6 +3,7 @@ package org.gingerjake.potatogame;
 import org.gingerjake.potatogame.Actors.Enemies.Enemy;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.BigLevelTest;
+import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 import org.gingerjake.potatogame.Levels.Menus.StartScreen;
 import org.gingerjake.potatogame.Levels.TestSpace;
@@ -39,6 +40,7 @@ public class GameStateManager extends KeyListener {
 
     public static void resume() {
         PauseMenu.paused = false;
+        ControlMenu.enabled = false;
         PlayerController.enable();
 
         switch (currentLevel) {
