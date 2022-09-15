@@ -19,6 +19,9 @@ public class Main extends KeyListener {
         gameWindow.setLocationRelativeTo(null);
 
         gameWindow.setIconImage(Toolkit.getDefaultToolkit().getImage("Assets/GUI/Heart.png"));
+        Taskbar taskbar=Taskbar.getTaskbar();
+        taskbar.setIconImage(Toolkit.getDefaultToolkit().getImage("Assets/GUI/Heart.png"));
+
         gameWindow.add(new GamePanel(), BorderLayout.CENTER);
         gameWindow.setResizable(false);
         gameWindow.setVisible(true);
