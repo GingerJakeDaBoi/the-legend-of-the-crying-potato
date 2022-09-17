@@ -13,9 +13,9 @@ import java.util.Objects;
 public class BigLevelTest extends GameState {
     public static int bgx;
     public static int bgy;
-    int bgwidth = 7164;
-    int bgheight = 4254;
-    Image background = new ImageIcon("Assets/WorldMap/WorldMap.png").getImage();
+    int bgwidth = 4752;
+    int bgheight = 4592;
+    Image background = new ImageIcon("Assets/SpeedGauntlet/Full.png").getImage();
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image fist;
@@ -27,7 +27,11 @@ public class BigLevelTest extends GameState {
         }
         PlayerController.enable();
         GamePanel.gameStarted = true;
-        Enemy.spawn(2000,2000, 64,64);
+        bgx = 0;
+        bgy = -3722;
+        PlayerController.x = 565;
+        PlayerController.y = 506;
+//        Enemy.spawn(2000,2000, 64,64);
     }
 
     @Override
@@ -121,20 +125,10 @@ public class BigLevelTest extends GameState {
             Enemy.y = Enemy.y + 2;
             bgy = bgy + 2;
         }
-        if(bgx > 0){
-            bgx = 0;
 
-        }
-        if(bgx < -5578){
-            bgx = -5578;
-        }
-        if(bgy > 0){
-            bgy = 0;
-        }
-        if(bgy < -3392){
-            bgy = -3392;
+        //check every pixel of the background for #6b6b6b, if it is, then the player is colliding with the wall.
 
-        }
+
     }
 
     @Override
