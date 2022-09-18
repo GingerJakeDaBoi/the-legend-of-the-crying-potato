@@ -12,6 +12,7 @@ import java.awt.*;
 import java.util.Stack;
 
 public class GameStateManager extends KeyListener {
+    public static String version = "Potato-BigMapsTest";
     private static String currentLevel;
     public static Stack<GameState> states;
 

@@ -107,23 +107,23 @@ public class BigLevelTest extends GameState {
         //The rest of the If statements are for collision in this level.
         if (PlayerController.x > 1366) {
             PlayerController.x = 1366;
-            bgx = bgx - 2;
-            Enemy.x = Enemy.x - 2;
+            bgx = bgx - 3;
+            Enemy.x = Enemy.x - 3;
         }
         if (PlayerController.x < 200) {
             PlayerController.x = 200;
-            bgx = bgx + 2;
-            Enemy.x = Enemy.x + 2;
+            bgx = bgx + 3;
+            Enemy.x = Enemy.x + 3;
         }
         if (PlayerController.y > 560) {
             PlayerController.y = 560;
-            bgy = bgy - 2;
-            Enemy.y = Enemy.y - 2;
+            bgy = bgy - 3;
+            Enemy.y = Enemy.y - 3;
         }
         if (PlayerController.y < 100) {
             PlayerController.y = 100;
-            Enemy.y = Enemy.y + 2;
-            bgy = bgy + 2;
+            Enemy.y = Enemy.y + 3;
+            bgy = bgy + 3;
         }
 
         //check every pixel of the background for #6b6b6b, if it is, then the player is colliding with the wall.

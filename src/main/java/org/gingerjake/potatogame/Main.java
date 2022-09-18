@@ -33,24 +33,24 @@ public class Main extends KeyListener {
                 if (Controls.controlMode == 0) {
                     if (e.getKeyCode() == KeyEvent.VK_UP) {
                         Controls.moveUp();
-                        Controls.menuUp();
                     }
                     if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                         Controls.moveDown();
-                        Controls.menuDown();
                     }
                     if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                         Controls.moveLeft();
+                        Controls.menuUp();
                     }
                     if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                         Controls.moveRight();
+                        Controls.menuDown();
                     }
                 }
                 if (Controls.controlMode == 1) {
-                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                         Controls.menuUp();
                     }
-                    if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                         Controls.menuDown();
                     }
 
