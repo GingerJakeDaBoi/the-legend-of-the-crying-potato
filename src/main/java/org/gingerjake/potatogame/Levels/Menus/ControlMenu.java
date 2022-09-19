@@ -1,14 +1,13 @@
 package org.gingerjake.potatogame.Levels.Menus;
 
-import org.gingerjake.potatogame.Controls;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
+import org.gingerjake.potatogame.GameStateManager;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class ControlMenu extends GameState {
-    Image select = new ImageIcon("Assets/GUI/Heart.png").getImage();
     public static int Selection;
     public static boolean enabled;
 
@@ -25,27 +24,46 @@ public class ControlMenu extends GameState {
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, GamePanel.width, GamePanel.height);
+        g.drawImage(new ImageIcon("Assets/Dummy/PotatoFarmTestBG.jpg").getImage(),0, 0, GamePanel.width, GamePanel.height,null);
+        g.setColor(new Color(86, 34, 232, 255));
+        g.fillRect(0, 0, GamePanel.width, 60);
+
         g.setFont(new Font("Arial", Font.BOLD, 50));
         g.setColor(Color.WHITE);
-        g.drawString("CONTROLS", 0, 40);
-        if(Controls.controlMode == 1) {
-            g.drawString("IJKL to move", 0, 90);
-        }
-        if(Controls.controlMode == 0) {
-            g.drawString("Arrow keys to move", 0, 90);
-        }
+        g.drawString(GameStateManager.version,61,48);
+        g.drawImage(new ImageIcon("Assets/GUI/Heart.png").getImage(), 8, 3, 50, 50, null);
 
-        g.drawString("Move with arrow keys", 0, 500);
-        g.drawString("Move with IJKL", 0, 550);
+        g.setColor(new Color(90, 43, 115, 255));
+        g.fillRect(0, GamePanel.height - 60, GamePanel.width, 60);
+
+        g.setColor(new Color(98, 98, 98, 255));
+        g.fillRect(0, 60, GamePanel.width, GamePanel.height - 120);
 
         if(Selection == 0) {
-            g.drawImage(select, 520, 455, 50, 50, null);
+            g.setColor(new Color(124, 124, 124, 255));
+            g.fillRect(250, 225, 350, 300);
         }
         if(Selection == 1) {
-            g.drawImage(select, 360, 505, 50, 50, null);
+            g.setColor(new Color(124, 124, 124, 255));
+            g.fillRect(850, 225, 350, 300);
         }
+
+        g.drawImage(new ImageIcon(("Assets/GUI/ControlMenu/Keys/W.png")).getImage(), 400, 300, 64, 64, null);
+        g.drawImage(new ImageIcon(("Assets/GUI/ControlMenu/Keys/S.png")).getImage(), 400, 400, 64, 64, null);
+        g.drawImage(new ImageIcon(("Assets/GUI/ControlMenu/Keys/A.png")).getImage(), 300, 400, 64, 64, null);
+        g.drawImage(new ImageIcon(("Assets/GUI/ControlMenu/Keys/D.png")).getImage(), 500, 400, 64, 64, null);
+
+        g.drawImage(new ImageIcon(("Assets/GUI/ControlMenu/Keys/I.png")).getImage(), 1000, 300, 64, 64, null);
+        g.drawImage(new ImageIcon(("Assets/GUI/ControlMenu/Keys/K.png")).getImage(), 1000, 400, 64, 64, null);
+        g.drawImage(new ImageIcon(("Assets/GUI/ControlMenu/Keys/J.png")).getImage(), 900, 400, 64, 64, null);
+        g.drawImage(new ImageIcon(("Assets/GUI/ControlMenu/Keys/L.png")).getImage(), 1100, 400, 64, 64, null);
+
+        g.setColor(new Color(115, 55, 145, 255));
+        g.fillRect(215, GamePanel.height -60, 215, 60);
+        g.setColor(Color.WHITE);
+        g.drawString("Resume", 0, GamePanel.height - 12);
+        g.drawString("Controls", 220, GamePanel.height -12);
+        g.drawString("Exit", 450, GamePanel.height - 12);
 
     }
 

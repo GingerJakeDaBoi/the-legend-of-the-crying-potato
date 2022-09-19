@@ -2,7 +2,6 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Enemies.Enemy;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Levels.BigLevelTest;
 import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 import org.gingerjake.potatogame.Levels.Menus.StartScreen;
@@ -12,7 +11,7 @@ import java.awt.*;
 import java.util.Stack;
 
 public class GameStateManager extends KeyListener {
-    public static String version = "Potato-BigMapsTest";
+    public static String version = "RMAKE-inDev";
     private static String currentLevel;
     public static Stack<GameState> states;
 
@@ -48,7 +47,6 @@ public class GameStateManager extends KeyListener {
             case "StartScreen" -> setState(new StartScreen());
             case "TestSpace" -> setState(new TestSpace());
             case "PauseMenu" -> setState(new PauseMenu());
-            case "BigLevelTest" -> setState(new BigLevelTest());
             default -> {
                 System.out.println("Error: Level not specified in GameStateManager. If you are a player of the game, please report this to the developer!");
                 System.exit(4108);

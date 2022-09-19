@@ -11,8 +11,8 @@ public class GamePanel extends JPanel implements Runnable{
     public static boolean gameStarted = false; // If the first level has been started
     public static int width = 1600; //Window Width
     public static int height = 900; //Window Height
-    public static int FPS = 60; //Frames Per Second
-    public static long TARGET_TIME = 1000 / FPS; //Target Time
+    public final static int FPS = 60; //Frames Per Second
+    public static final long TARGET_TIME = 1000 / FPS; //Target Time
     private GameStateManager gsm = new GameStateManager(); //Game State Manager
 
     public GamePanel() {

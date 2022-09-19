@@ -30,41 +30,48 @@ public class Main extends KeyListener {
 
         manager.addKeyEventDispatcher(e -> {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
-                if (Controls.controlMode == 0) {
-                    if (e.getKeyCode() == KeyEvent.VK_UP) {
-                        Controls.moveUp();
-                    }
-                    if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                        Controls.moveDown();
-                    }
-                    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                        Controls.moveLeft();
-                        Controls.menuUp();
-                    }
-                    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                        Controls.moveRight();
-                        Controls.menuDown();
-                    }
+                if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    Controls.menuUp();
                 }
-                if (Controls.controlMode == 1) {
-                    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                        Controls.menuUp();
-                    }
-                    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                        Controls.menuDown();
-                    }
+                if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    Controls.menuDown();
+                }
+                if (!PauseMenu.paused) {
+                    if (Controls.controlMode == 0) {
+                        if (e.getKeyCode() == KeyEvent.VK_UP) {
+                            Controls.moveUp();
+                        }
+                        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                            Controls.moveDown();
+                        }
+                        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                            Controls.moveLeft();
 
-                    if (e.getKeyCode() == KeyEvent.VK_I) {
-                        Controls.moveUp();
+                        }
+                        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                            Controls.moveRight();
+                        }
                     }
-                    if (e.getKeyCode() == KeyEvent.VK_K) {
-                        Controls.moveDown();
-                    }
-                    if (e.getKeyCode() == KeyEvent.VK_J) {
-                        Controls.moveLeft();
-                    }
-                    if (e.getKeyCode() == KeyEvent.VK_L) {
-                        Controls.moveRight();
+                    if (Controls.controlMode == 1) {
+                        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                            Controls.menuUp();
+                        }
+                        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                            Controls.menuDown();
+                        }
+
+                        if (e.getKeyCode() == KeyEvent.VK_I) {
+                            Controls.moveUp();
+                        }
+                        if (e.getKeyCode() == KeyEvent.VK_K) {
+                            Controls.moveDown();
+                        }
+                        if (e.getKeyCode() == KeyEvent.VK_J) {
+                            Controls.moveLeft();
+                        }
+                        if (e.getKeyCode() == KeyEvent.VK_L) {
+                            Controls.moveRight();
+                        }
                     }
                 }
 

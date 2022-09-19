@@ -26,6 +26,7 @@ public class TestSpace extends GameState {
         }
         PlayerController.enable();
         GamePanel.gameStarted = true;
+        Enemy.spawn(136, 118, 128, 128);
 
     }
 

@@ -26,7 +26,6 @@ public class PauseMenu extends GameState {
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(new Color(196, 103, 227, 255));
         g.drawImage(new ImageIcon("Assets/Dummy/PotatoFarmTestBG.jpg").getImage(),0, 0, GamePanel.width, GamePanel.height,null);
         g.setColor(new Color(86, 34, 232, 255));
         g.fillRect(0, 0, GamePanel.width, 60);
