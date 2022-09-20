@@ -17,11 +17,13 @@ public class Enemy {
     public static boolean enabled;
     public static Image enemyAsset = new ImageIcon("Assets/Dummy/Red.png").getImage();
 
-    public static void spawn(int x, int y, int width, int height) {
+    public static void spawn(int x, int y, int width, int height,int speed, int health) {
         Enemy.x = x;
         Enemy.y = y;
         Enemy.width = width;
         Enemy.height = height;
+        Enemy.speed = speed;
+        Enemy.health = health;
         enabled = true;
         new Thread(Enemy::chase).start();
     }
@@ -33,16 +35,16 @@ public class Enemy {
     @SuppressWarnings("BusyWait")
     public static void chase() {
         while (enabled) {
-            if (PlayerController.x + PlayerController.width / 2 > x) {
+            if (PlayerController.x > x) {
                 x += speed;
             }
-            if (PlayerController.x + PlayerController.width / 2 < x) {
+            if (PlayerController.x < x) {
                 x -= speed;
             }
-            if (PlayerController.y + PlayerController.height / 2 > y) {
+            if (PlayerController.y > y) {
                 y += speed;
             }
-            if (PlayerController.y + PlayerController.height / 2 < y) {
+            if (PlayerController.y < y) {
                 y -= speed;
             }
 

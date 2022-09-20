@@ -1,4 +1,4 @@
-package org.gingerjake.potatogame.Levels;
+package org.gingerjake.potatogame.Levels.SpeedGauntlet;
 
 import org.gingerjake.potatogame.Actors.Enemies.Enemy;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
@@ -7,42 +7,60 @@ import org.gingerjake.potatogame.Controls;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEntrance;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class TestSpace extends GameState {
+public class SpeedEntrance extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
-    Image background = new ImageIcon("Assets/Dummy/GreenDitherBG.png").getImage();
+    Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
+    Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/PathFork.png").getImage();
+    Image debugBox = new ImageIcon("Assets/Dummy/Green.png").getImage();
+
     Image fist;
+    boolean finished;
+    boolean switching;
+    int nextLvlX = 0;
+    int nextLvlY = -861;
+    int currentLvlX = 0;
+    int currentLvlY = 0;
+    //Hitbox for the right side
+    int hitbox1X = 773;
+    int hitbox1Y = 0;
+    int hitbox1W = 811;
+    int hitbox1H = 861;
+    //hitbox for the left side
+    int hitbox2X = 0;
+    int hitbox2Y = 0;
+    int hitbox2W = 276;
+    int hitbox2H = 861;
 
-    public TestSpace() {
+
+
+    public SpeedEntrance() {
         super(gsm);
-        if (!GamePanel.gameStarted) {
-            PlayerController.spawn(500, 500, 108, 192);
+        Enemy.disable();
 
-        }
+        PlayerController.x = 400;
+        PlayerController.y = GamePanel.height - PlayerController.height;
         PlayerController.enable();
-        GamePanel.gameStarted = true;
-//        Enemy.spawn(136, 118, 128, 128,2,5);
-
+        Enemy.spawn(450,50,64,64,2,3);
     }
 
     @Override
     public void init() {
 
-
     }
 
     @Override
     public void draw(Graphics g) {
+        g.drawImage(background, currentLvlX, currentLvlY, GamePanel.width, GamePanel.height, null);
+        g.drawImage(nextLvl,nextLvlX, nextLvlY, 1584, 861, null);
 
-        g.drawImage(background, 0, 0, GamePanel.width, GamePanel.height, null);
-
+//        g.drawImage(debugBox,PlayerController.x,PlayerController.y,PlayerController.width,PlayerController.height,null);
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
 
         if (Enemy.enabled) {
@@ -106,7 +124,33 @@ public class TestSpace extends GameState {
             PlayerController.y = GamePanel.height - PlayerController.height;
         }
         if (PlayerController.y < 0) {
-            GameStateManager.setState(new SpeedEntrance());
+            PlayerController.y = 0;
+        }
+
+        if (PlayerController.x + PlayerController.width > hitbox1X && PlayerController.x < hitbox1X + hitbox1W && PlayerController.y + PlayerController.height > hitbox1Y && PlayerController.y < hitbox1Y + hitbox1H) {
+            PlayerController.x = hitbox1X - PlayerController.width;
+        }
+        if (PlayerController.x + PlayerController.width > hitbox2X && PlayerController.x < hitbox2X + hitbox2W && PlayerController.y + PlayerController.height > hitbox2Y && PlayerController.y < hitbox2Y + hitbox2H) {
+            PlayerController.x = hitbox2W;
+        }
+
+        if(!Enemy.enabled) {
+            finished = true;
+        }
+        if(finished) {
+            if(PlayerController.y == 0) {
+                switching = true;
+            }
+            if(switching) {
+                PlayerController.playerAsset = new ImageIcon((String) null).getImage();
+                if(nextLvlY < 0) {
+                    currentLvlY += 3;
+                    nextLvlY += 3;
+                } else {
+                    PlayerController.playerAsset = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
+                    GameStateManager.setState(new SpeedFork());
+                }
+            }
         }
 
         g.setFont(new Font("Arial", Font.BOLD, 20));
@@ -118,7 +162,6 @@ public class TestSpace extends GameState {
         g.drawString("Fist direction: " + Fist.direction, 0, 240);
         g.drawString("Control Mode: " + Controls.controlMode, 0, 280);
         g.drawString("GamePanel width: " + GamePanel.width + "GamePanel Height: " + GamePanel.height, 0, 320);
-
 
     }
 
