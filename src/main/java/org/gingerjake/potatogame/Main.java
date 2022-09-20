@@ -76,7 +76,9 @@ public class Main extends KeyListener {
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_P) {
-                    Controls.switchControls();
+                    new Thread(PlayerController::giveDamage).start();
+                    new Thread(PlayerController::giveHeart).start();
+                    new Thread(PlayerController::giveSpeed).start();
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_W) {

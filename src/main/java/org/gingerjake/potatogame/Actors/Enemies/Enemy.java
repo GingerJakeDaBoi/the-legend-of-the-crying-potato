@@ -15,7 +15,6 @@ public class Enemy {
     public static int speed = 1;
     public static int health = 12;
     public static boolean enabled;
-    public static Image enemyAsset = new ImageIcon("Assets/Dummy/Red.png").getImage();
 
     public static void spawn(int x, int y, int width, int height,int speed, int health) {
         Enemy.x = x;
@@ -35,16 +34,16 @@ public class Enemy {
     @SuppressWarnings("BusyWait")
     public static void chase() {
         while (enabled) {
-            if (PlayerController.x > x) {
+            if (PlayerController.x + (PlayerController.width / 2) > x) {
                 x += speed;
             }
-            if (PlayerController.x < x) {
+            if (PlayerController.x + (PlayerController.width / 2) < x) {
                 x -= speed;
             }
-            if (PlayerController.y > y) {
+            if (PlayerController.y + (PlayerController.width / 2) > y) {
                 y += speed;
             }
-            if (PlayerController.y < y) {
+            if (PlayerController.y + (PlayerController.width / 2) < y) {
                 y -= speed;
             }
 

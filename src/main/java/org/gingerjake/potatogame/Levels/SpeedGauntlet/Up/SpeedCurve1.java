@@ -18,13 +18,11 @@ public class SpeedCurve1 extends GameState {
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
     Image background = new ImageIcon("Assets/SpeedGauntlet/Curve1.png").getImage();
     Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Horizontal.png").getImage();
-    Image debugBox = new ImageIcon("Assets/Dummy/Green.png").getImage();
-
     Image fist;
     boolean finished;
     boolean switching;
-    int nextLvlX = 3168;
-    int nextLvlY = 861;
+    int nextLvlX = GamePanel.width;
+    int nextLvlY = 0;
     int currentLvlX = 0;
     int currentLvlY = 0;
     //Hitbox for the top part of the bottom left side
@@ -57,7 +55,7 @@ public class SpeedCurve1 extends GameState {
         PlayerController.x = 400;
         PlayerController.y = GamePanel.height - PlayerController.height;
         PlayerController.enable();
-        Enemy.spawn(450,50,64,64,2,3);
+        Enemy.spawn(390,280,64,64,2,3);
     }
 
     @Override
@@ -159,12 +157,12 @@ public class SpeedCurve1 extends GameState {
             }
             if(switching) {
                 PlayerController.playerAsset = new ImageIcon((String) null).getImage();
-                if(nextLvlX > 1584) {
+                if(nextLvlX > 0) {
                     currentLvlX -= 3;
                     nextLvlX -= 3;
                 } else {
                     PlayerController.playerAsset = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
-                    GameStateManager.setState(new SpeedVertical1());
+                    GameStateManager.setState(new SpeedHorizontal1());
                 }
             }
         }
