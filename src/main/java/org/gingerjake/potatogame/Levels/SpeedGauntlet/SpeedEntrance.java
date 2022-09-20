@@ -7,6 +7,7 @@ import org.gingerjake.potatogame.Controls;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
+import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedVertical1;
 
 import javax.swing.*;
 import java.awt.*;

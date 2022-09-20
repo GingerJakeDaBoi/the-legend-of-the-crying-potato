@@ -1,4 +1,4 @@
-package org.gingerjake.potatogame.Levels.SpeedGauntlet;
+package org.gingerjake.potatogame.Levels.SpeedGauntlet.Up;
 
 import org.gingerjake.potatogame.Actors.Enemies.Enemy;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
@@ -7,17 +7,16 @@ import org.gingerjake.potatogame.Controls;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedVertical1;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class SpeedFork extends GameState {
+public class SpeedHorizontal1 extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
-    Image background = new ImageIcon("Assets/SpeedGauntlet/PathFork.png").getImage();
+    Image background = new ImageIcon("Assets/SpeedGauntlet/Horizontal.png").getImage();
     Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
     Image debugBox = new ImageIcon("Assets/Dummy/Green.png").getImage();
 
@@ -56,7 +55,7 @@ public class SpeedFork extends GameState {
 
 
 
-    public SpeedFork() {
+    public SpeedHorizontal1() {
         super(gsm);
         Enemy.disable();
 

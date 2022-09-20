@@ -1,4 +1,4 @@
-package org.gingerjake.potatogame.Levels.SpeedGauntlet;
+package org.gingerjake.potatogame.Levels.SpeedGauntlet.Up;
 
 import org.gingerjake.potatogame.Actors.Enemies.Enemy;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
@@ -7,18 +7,18 @@ import org.gingerjake.potatogame.Controls;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedVertical1;
+import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedFork;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class SpeedFork extends GameState {
+public class SpeedVertical1 extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
-    Image background = new ImageIcon("Assets/SpeedGauntlet/PathFork.png").getImage();
-    Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
+    Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
+    Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Curve1.png").getImage();
     Image debugBox = new ImageIcon("Assets/Dummy/Green.png").getImage();
 
     Image fist;
@@ -28,35 +28,20 @@ public class SpeedFork extends GameState {
     int nextLvlY = -861;
     int currentLvlX = 0;
     int currentLvlY = 0;
-    //Hitbox for the top part of the bottom left side
-    int hitbox1aX = 780;
-    int hitbox1aY = 621;
-    int hitbox1aW = GamePanel.width;
-    int hitbox1aH = 1;
-    //now the left part
-    int hitbox1bX = 773;
-    int hitbox1bY = 621;
-    int hitbox1bW = 1;
-    int hitbox1bH = GamePanel.height;
-    //Hitbox for the bottom part of the top left side
-    int hitbox2aX = 790;
-    int hitbox2aY = 225;
-    int hitbox2aW = GamePanel.width;
-    int hitbox2aH = 1;
-    //now the left part
-    int hitbox2bX = 773;
-    int hitbox2bY = 0;
-    int hitbox2bW = 1;
-    int hitbox2bH = 205;
-    //hitbox for the right side
-    int hitbox3X = 0;
-    int hitbox3Y = 0;
-    int hitbox3W = 276;
-    int hitbox3H = 861;
+    //Hitbox for the right side
+    int hitbox1X = 773;
+    int hitbox1Y = 0;
+    int hitbox1W = 811;
+    int hitbox1H = 861;
+    //hitbox for the left side
+    int hitbox2X = 0;
+    int hitbox2Y = 0;
+    int hitbox2W = 276;
+    int hitbox2H = 861;
 
 
 
-    public SpeedFork() {
+    public SpeedVertical1() {
         super(gsm);
         Enemy.disable();
 
@@ -143,20 +128,11 @@ public class SpeedFork extends GameState {
             PlayerController.y = 0;
         }
 
-        if (PlayerController.x + PlayerController.width > hitbox1aX && PlayerController.x < hitbox1aX + hitbox1aW && PlayerController.y + PlayerController.height > hitbox1aY && PlayerController.y < hitbox1aY + hitbox1aH) {
-            PlayerController.y = 621 - PlayerController.height;
+        if (PlayerController.x + PlayerController.width > hitbox1X && PlayerController.x < hitbox1X + hitbox1W && PlayerController.y + PlayerController.height > hitbox1Y && PlayerController.y < hitbox1Y + hitbox1H) {
+            PlayerController.x = hitbox1X - PlayerController.width;
         }
-        if (PlayerController.x + PlayerController.width > hitbox1bX && PlayerController.x < hitbox1bX + hitbox1bW && PlayerController.y + PlayerController.height > hitbox1bY && PlayerController.y < hitbox1bY + hitbox1bH) {
-            PlayerController.x = 773 - PlayerController.width;
-        }
-        if (PlayerController.x + PlayerController.width > hitbox2aX && PlayerController.x < hitbox2aX + hitbox2aW && PlayerController.y + PlayerController.height > hitbox2aY && PlayerController.y < hitbox2aY + hitbox2aH) {
-            PlayerController.y = 225;
-        }
-        if (PlayerController.x + PlayerController.width > hitbox2bX && PlayerController.x < hitbox2bX + hitbox2bW && PlayerController.y + PlayerController.height > hitbox2bY && PlayerController.y < hitbox2bY + hitbox2bH) {
-            PlayerController.x = 773 - PlayerController.width;
-        }
-        if (PlayerController.x + PlayerController.width > hitbox3X && PlayerController.x < hitbox3X + hitbox3W && PlayerController.y + PlayerController.height > hitbox3Y && PlayerController.y < hitbox3Y + hitbox3H) {
-            PlayerController.x = hitbox3W;
+        if (PlayerController.x + PlayerController.width > hitbox2X && PlayerController.x < hitbox2X + hitbox2W && PlayerController.y + PlayerController.height > hitbox2Y && PlayerController.y < hitbox2Y + hitbox2H) {
+            PlayerController.x = hitbox2W;
         }
 
         if(!Enemy.enabled) {
@@ -173,7 +149,7 @@ public class SpeedFork extends GameState {
                     nextLvlY += 3;
                 } else {
                     PlayerController.playerAsset = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
-                    GameStateManager.setState(new SpeedVertical1());
+                    GameStateManager.setState(new SpeedCurve1());
                 }
             }
         }
