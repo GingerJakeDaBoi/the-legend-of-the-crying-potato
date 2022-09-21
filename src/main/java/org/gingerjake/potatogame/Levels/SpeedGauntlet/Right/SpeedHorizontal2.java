@@ -8,7 +8,6 @@ import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedHorizontal1;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedVertical1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +24,7 @@ public class SpeedHorizontal2 extends GameState {
     boolean finished;
     boolean switching;
     int nextLvlX = 0;
-    int nextLvlY = -861;
+    int nextLvlY = -GamePanel.height;
     int currentLvlX = 0;
     int currentLvlY = 0;
     //Hitbox for the top part of the bottom left side
@@ -59,7 +58,7 @@ public class SpeedHorizontal2 extends GameState {
     @Override
     public void draw(Graphics g) {
         g.drawImage(background, currentLvlX, currentLvlY, GamePanel.width, GamePanel.height, null);
-        g.drawImage(nextLvl,nextLvlX, nextLvlY, 1584, 861, null);
+        g.drawImage(nextLvl,nextLvlX, nextLvlY, GamePanel.width, GamePanel.height, null);
 
 //        g.drawImage(debugBox,PlayerController.x,PlayerController.y,PlayerController.width,PlayerController.height,null);
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);

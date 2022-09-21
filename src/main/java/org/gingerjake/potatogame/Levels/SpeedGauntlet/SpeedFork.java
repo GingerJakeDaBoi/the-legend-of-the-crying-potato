@@ -21,15 +21,13 @@ public class SpeedFork extends GameState {
     Image background = new ImageIcon("Assets/SpeedGauntlet/PathFork.png").getImage();
     Image nextUpLvl = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
     Image nextRightLvl = new ImageIcon("Assets/SpeedGauntlet/Horizontal.png").getImage();
-    Image debugBox = new ImageIcon("Assets/Dummy/Green.png").getImage();
-
     Image fist;
     boolean finished;
     boolean switching;
     boolean switchUp;
     boolean switchRight;
     int nextUpLvlX = 0;
-    int nextUpLvlY = -861;
+    int nextUpLvlY = -GamePanel.height;
     int nextRightLvlX = GamePanel.width;
     int nextRightLvlY = 0;
     int currentLvlX = 0;
@@ -79,7 +77,7 @@ public class SpeedFork extends GameState {
     @Override
     public void draw(Graphics g) {
         g.drawImage(background, currentLvlX, currentLvlY, GamePanel.width, GamePanel.height, null);
-        g.drawImage(nextUpLvl, nextUpLvlX, nextUpLvlY, 1584, 861, null);
+        g.drawImage(nextUpLvl, nextUpLvlX, nextUpLvlY, GamePanel.width, GamePanel.height, null);
         g.drawImage(nextRightLvl, nextRightLvlX, nextRightLvlY, GamePanel.width, GamePanel.height, null);
 
 //        g.drawImage(debugBox,PlayerController.x,PlayerController.y,PlayerController.width,PlayerController.height,null);

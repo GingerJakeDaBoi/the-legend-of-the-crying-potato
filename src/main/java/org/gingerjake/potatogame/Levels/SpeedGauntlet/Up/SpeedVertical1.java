@@ -7,7 +7,6 @@ import org.gingerjake.potatogame.Controls;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedFork;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,13 +18,11 @@ public class SpeedVertical1 extends GameState {
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
     Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
     Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Curve1.png").getImage();
-    Image debugBox = new ImageIcon("Assets/Dummy/Green.png").getImage();
-
     Image fist;
     boolean finished;
     boolean switching;
     int nextLvlX = 0;
-    int nextLvlY = -861;
+    int nextLvlY = -GamePanel.height;
     int currentLvlX = 0;
     int currentLvlY = 0;
     //Hitbox for the right side
@@ -59,7 +56,7 @@ public class SpeedVertical1 extends GameState {
     @Override
     public void draw(Graphics g) {
         g.drawImage(background, currentLvlX, currentLvlY, GamePanel.width, GamePanel.height, null);
-        g.drawImage(nextLvl,nextLvlX, nextLvlY, 1584, 861, null);
+        g.drawImage(nextLvl,nextLvlX, nextLvlY, GamePanel.width, GamePanel.height, null);
 
 //        g.drawImage(debugBox,PlayerController.x,PlayerController.y,PlayerController.width,PlayerController.height,null);
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
