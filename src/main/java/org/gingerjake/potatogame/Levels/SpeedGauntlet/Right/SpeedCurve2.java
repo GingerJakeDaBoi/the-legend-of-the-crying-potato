@@ -66,7 +66,7 @@ public class SpeedCurve2 extends GameState {
     @Override
     public void draw(Graphics g) {
         g.drawImage(background, currentLvlX, currentLvlY, GamePanel.width, GamePanel.height, null);
-        g.drawImage(nextLvl, nextLvlX, nextLvlY, GamePanel.width, GamePanel.height, null); //TODO: The last level and this one are misaligned, so this level needs redrawn.
+        g.drawImage(nextLvl, nextLvlX, nextLvlY, GamePanel.width, GamePanel.height, null);
 
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
 
