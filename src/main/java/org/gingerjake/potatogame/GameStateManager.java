@@ -5,6 +5,10 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 import org.gingerjake.potatogame.Levels.Menus.StartScreen;
+import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedCurve2;
+import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedHorizontal2;
+import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedVertical2;
+import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEnd;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEntrance;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedFork;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedCurve1;
@@ -58,6 +62,10 @@ public class GameStateManager extends KeyListener {
             case "SpeedVertical1" -> setState(new SpeedVertical1());
             case "SpeedHorizontal1" -> setState(new SpeedHorizontal1());
             case "SpeedCurve1" -> setState(new SpeedCurve1());
+            case "SpeedCurve2" -> setState(new SpeedCurve2());
+            case "SpeedHorizontal2" -> setState(new SpeedHorizontal2());
+            case "SpeedVertical2" -> setState(new SpeedVertical2());
+            case "SpeedEnd" -> setState(new SpeedEnd());
             default -> {
                 System.out.println("Error: Level not specified in GameStateManager. If you are a player of the game, please report this to the developer!");
                 System.exit(4108);
