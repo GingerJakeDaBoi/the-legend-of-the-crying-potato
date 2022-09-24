@@ -156,11 +156,13 @@ public class SpeedCurve1 extends GameState {
             }
             if(switching) {
                 PlayerController.playerAsset = new ImageIcon((String) null).getImage();
+                PlayerController.switching = true;
                 if(nextLvlX > 0) {
                     currentLvlX -= 3;
                     nextLvlX -= 3;
                 } else {
                     PlayerController.playerAsset = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
+                    PlayerController.switching = false;
                     GameStateManager.setState(new SpeedHorizontal1());
                 }
             }

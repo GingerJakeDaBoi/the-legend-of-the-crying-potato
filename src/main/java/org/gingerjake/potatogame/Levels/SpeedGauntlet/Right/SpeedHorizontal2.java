@@ -6,7 +6,6 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedHorizontal1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,13 +16,13 @@ public class SpeedHorizontal2 extends GameState {
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
     Image background = new ImageIcon("Assets/SpeedGauntlet/Horizontal.png").getImage();
-    Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
+    Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Curve2.png").getImage();
 
     Image fist;
     boolean finished;
     boolean switching;
-    int nextLvlX = 0;
-    int nextLvlY = -GamePanel.height;
+    int nextLvlX = GamePanel.width;
+    int nextLvlY = 0;
     int currentLvlX = 0;
     int currentLvlY = 0;
     //Hitbox for the top part of the bottom left side
@@ -142,12 +141,14 @@ public class SpeedHorizontal2 extends GameState {
             }
             if(switching) {
                 PlayerController.playerAsset = new ImageIcon((String) null).getImage();
+                PlayerController.switching = true;
                 if(nextLvlX > 0) {
                     currentLvlX -= 3;
                     nextLvlX -= 3;
                 } else {
                     PlayerController.playerAsset = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
-                    GameStateManager.setState(new SpeedHorizontal1());
+                    PlayerController.switching = false;
+                    GameStateManager.setState(new SpeedCurve2());
                 }
             }
         }

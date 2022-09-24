@@ -141,11 +141,13 @@ public class SpeedHorizontal1 extends GameState {
             }
             if(switching) {
                 PlayerController.playerAsset = new ImageIcon((String) null).getImage();
+                PlayerController.switching = true;
                 if(nextLvlY < 0) {
                     currentLvlY += 3;
                     nextLvlY += 3;
                 } else {
                     PlayerController.playerAsset = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
+                    PlayerController.switching = false;
                     GameStateManager.setState(new SpeedVertical1());
                 }
             }

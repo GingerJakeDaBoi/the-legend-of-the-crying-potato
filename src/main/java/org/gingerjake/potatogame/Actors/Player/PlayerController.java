@@ -14,6 +14,7 @@ public class PlayerController {
     public static int height;
     public static int health = 3;
     public static int speed = 5;
+    public static boolean switching;
     public static boolean heartGiven;
     public static boolean speedGiven;
     public static boolean powerGiven;
@@ -34,6 +35,7 @@ public class PlayerController {
         hurting = false;
 
     }
+
     public static void spawn(int x, int y, int width, int height) {
         PlayerController.x = x;
         PlayerController.y = y;
@@ -80,7 +82,9 @@ public class PlayerController {
 
     @SuppressWarnings("BusyWait")
     public static void moveLeft() {
-        playerAsset = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
+        if (!switching) {
+            playerAsset = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
+        }
         if (enabled) {
             while (lefting) {
                 x -= 1;
@@ -95,7 +99,9 @@ public class PlayerController {
 
     @SuppressWarnings("BusyWait")
     public static void moveRight() {
-        playerAsset = new ImageIcon("Assets/Potato/NewMainR.png").getImage();
+        if (!switching) {
+            playerAsset = new ImageIcon("Assets/Potato/NewMainR.png").getImage();
+        }
         if (enabled) {
             while (righting) {
                 x += 1;
@@ -109,21 +115,21 @@ public class PlayerController {
     }
 
     public static void giveHeart() {
-        if(!heartGiven) {
+        if (!heartGiven) {
             health += 1;
             heartGiven = true;
         }
     }
 
     public static void giveSpeed() {
-        if(!speedGiven) {
+        if (!speedGiven) {
             speed += 10;
             speedGiven = true;
         }
     }
 
     public static void giveDamage() {
-        if(!powerGiven) {
+        if (!powerGiven) {
             Fist.power += 1;
             powerGiven = true;
         }
