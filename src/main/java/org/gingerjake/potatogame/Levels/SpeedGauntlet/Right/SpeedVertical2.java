@@ -1,4 +1,4 @@
-package org.gingerjake.potatogame.Levels.SpeedGauntlet.Up;
+package org.gingerjake.potatogame.Levels.SpeedGauntlet.Right;
 
 import org.gingerjake.potatogame.Actors.Enemies.Enemy;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
@@ -12,13 +12,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class SpeedHorizontal1 extends GameState {
+public class SpeedVertical2 extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
-    Image background = new ImageIcon("Assets/SpeedGauntlet/Horizontal.png").getImage();
-    Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
-
+    Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical2.png").getImage();
+    Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Curve1.png").getImage();
     Image fist;
     public static boolean finished;
     boolean switching;
@@ -26,27 +25,27 @@ public class SpeedHorizontal1 extends GameState {
     int nextLvlY = -GamePanel.height;
     int currentLvlX = 0;
     int currentLvlY = 0;
-    //Hitbox for the top part of the bottom left side
-    int hitbox1X = 0;
-    int hitbox1Y = 220;
-    int hitbox1W = GamePanel.width;
-    int hitbox1H = 1;
-    //Hitbox for the bottom part of the top left side
+    //Hitbox for the right side
+    int hitbox1X = 1310;
+    int hitbox1Y = 0;
+    int hitbox1W = 811;
+    int hitbox1H = 861;
+    //hitbox for the left side
     int hitbox2X = 0;
-    int hitbox2Y = 622;
-    int hitbox2W = GamePanel.width;
-    int hitbox2H = 1;
+    int hitbox2Y = 0;
+    int hitbox2W = 813;
+    int hitbox2H = 861;
 
 
 
-    public SpeedHorizontal1() {
+    public SpeedVertical2() {
         super(gsm);
         Enemy.disable();
 
-        PlayerController.x = 115;
-        PlayerController.y = 300;
+        PlayerController.x = 1025;
+        PlayerController.y = 600;
         PlayerController.enable();
-        Enemy.spawn(1334,300,64,64,2,3);
+        Enemy.spawn(1025,50,64,64,2,3);
     }
 
     @Override
@@ -59,7 +58,6 @@ public class SpeedHorizontal1 extends GameState {
         g.drawImage(background, currentLvlX, currentLvlY, GamePanel.width, GamePanel.height, null);
         g.drawImage(nextLvl,nextLvlX, nextLvlY, GamePanel.width, GamePanel.height, null);
 
-//        g.drawImage(debugBox,PlayerController.x,PlayerController.y,PlayerController.width,PlayerController.height,null);
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
 
         if (Enemy.enabled) {
@@ -127,17 +125,17 @@ public class SpeedHorizontal1 extends GameState {
         }
 
         if (PlayerController.x + PlayerController.width > hitbox1X && PlayerController.x < hitbox1X + hitbox1W && PlayerController.y + PlayerController.height > hitbox1Y && PlayerController.y < hitbox1Y + hitbox1H) {
-            PlayerController.y = 220;
+            PlayerController.x = hitbox1X - PlayerController.width;
         }
         if (PlayerController.x + PlayerController.width > hitbox2X && PlayerController.x < hitbox2X + hitbox2W && PlayerController.y + PlayerController.height > hitbox2Y && PlayerController.y < hitbox2Y + hitbox2H) {
-            PlayerController.y = 622 - PlayerController.height;
+            PlayerController.x = hitbox2W;
         }
 
         if(!Enemy.enabled) {
             finished = true;
         }
         if(finished) {
-            if(PlayerController.x == GamePanel.width - PlayerController.width) {
+            if(PlayerController.y == 0) {
                 switching = true;
             }
             if(switching) {

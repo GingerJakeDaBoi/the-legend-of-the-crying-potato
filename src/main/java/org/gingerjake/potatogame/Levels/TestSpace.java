@@ -6,6 +6,7 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
+import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEnd;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEntrance;
 
 import javax.swing.*;
@@ -105,7 +106,11 @@ public class TestSpace extends GameState {
             PlayerController.y = GamePanel.height - PlayerController.height;
         }
         if (PlayerController.y < 0) {
-            GameStateManager.setState(new SpeedEntrance());
+            if(!SpeedEnd.completed) {
+                GameStateManager.setState(new SpeedEntrance());
+            } else {
+                PlayerController.y = 0;
+            }
         }
 
         GameState.debugInfo(g);

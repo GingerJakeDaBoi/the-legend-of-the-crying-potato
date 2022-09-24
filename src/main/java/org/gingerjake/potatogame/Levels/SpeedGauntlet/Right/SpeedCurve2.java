@@ -5,6 +5,7 @@ import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
+import org.gingerjake.potatogame.GameStateManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +17,6 @@ public class SpeedCurve2 extends GameState {
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
     Image background = new ImageIcon("Assets/SpeedGauntlet/Curve2.png").getImage();
     Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Vertical2.png").getImage();
-    Image debugBox = new ImageIcon("Assets/Dummy/Green.png").getImage();
     Image fist;
     boolean finished;
     boolean switching;
@@ -52,10 +52,10 @@ public class SpeedCurve2 extends GameState {
         super(gsm);
         Enemy.disable();
 
-        PlayerController.x = 400;
-        PlayerController.y = GamePanel.height - PlayerController.height;
+        PlayerController.x = 625;
+        PlayerController.y = 405;
         PlayerController.enable();
-        Enemy.spawn(450, 50, 64, 64, 2, 3);
+        Enemy.spawn(1020, 115, 64, 64, 2, 3);
     }
 
     @Override
@@ -66,10 +66,8 @@ public class SpeedCurve2 extends GameState {
     @Override
     public void draw(Graphics g) {
         g.drawImage(background, currentLvlX, currentLvlY, GamePanel.width, GamePanel.height, null);
-        g.drawImage(nextLvl, nextLvlX, nextLvlY, GamePanel.width, GamePanel.height, null);
+        g.drawImage(nextLvl, nextLvlX, nextLvlY, GamePanel.width, GamePanel.height, null); //TODO: The last level and this one are misaligned, so this level needs redrawn.
 
-//        g.drawImage(debugBox,PlayerController.x,PlayerController.y,PlayerController.width,PlayerController.height,null);
-        g.drawImage(debugBox, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
 
         if (Enemy.enabled) {
@@ -162,7 +160,7 @@ public class SpeedCurve2 extends GameState {
                 switchUp = false;
                 switchRight = true;
             }
-            /*if (switching) {
+            if (switching) {
                 PlayerController.playerAsset = new ImageIcon((String) null).getImage();
                 PlayerController.switching = true;
                 if (switchUp) {
@@ -174,10 +172,10 @@ public class SpeedCurve2 extends GameState {
                     } else {
                         PlayerController.playerAsset = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
                         PlayerController.switching = false;
-                        GameStateManager.setState(new SpeedVertical1());
+                        GameStateManager.setState(new SpeedVertical2());
                     }
                 }
-            }*/
+            }
         }
 
         GameState.debugInfo(g);
