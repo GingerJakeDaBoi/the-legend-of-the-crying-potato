@@ -4,9 +4,6 @@ import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class Enemy {
     public static int x;
     public static int y;

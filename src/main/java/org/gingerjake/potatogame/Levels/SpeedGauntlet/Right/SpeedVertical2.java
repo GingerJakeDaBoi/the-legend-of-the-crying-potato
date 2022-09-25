@@ -17,7 +17,7 @@ public class SpeedVertical2 extends GameState {
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
     Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical2.png").getImage();
-    Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Curve1.png").getImage();
+    Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/End.png").getImage();
     Image fist;
     public static boolean finished;
     boolean switching;
@@ -40,17 +40,17 @@ public class SpeedVertical2 extends GameState {
 
     public SpeedVertical2() {
         super(gsm);
+
+    }
+
+    @Override
+    public void init() {
         Enemy.disable();
 
         PlayerController.x = 1025;
         PlayerController.y = 600;
         PlayerController.enable();
         Enemy.spawn(1025,50,64,64,2,3);
-    }
-
-    @Override
-    public void init() {
-
     }
 
     @Override
@@ -111,6 +111,13 @@ public class SpeedVertical2 extends GameState {
             }
         }
 
+        GameState.debugInfo(g);
+
+    }
+
+    @Override
+    public void tick() {
+
         if (PlayerController.x > GamePanel.width - PlayerController.width) {
             PlayerController.x = GamePanel.width - PlayerController.width;
         }
@@ -151,13 +158,6 @@ public class SpeedVertical2 extends GameState {
                 }
             }
         }
-
-        GameState.debugInfo(g);
-
-    }
-
-    @Override
-    public void tick() {
 
     }
 }

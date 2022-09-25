@@ -13,13 +13,13 @@ public class ControlMenu extends GameState {
 
     public ControlMenu() {
         super(gsm);
-        Selection = 0;
-        ControlMenu.enabled = true;
+
     }
 
     @Override
     public void init() {
-
+        Selection = 0;
+        ControlMenu.enabled = true;
     }
 
     @Override

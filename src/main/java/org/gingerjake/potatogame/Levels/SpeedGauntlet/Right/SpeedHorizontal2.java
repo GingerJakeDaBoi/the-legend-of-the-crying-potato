@@ -40,17 +40,17 @@ public class SpeedHorizontal2 extends GameState {
 
     public SpeedHorizontal2() {
         super(gsm);
+
+    }
+
+    @Override
+    public void init() {
         Enemy.disable();
 
         PlayerController.x = 115;
         PlayerController.y = 300;
         PlayerController.enable();
         Enemy.spawn(1334,300,64,64,2,3);
-    }
-
-    @Override
-    public void init() {
-
     }
 
     @Override
@@ -112,6 +112,12 @@ public class SpeedHorizontal2 extends GameState {
             }
         }
 
+        GameState.debugInfo(g);
+
+    }
+
+    @Override
+    public void tick() {
         if (PlayerController.x > GamePanel.width - PlayerController.width) {
             PlayerController.x = GamePanel.width - PlayerController.width;
         }
@@ -152,13 +158,6 @@ public class SpeedHorizontal2 extends GameState {
                 }
             }
         }
-
-        GameState.debugInfo(g);
-
-    }
-
-    @Override
-    public void tick() {
 
     }
 }

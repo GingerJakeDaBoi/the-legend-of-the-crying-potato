@@ -20,8 +20,6 @@ public class SpeedCurve2 extends GameState {
     Image fist;
     boolean finished;
     boolean switching;
-    boolean switchUp;
-    boolean switchRight;
     int nextLvlX = 0;
     int nextLvlY = -GamePanel.height;
     int currentLvlX = 0;
@@ -50,17 +48,17 @@ public class SpeedCurve2 extends GameState {
 
     public SpeedCurve2() {
         super(gsm);
+
+    }
+
+    @Override
+    public void init() {
         Enemy.disable();
 
         PlayerController.x = 625;
         PlayerController.y = 405;
         PlayerController.enable();
         Enemy.spawn(1020, 115, 64, 64, 2, 3);
-    }
-
-    @Override
-    public void init() {
-
     }
 
     @Override
@@ -121,6 +119,13 @@ public class SpeedCurve2 extends GameState {
             }
         }
 
+        GameState.debugInfo(g);
+
+    }
+
+    @Override
+    public void tick() {
+
         if (PlayerController.x > GamePanel.width - PlayerController.width) {
             PlayerController.x = GamePanel.width - PlayerController.width;
         }
@@ -152,18 +157,11 @@ public class SpeedCurve2 extends GameState {
         if (finished) {
             if (PlayerController.y == 0) {
                 switching = true;
-                switchUp = true;
-                switchRight = false;
-            }
-            if (PlayerController.x == GamePanel.width - PlayerController.width) {
-                switching = true;
-                switchUp = false;
-                switchRight = true;
             }
             if (switching) {
                 PlayerController.playerAsset = new ImageIcon((String) null).getImage();
                 PlayerController.switching = true;
-                if (switchUp) {
+                if (switching) {
                     PlayerController.y -= 5;
 
                     if (nextLvlY < 0) {
@@ -177,13 +175,6 @@ public class SpeedCurve2 extends GameState {
                 }
             }
         }
-
-        GameState.debugInfo(g);
-
-    }
-
-    @Override
-    public void tick() {
 
     }
 }

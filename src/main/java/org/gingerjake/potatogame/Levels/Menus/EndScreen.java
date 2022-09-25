@@ -11,13 +11,13 @@ public class EndScreen extends GameState {
 
     public EndScreen() {
         super(gsm);
-        gameEnded = true;
+
 
     }
 
     @Override
     public void init() {
-
+        gameEnded = true;
     }
 
     @Override

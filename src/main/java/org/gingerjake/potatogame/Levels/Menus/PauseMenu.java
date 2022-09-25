@@ -1,5 +1,6 @@
 package org.gingerjake.potatogame.Levels.Menus;
 
+import org.gingerjake.potatogame.Actors.Enemies.Enemy;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
@@ -13,15 +14,16 @@ public class PauseMenu extends GameState {
 
     public PauseMenu() {
         super(gsm);
-        paused = true;
-        Selection = 0;
-        ControlMenu.enabled = false;
+
 
     }
 
     @Override
     public void init() {
-
+        paused = true;
+        Selection = 0;
+        ControlMenu.enabled = false;
+        Enemy.disable();
     }
 
     @Override
@@ -54,10 +56,6 @@ public class PauseMenu extends GameState {
         g.drawString("Resume", 0, GamePanel.height - 12);
         g.drawString("Controls", 220, GamePanel.height -12);
         g.drawString("Exit", 450, GamePanel.height - 12);
-
-
-
-
     }
 
     @Override

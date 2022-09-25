@@ -20,7 +20,7 @@ import java.awt.*;
 import java.util.Stack;
 
 public class GameStateManager extends KeyListener {
-    public static String version = "RMAKE-inDev";
+    public static final String version = "RMAKE-inDev";
     private static String currentLevel;
     public static Stack<GameState> states;
 

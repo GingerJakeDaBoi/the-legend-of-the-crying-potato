@@ -49,17 +49,17 @@ public class SpeedCurve1 extends GameState {
 
     public SpeedCurve1() {
         super(gsm);
+
+    }
+
+    @Override
+    public void init() {
         Enemy.disable();
 
         PlayerController.x = 400;
         PlayerController.y = GamePanel.height - PlayerController.height;
         PlayerController.enable();
         Enemy.spawn(390,280,64,64,2,3);
-    }
-
-    @Override
-    public void init() {
-
     }
 
     @Override
@@ -121,6 +121,12 @@ public class SpeedCurve1 extends GameState {
             }
         }
 
+        GameState.debugInfo(g);
+
+    }
+
+    @Override
+    public void tick() {
         if (PlayerController.x > GamePanel.width - PlayerController.width) {
             PlayerController.x = GamePanel.width - PlayerController.width;
         }
@@ -167,13 +173,6 @@ public class SpeedCurve1 extends GameState {
                 }
             }
         }
-
-        GameState.debugInfo(g);
-
-    }
-
-    @Override
-    public void tick() {
 
     }
 }

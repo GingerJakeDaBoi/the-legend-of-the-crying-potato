@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class SaveSystem {
     static FileWriter saveWriter;
-    static File saveData = new File("save.txt");
+    static final File saveData = new File("save.txt");
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void saveGame() throws IOException {

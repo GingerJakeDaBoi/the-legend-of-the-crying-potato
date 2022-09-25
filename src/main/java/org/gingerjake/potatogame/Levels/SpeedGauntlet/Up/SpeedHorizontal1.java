@@ -17,13 +17,13 @@ public class SpeedHorizontal1 extends GameState {
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
     Image background = new ImageIcon("Assets/SpeedGauntlet/Horizontal.png").getImage();
-    Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
+    Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/End.png").getImage();
 
     Image fist;
     public static boolean finished;
     boolean switching;
-    int nextLvlX = 0;
-    int nextLvlY = -GamePanel.height;
+    int nextLvlX = GamePanel.width;
+    int nextLvlY = 0;
     int currentLvlX = 0;
     int currentLvlY = 0;
     //Hitbox for the top part of the bottom left side
@@ -41,17 +41,17 @@ public class SpeedHorizontal1 extends GameState {
 
     public SpeedHorizontal1() {
         super(gsm);
+
+    }
+
+    @Override
+    public void init() {
         Enemy.disable();
 
         PlayerController.x = 115;
         PlayerController.y = 300;
         PlayerController.enable();
         Enemy.spawn(1334,300,64,64,2,3);
-    }
-
-    @Override
-    public void init() {
-
     }
 
     @Override
@@ -113,6 +113,12 @@ public class SpeedHorizontal1 extends GameState {
             }
         }
 
+        GameState.debugInfo(g);
+
+    }
+
+    @Override
+    public void tick() {
         if (PlayerController.x > GamePanel.width - PlayerController.width) {
             PlayerController.x = GamePanel.width - PlayerController.width;
         }
@@ -143,9 +149,9 @@ public class SpeedHorizontal1 extends GameState {
             if(switching) {
                 PlayerController.playerAsset = new ImageIcon((String) null).getImage();
                 PlayerController.switching = true;
-                if(nextLvlY < 0) {
-                    currentLvlY += 3;
-                    nextLvlY += 3;
+                if(nextLvlX > 0) {
+                    currentLvlX -= 3;
+                    nextLvlX -= 3;
                 } else {
                     PlayerController.playerAsset = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
                     PlayerController.switching = false;
@@ -153,13 +159,6 @@ public class SpeedHorizontal1 extends GameState {
                 }
             }
         }
-
-        GameState.debugInfo(g);
-
-    }
-
-    @Override
-    public void tick() {
 
     }
 }

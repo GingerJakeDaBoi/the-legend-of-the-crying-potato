@@ -60,17 +60,16 @@ public class SpeedFork extends GameState {
 
     public SpeedFork() {
         super(gsm);
+    }
+
+    @Override
+    public void init() {
         Enemy.disable();
 
         PlayerController.x = 400;
         PlayerController.y = GamePanel.height - PlayerController.height;
         PlayerController.enable();
         Enemy.spawn(450, 50, 64, 64, 2, 3);
-    }
-
-    @Override
-    public void init() {
-
     }
 
     @Override
@@ -132,6 +131,12 @@ public class SpeedFork extends GameState {
                 g.drawImage(playerHeartBroken, 156, 0, 48, 48, null);
             }
         }
+        GameState.debugInfo(g);
+
+    }
+
+    @Override
+    public void tick() {
 
         if (PlayerController.x > GamePanel.width - PlayerController.width) {
             PlayerController.x = GamePanel.width - PlayerController.width;
@@ -161,7 +166,6 @@ public class SpeedFork extends GameState {
         if (PlayerController.x + PlayerController.width > hitbox3X && PlayerController.x < hitbox3X + hitbox3W && PlayerController.y + PlayerController.height > hitbox3Y && PlayerController.y < hitbox3Y + hitbox3H) {
             PlayerController.x = hitbox3W;
         }
-
         if (!Enemy.enabled) {
             finished = true;
         }
@@ -205,13 +209,6 @@ public class SpeedFork extends GameState {
                 }
             }
         }
-
-        GameState.debugInfo(g);
-
-    }
-
-    @Override
-    public void tick() {
 
     }
 }

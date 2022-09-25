@@ -21,14 +21,18 @@ public class SpeedEnd extends GameState {
     Image background = new ImageIcon("Assets/SpeedGauntlet/End.png").getImage();
     Image boots = new ImageIcon("Assets/Dummy/rock.jpg").getImage();
     Image fist;
-    int bootsx = 900;
-    int bootsy = 400;
-    int bootswidth = 64;
-    int bootsheight = 64;
+    int bootsX = 900;
+    int bootsY = 400;
+    int bootsWidth = 64;
+    int bootsHeight = 64;
     public static boolean completed = false;
 
     public SpeedEnd() {
         super(gsm);
+    }
+
+    @Override
+    public void init() {
         Enemy.disable();
         PlayerController.enable();
         GamePanel.gameStarted = true;
@@ -43,20 +47,13 @@ public class SpeedEnd extends GameState {
             PlayerController.x = GamePanel.width / 2;
             PlayerController.y = PlayerController.height + 150;
         }
-
-    }
-
-    @Override
-    public void init() {
-
-
     }
 
     @Override
     public void draw(Graphics g) {
 
         g.drawImage(background, 0, 0, GamePanel.width, GamePanel.height, null);
-        g.drawImage(boots, bootsx, bootsy, bootswidth, bootsheight, null);
+        g.drawImage(boots, bootsX, bootsY, bootsWidth, bootsHeight, null);
 
         g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
 
@@ -124,7 +121,7 @@ public class SpeedEnd extends GameState {
             PlayerController.y = 0;
         }
 
-        if (PlayerController.x + PlayerController.width > bootsx && PlayerController.x < bootsx + bootswidth && PlayerController.y + PlayerController.height > bootsy && PlayerController.y < bootsy + bootsheight) {
+        if (PlayerController.x + PlayerController.width > bootsX && PlayerController.x < bootsX + bootsWidth && PlayerController.y + PlayerController.height > bootsY && PlayerController.y < bootsY + bootsHeight) {
             new Thread(PlayerController::giveSpeed).start();
             GameStateManager.setState(new TestSpace());
             completed = true;
@@ -137,6 +134,25 @@ public class SpeedEnd extends GameState {
 
     @Override
     public void tick() {
+
+        if (PlayerController.x > GamePanel.width - PlayerController.width) {
+            PlayerController.x = GamePanel.width - PlayerController.width;
+        }
+        if (PlayerController.x < 0) {
+            PlayerController.x = 0;
+        }
+        if (PlayerController.y > GamePanel.height - PlayerController.height) {
+            PlayerController.y = GamePanel.height - PlayerController.height;
+        }
+        if (PlayerController.y < 0) {
+            PlayerController.y = 0;
+        }
+
+        if (PlayerController.x + PlayerController.width > bootsX && PlayerController.x < bootsX + bootsWidth && PlayerController.y + PlayerController.height > bootsY && PlayerController.y < bootsY + bootsHeight) {
+            new Thread(PlayerController::giveSpeed).start();
+            GameStateManager.setState(new TestSpace());
+            completed = true;
+        }
 
     }
 }
