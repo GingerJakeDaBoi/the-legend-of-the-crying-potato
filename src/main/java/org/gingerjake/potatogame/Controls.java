@@ -2,10 +2,11 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
+import org.gingerjake.potatogame.Levels.Debug.DebugLvl;
 import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.EndScreen;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
-import org.gingerjake.potatogame.Levels.TestSpace;
+import org.gingerjake.potatogame.Levels.Debug.TestSpace;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -124,7 +125,11 @@ public class Controls {
     public static void startGame() throws FileNotFoundException {
         if (!GamePanel.gameStarted) {
             SaveSystem.loadGame();
-            GameStateManager.setState(new TestSpace());
+            if(GameState.debug) {
+                GameStateManager.setState(new DebugLvl());
+            } else {
+                GameStateManager.setState(new TestSpace());
+            }
         }
     }
 
@@ -159,15 +164,6 @@ public class Controls {
             }
         }
     }
-
-    public static void switchControls() {
-        if(controlMode == 0) {
-            controlMode = 1;
-        } else {
-            controlMode = 0;
-        }
-    }
-
 }
 
 

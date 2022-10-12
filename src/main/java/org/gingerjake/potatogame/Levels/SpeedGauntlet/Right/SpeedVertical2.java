@@ -1,6 +1,5 @@
 package org.gingerjake.potatogame.Levels.SpeedGauntlet.Right;
 
-import org.gingerjake.potatogame.Actors.Enemies.Enemy;
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
@@ -15,7 +14,6 @@ import java.util.Objects;
 public class SpeedVertical2 extends GameState {
     Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
     Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
-    Image chaser = new ImageIcon("Assets/Dummy/Red.png").getImage();
     Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical2.png").getImage();
     Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/End.png").getImage();
     Image fist;
@@ -45,24 +43,16 @@ public class SpeedVertical2 extends GameState {
 
     @Override
     public void init() {
-        Enemy.disable();
 
         PlayerController.x = 1025;
         PlayerController.y = 600;
         PlayerController.enable();
-        Enemy.spawn(1025,50,64,64,2,3);
     }
 
     @Override
     public void draw(Graphics g) {
         g.drawImage(background, currentLvlX, currentLvlY, GamePanel.width, GamePanel.height, null);
         g.drawImage(nextLvl,nextLvlX, nextLvlY, GamePanel.width, GamePanel.height, null);
-
-        g.drawImage(PlayerController.playerAsset, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
-
-        if (Enemy.enabled) {
-            g.drawImage(chaser, Enemy.x, Enemy.y, Enemy.width, Enemy.height, null);
-        }
 
         if (Fist.visible) {
             if (Objects.equals(Fist.direction, "left")) {
@@ -138,26 +128,20 @@ public class SpeedVertical2 extends GameState {
             PlayerController.x = hitbox2W;
         }
 
-        if(!Enemy.enabled) {
-            finished = true;
-        }
         if(finished) {
             if(PlayerController.y == 0) {
                 switching = true;
             }
             if(switching) {
-                PlayerController.playerAsset = new ImageIcon((String) null).getImage();
                 PlayerController.switching = true;
                 if(nextLvlY < 0) {
                     currentLvlY += 3;
                     nextLvlY += 3;
                 } else {
-                    PlayerController.playerAsset = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
                     PlayerController.switching = false;
                     GameStateManager.setState(new SpeedEnd());
                 }
             }
         }
-
     }
 }

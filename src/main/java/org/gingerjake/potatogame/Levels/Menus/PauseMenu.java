@@ -1,6 +1,5 @@
 package org.gingerjake.potatogame.Levels.Menus;
 
-import org.gingerjake.potatogame.Actors.Enemies.Enemy;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
@@ -23,7 +22,6 @@ public class PauseMenu extends GameState {
         paused = true;
         Selection = 0;
         ControlMenu.enabled = false;
-        Enemy.disable();
     }
 
     @Override

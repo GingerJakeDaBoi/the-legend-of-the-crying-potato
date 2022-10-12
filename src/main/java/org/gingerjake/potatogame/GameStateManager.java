@@ -1,7 +1,7 @@
 package org.gingerjake.potatogame;
 
-import org.gingerjake.potatogame.Actors.Enemies.Enemy;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
+import org.gingerjake.potatogame.Levels.Debug.DebugLvl;
 import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 import org.gingerjake.potatogame.Levels.Menus.StartScreen;
@@ -14,7 +14,7 @@ import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedFork;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedCurve1;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedHorizontal1;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedVertical1;
-import org.gingerjake.potatogame.Levels.TestSpace;
+import org.gingerjake.potatogame.Levels.Debug.TestSpace;
 
 import java.awt.*;
 import java.util.Stack;
@@ -44,7 +44,6 @@ public class GameStateManager extends KeyListener {
 
         setState(new PauseMenu());
         PlayerController.disable();
-        Enemy.disable();
     }
 
     public static void resume() {
@@ -66,6 +65,7 @@ public class GameStateManager extends KeyListener {
             case "SpeedHorizontal2" -> setState(new SpeedHorizontal2());
             case "SpeedVertical2" -> setState(new SpeedVertical2());
             case "SpeedEnd" -> setState(new SpeedEnd());
+            case "DebugLvl" -> setState(new DebugLvl());
             default -> {
                 System.out.println("Error: Level not specified in GameStateManager. If you are a player of the game, please report this to the developer!");
                 System.exit(4108);

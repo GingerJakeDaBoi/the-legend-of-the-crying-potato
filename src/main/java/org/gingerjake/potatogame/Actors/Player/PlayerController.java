@@ -7,7 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PlayerController {
-    public static Image playerAsset = new ImageIcon("Assets/Potato/NewMainR.png").getImage();
+    public static Image playerRight = new ImageIcon("Assets/Potato/NewMainR.png").getImage();
+    public static Image playerLeft = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
     public static int x;
     public static int y;
     public static int width;
@@ -25,7 +26,7 @@ public class PlayerController {
     public static boolean lefting;
     public static boolean righting;
 
-    public static void hurt() {
+    public static void hurt() { //TODO: Use in the Enemy class.
         health -= 1;
         try {
             Thread.sleep(1000);
@@ -82,9 +83,6 @@ public class PlayerController {
 
     @SuppressWarnings("BusyWait")
     public static void moveLeft() {
-        if (!switching) {
-            playerAsset = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
-        }
         if (enabled) {
             while (lefting) {
                 x -= 1;
@@ -100,7 +98,7 @@ public class PlayerController {
     @SuppressWarnings("BusyWait")
     public static void moveRight() {
         if (!switching) {
-            playerAsset = new ImageIcon("Assets/Potato/NewMainR.png").getImage();
+            playerRight = new ImageIcon("Assets/Potato/NewMainR.png").getImage();
         }
         if (enabled) {
             while (righting) {
