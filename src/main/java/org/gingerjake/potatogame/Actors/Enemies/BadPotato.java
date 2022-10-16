@@ -77,39 +77,50 @@ public class BadPotato {
     }
 
     public void tick() {
-        if(PlayerController.x > this.x) {
+        if (PlayerController.x + (PlayerController.width / 2) > this.x) {
             this.x += this.speed;
-        } else if(PlayerController.x < this.x) {
+        } else if (PlayerController.x - (PlayerController.width / 2) < this.x) {
             this.x -= this.speed;
         }
-        if(PlayerController.y > this.y) {
+        if (PlayerController.y + (PlayerController.y /2)> this.y) {
             this.y += this.speed;
-        } else if(PlayerController.y < this.y) {
+        } else if (PlayerController.y + (PlayerController.height / 2) < this.y) {
             this.y -= this.speed;
         }
 
         checkForFist();
+        checkForPlayer();
         checkForDeath();
     }
 
     private void checkForDeath() {
-        if(this.isDead()) {
+        if (this.isDead()) {
             this.setEnabled(false);
         }
-        if(this.getHealth() <= 0) {
+        if (this.getHealth() <= 0) {
             this.setEnabled(false);
         }
     }
 
+    private void checkForPlayer() {
+        if(this.enabled) {
+            if(PlayerController.enabled) {
+                if(PlayerController.x + PlayerController.width > this.x && PlayerController.x < this.x + this.width && PlayerController.y + PlayerController.height > this.y && PlayerController.y < this.y + this.height) {
+                    PlayerController.hurt();
+                }
+            } else {
+                this.setEnabled(false);
+            }
+        }
+    }
+
     private void checkForFist() {
-        if(Fist.visible) {
-            if(Fist.x > this.x && Fist.x < this.x + this.width) {
-                if(Fist.y > this.y && Fist.y < this.y + this.height) {
-                    this.takeDamage(1);
-                    System.out.println("Hit enemy!");
-                    if(Fist.visible) {
-                        Fist.visible = false;
-                    }
+        if (Fist.visible) {
+            if (Fist.x + Fist.width > this.x && Fist.x < this.x + this.width && Fist.y + Fist.height > this.y && Fist.y < this.y + this.height) {
+                this.takeDamage(1);
+                System.out.println("Hit enemy!");
+                if (Fist.visible) {
+                    Fist.visible = false;
                 }
             }
         }

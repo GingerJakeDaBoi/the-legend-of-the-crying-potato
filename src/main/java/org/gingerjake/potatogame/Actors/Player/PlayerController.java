@@ -15,6 +15,7 @@ public class PlayerController {
     public static int height;
     public static int health = 3;
     public static int speed = 5;
+    public static boolean isHurting;
     public static boolean switching;
     public static boolean heartGiven;
     public static boolean speedGiven;
@@ -25,23 +26,26 @@ public class PlayerController {
     public static boolean downing;
     public static boolean lefting;
     public static boolean righting;
+    private static int hurtCount;
 
     public static void hurt() { //TODO: Use in the Enemy class.
-        health -= 1;
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        isHurting = true;
+        if(hurtCount > 0) {
+            hurtCount -= 1;
+        } else {
+            health -= 1;
+            hurting = false;
+            hurtCount = 150;
         }
-        hurting = false;
 
     }
 
-    public static void spawn(int x, int y, int width, int height) {
+    public static void spawn(int x, int y, int width, int height, int speed) {
         PlayerController.x = x;
         PlayerController.y = y;
         PlayerController.width = width;
         PlayerController.height = height;
+        PlayerController.speed = speed;
     }
 
     public static void enable() {
@@ -52,63 +56,18 @@ public class PlayerController {
         enabled = false;
     }
 
-    @SuppressWarnings("BusyWait")
-    public static void moveUp() {
-        if (enabled) {
-            while (uping) {
-                y -= 1;
-                try {
-                    Thread.sleep(GamePanel.TARGET_TIME / speed);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+    public static void tick() {
+        if (downing) {
+            y += speed;
         }
-    }
-
-    @SuppressWarnings("BusyWait")
-    public static void moveDown() {
-        if (enabled) {
-            while (downing) {
-                y += 1;
-
-                try {
-                    Thread.sleep(GamePanel.TARGET_TIME / speed);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+        if (uping) {
+            y -= speed;
         }
-    }
-
-    @SuppressWarnings("BusyWait")
-    public static void moveLeft() {
-        if (enabled) {
-            while (lefting) {
-                x -= 1;
-                try {
-                    Thread.sleep(GamePanel.TARGET_TIME / speed);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+        if (righting) {
+            x += speed;
         }
-    }
-
-    @SuppressWarnings("BusyWait")
-    public static void moveRight() {
-        if (!switching) {
-            playerRight = new ImageIcon("Assets/Potato/NewMainR.png").getImage();
-        }
-        if (enabled) {
-            while (righting) {
-                x += 1;
-                try {
-                    Thread.sleep(GamePanel.TARGET_TIME / speed);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+        if (lefting) {
+            x -= speed;
         }
     }
 
@@ -135,6 +94,3 @@ public class PlayerController {
 
 
 }
-
-
-

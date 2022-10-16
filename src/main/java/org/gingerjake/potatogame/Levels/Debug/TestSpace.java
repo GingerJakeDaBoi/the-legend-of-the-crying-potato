@@ -27,7 +27,7 @@ public class TestSpace extends GameState {
     @Override
     public void init() {
         if (!GamePanel.gameStarted) {
-            PlayerController.spawn(500, 500, 108, 192);
+//            PlayerController.spawn(500, 500, 108, 192);
 
         }
         PlayerController.enable();

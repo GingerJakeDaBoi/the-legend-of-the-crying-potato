@@ -38,35 +38,19 @@ public class Controls {
     }
 
     public static void moveUp() {
-        if (PlayerController.enabled) {
-            if (!PlayerController.uping) {
-                PlayerController.uping = true;
-                new Thread(PlayerController::moveUp).start();
-            }
-        }
+        PlayerController.uping = true;
     }
 
     public static void moveDown() {
-        if (PlayerController.enabled) {
-            if (!PlayerController.downing) {
-                PlayerController.downing = true;
-                new Thread(PlayerController::moveDown).start();
-            }
-        }
+        PlayerController.downing = true;
     }
 
     public static void moveLeft() {
-        if (!PlayerController.lefting) {
-            PlayerController.lefting = true;
-            new Thread(PlayerController::moveLeft).start();
-        }
+        PlayerController.lefting = true;
     }
 
     public static void moveRight() {
-        if (!PlayerController.righting) {
-            PlayerController.righting = true;
-            new Thread(PlayerController::moveRight).start();
-        }
+        PlayerController.righting = true;
     }
 
     public static void fistUp() {

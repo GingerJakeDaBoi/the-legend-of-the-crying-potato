@@ -22,7 +22,7 @@ public class DebugLvl extends GameState {
     @Override
     public void init() {
         if (!GamePanel.gameStarted) {
-            PlayerController.spawn(GamePanel.width / 2, GamePanel.height / 2, 108, 192);
+            PlayerController.spawn(GamePanel.width / 2, GamePanel.height / 2, 108, 192, 2);
         }
         PlayerController.enable();
         GamePanel.gameStarted = true;
@@ -92,6 +92,7 @@ public class DebugLvl extends GameState {
         if(PlayerController.lefting) {
             playerDirection = "left";
         }
+        PlayerController.tick();
 
         if(debugEnemy1.isEnabled() || debugEnemy2.isEnabled()) {
             if(debugEnemy1.isDead()) {
