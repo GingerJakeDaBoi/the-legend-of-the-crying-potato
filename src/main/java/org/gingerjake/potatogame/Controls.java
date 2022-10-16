@@ -55,25 +55,29 @@ public class Controls {
 
     public static void fistUp() {
         if (!Fist.visible) {
-            new Thread(Fist::up).start();
+            Fist.direction = "up";
+            Fist.start();
         }
     }
 
     public static void fistDown() {
         if (!Fist.visible) {
-            new Thread(Fist::down).start();
+            Fist.direction = "down";
+            Fist.start();
         }
     }
 
     public static void fistLeft() {
         if (!Fist.visible) {
-            new Thread(Fist::left).start();
+            Fist.direction = "left";
+            Fist.start();
         }
     }
 
     public static void fistRight() {
         if (!Fist.visible) {
-            new Thread(Fist::right).start();
+            Fist.direction = "right";
+            Fist.start();
         }
     }
 

@@ -6,6 +6,7 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public abstract class GameState {
     public static boolean debug = true;
@@ -29,6 +30,22 @@ public abstract class GameState {
         }
     }
 
+    public static void fistUI(Graphics g) {
+        if (Fist.visible) {
+            if (Objects.equals(Fist.direction, "left")) {
+                g.drawImage(Fist.left, Fist.x, Fist.y, Fist.width, Fist.height, null);
+            }
+            if (Objects.equals(Fist.direction, "right")) {
+                g.drawImage(Fist.right, Fist.x, Fist.y, Fist.width, Fist.height, null);
+            }
+            if (Objects.equals(Fist.direction, "up")) {
+                g.drawImage(Fist.up, Fist.x, Fist.y, Fist.width, Fist.height, null);
+            }
+            if (Objects.equals(Fist.direction, "down")) {
+                g.drawImage(Fist.down, Fist.x, Fist.y, Fist.width, Fist.height, null);
+            }
+        }
+    }
     public static void heartUI(Graphics g) {
         Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
         Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();

@@ -1,7 +1,6 @@
 package org.gingerjake.potatogame.Actors.Player;
 
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
-import org.gingerjake.potatogame.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,9 +25,10 @@ public class PlayerController {
     public static boolean downing;
     public static boolean lefting;
     public static boolean righting;
+    private static String weapon;
     private static int hurtCount;
 
-    public static void hurt() { //TODO: Use in the Enemy class.
+    public static void hurt() {
         isHurting = true;
         if(hurtCount > 0) {
             hurtCount -= 1;
@@ -40,12 +40,13 @@ public class PlayerController {
 
     }
 
-    public static void spawn(int x, int y, int width, int height, int speed) {
+    public static void spawn(int x, int y, int width, int height, int speed, String weapon) {
         PlayerController.x = x;
         PlayerController.y = y;
         PlayerController.width = width;
         PlayerController.height = height;
         PlayerController.speed = speed;
+        PlayerController.weapon = weapon;
     }
 
     public static void enable() {
@@ -69,6 +70,10 @@ public class PlayerController {
         if (lefting) {
             x -= speed;
         }
+
+        if(weapon.equals("Fist")) {
+            Fist.tick();
+        }
     }
 
     public static void giveHeart() {
@@ -86,9 +91,8 @@ public class PlayerController {
     }
 
     public static void giveDamage() {
-        if (!powerGiven) {
-            Fist.power += 1;
-            powerGiven = true;
+        if (weapon.equals("fist")) {
+            Fist.powerUp();
         }
     }
 

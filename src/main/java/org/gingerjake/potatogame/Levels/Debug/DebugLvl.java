@@ -1,19 +1,20 @@
 package org.gingerjake.potatogame.Levels.Debug;
 
 import org.gingerjake.potatogame.Actors.Enemies.BadPotato;
-import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
 
 public class DebugLvl extends GameState {
     String playerDirection;
-    BadPotato debugEnemy1;
-    BadPotato debugEnemy2;
+    BadPotato debugEnemy1, debugEnemy2;
+
+    int debugEnemy1Health, debugEnemy1x, debugEnemy1y;
+    int debugEnemy2Health, debugEnemy2x, debugEnemy2y;
+    boolean debugEnemy1Dead, debugEnemy2Dead;
 
     public DebugLvl() {
         super(gsm);
@@ -22,11 +23,36 @@ public class DebugLvl extends GameState {
     @Override
     public void init() {
         if (!GamePanel.gameStarted) {
-            PlayerController.spawn(GamePanel.width / 2, GamePanel.height / 2, 108, 192, 2);
+            PlayerController.spawn(GamePanel.width / 2, GamePanel.height / 2, 108, 192, 2,"Fist");
         }
         PlayerController.enable();
         GamePanel.gameStarted = true;
         playerDirection = "right";
+
+        if(debugEnemy1Health != 0) {
+            debugEnemy1.setHealth(debugEnemy1Health);
+        }
+        if(debugEnemy2Health != 0) {
+            debugEnemy2.setHealth(debugEnemy2Health);
+        }
+        if(debugEnemy1x != 0) {
+            debugEnemy1.setX(debugEnemy1x);
+        }
+        if(debugEnemy2x != 0) {
+            debugEnemy2.setX(debugEnemy2x);
+        }
+        if(debugEnemy1y != 0) {
+            debugEnemy1.setY(debugEnemy1y);
+        }
+        if(debugEnemy2y != 0) {
+            debugEnemy2.setY(debugEnemy2y);
+        }
+        if(debugEnemy1Dead) {
+            debugEnemy1.setHealth(0);
+        }
+        if(debugEnemy2Dead) {
+            debugEnemy2.setHealth(0);
+        }
 
         debugEnemy1 = new BadPotato(100, 100, 64, 64,5,
                 1,1,new ImageIcon("Assets/Dummy/Red.png").getImage());
@@ -52,22 +78,7 @@ public class DebugLvl extends GameState {
             g.drawImage(debugEnemy2.getAsset(), debugEnemy2.getX(), debugEnemy2.getY(),
                     debugEnemy2.getWidth(), debugEnemy2.getHeight(), null);
         }
-
-        if (Fist.visible) {
-            if (Objects.equals(Fist.direction, "left")) {
-                g.drawImage(Fist.left, Fist.x, Fist.y, Fist.width, Fist.height, null);
-            }
-            if (Objects.equals(Fist.direction, "right")) {
-                g.drawImage(Fist.right, Fist.x, Fist.y, Fist.width, Fist.height, null);
-            }
-            if (Objects.equals(Fist.direction, "up")) {
-                g.drawImage(Fist.up, Fist.x, Fist.y, Fist.width, Fist.height, null);
-            }
-            if (Objects.equals(Fist.direction, "down")) {
-                g.drawImage(Fist.down, Fist.x, Fist.y, Fist.width, Fist.height, null);
-            }
-        }
-
+        fistUI(g);
         heartUI(g);
 
         //GameState.debugInfo(g);
@@ -92,6 +103,7 @@ public class DebugLvl extends GameState {
         if(PlayerController.lefting) {
             playerDirection = "left";
         }
+
         PlayerController.tick();
 
         if(debugEnemy1.isEnabled() || debugEnemy2.isEnabled()) {
@@ -106,5 +118,14 @@ public class DebugLvl extends GameState {
                 debugEnemy2.tick();
             }
         }
+
+        debugEnemy1Health = debugEnemy1.getHealth();
+        debugEnemy1x = debugEnemy1.getX();
+        debugEnemy1y = debugEnemy1.getY();
+        debugEnemy1Dead = debugEnemy1.isDead();
+        debugEnemy2Health = debugEnemy2.getHealth();
+        debugEnemy2x = debugEnemy2.getX();
+        debugEnemy2y = debugEnemy2.getY();
+        debugEnemy2Dead = debugEnemy2.isDead();
     }
 }
