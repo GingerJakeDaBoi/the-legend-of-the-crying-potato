@@ -66,7 +66,7 @@ public class SpeedEnd extends GameState {
             completed = true;
         }
 
-        GameState.debugInfo(g);
+        debugInfo(g);
 
 
     }

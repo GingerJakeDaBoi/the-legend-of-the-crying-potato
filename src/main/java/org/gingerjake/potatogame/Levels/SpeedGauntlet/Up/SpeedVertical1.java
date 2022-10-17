@@ -61,7 +61,7 @@ public class SpeedVertical1 extends GameState {
         fistUI(g);
         heartUI(g);
 
-        GameState.debugInfo(g);
+        debugInfo(g);
 
     }
 

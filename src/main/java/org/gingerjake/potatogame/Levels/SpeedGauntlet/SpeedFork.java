@@ -81,7 +81,7 @@ public class SpeedFork extends GameState {
         fistUI(g);
         heartUI(g);
 
-        GameState.debugInfo(g);
+        debugInfo(g);
 
     }
 
