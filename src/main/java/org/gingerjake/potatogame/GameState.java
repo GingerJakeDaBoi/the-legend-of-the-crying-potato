@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.Objects;
 
 public abstract class GameState {
-    public static final boolean debug = false;
+    public static final boolean debug = true;
     public abstract void init();
 
     public static GameStateManager gsm;

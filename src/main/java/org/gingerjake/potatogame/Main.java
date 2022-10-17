@@ -1,6 +1,7 @@
 package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
+import org.gingerjake.potatogame.Levels.DemoBoss;
 import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 
@@ -76,9 +77,11 @@ public class Main extends KeyListener {
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_P) {
-                    new Thread(PlayerController::giveDamage).start();
-                    new Thread(PlayerController::giveHeart).start();
-                    new Thread(PlayerController::giveSpeed).start();
+                    PlayerController.giveSpeed();
+                    PlayerController.giveDamage();
+                    PlayerController.giveHeart();
+                    PlayerController.health = 4;
+                    GameStateManager.setState(new DemoBoss());
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_W) {

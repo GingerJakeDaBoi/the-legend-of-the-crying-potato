@@ -20,9 +20,10 @@ public class DebugLvl extends GameState {
     public void init() {
         if (!GamePanel.gameStarted) {
             PlayerController.spawn(GamePanel.width / 2, GamePanel.height / 2, 108, 192, 2, "Fist");
+            GamePanel.gameStarted = true;
         }
         PlayerController.enable();
-        GamePanel.gameStarted = true;
+
         playerDirection = "right";
 
         debugEnemy1 = new BadPotato(100, 100, 64, 64, 5,
@@ -52,7 +53,7 @@ public class DebugLvl extends GameState {
         fistUI(g);
         heartUI(g);
 
-        GameState.debugInfo(g);
+        debugInfo(g);
 
     }
 

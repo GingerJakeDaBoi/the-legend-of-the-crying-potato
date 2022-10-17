@@ -2,6 +2,7 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.Debug.DebugLvl;
+import org.gingerjake.potatogame.Levels.DemoBoss;
 import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 import org.gingerjake.potatogame.Levels.Menus.StartScreen;
@@ -66,6 +67,7 @@ public class GameStateManager extends KeyListener {
             case "SpeedVertical2" -> setState(new SpeedVertical2());
             case "SpeedEnd" -> setState(new SpeedEnd());
             case "DebugLvl" -> setState(new DebugLvl());
+            case "DemoBoss" -> setState(new DemoBoss());
             default -> {
                 System.out.println("Error: Level not specified in GameStateManager. If you are a player of the game, please report this to the developer!");
                 System.exit(4108);

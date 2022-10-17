@@ -14,7 +14,6 @@ public class PlayerController {
     public static int height;
     public static int health = 3;
     public static int speed = 5;
-    public static boolean isHurting;
     public static boolean heartGiven;
     public static boolean speedGiven;
     public static boolean powerGiven;
@@ -25,16 +24,21 @@ public class PlayerController {
     public static boolean lefting;
     public static boolean righting;
     private static String weapon;
-    private static int hurtCount;
 
     public static void hurt() {
-        isHurting = true;
-        if(hurtCount > 0) {
-            hurtCount -= 1;
-        } else {
+        if (!hurting) {
             health -= 1;
-            hurting = false;
-            hurtCount = 150;
+            hurting = true;
+
+            //if the player was hurt, they can't be hurt again for 1 second
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1000);
+                    hurting = false;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
         }
 
     }
@@ -70,7 +74,7 @@ public class PlayerController {
             x -= speed;
         }
 
-        if(weapon.equals("Fist")) {
+        if (weapon.equals("Fist")) {
             Fist.tick();
         }
     }
