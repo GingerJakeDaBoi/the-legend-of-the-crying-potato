@@ -136,7 +136,6 @@ public class SpeedFork extends GameState {
                 switchRight = true;
             }
             if (switching) {
-                PlayerController.switching = true;
                 if (switchUp) {
                     PlayerController.y -= 5;
 
@@ -144,7 +143,6 @@ public class SpeedFork extends GameState {
                         currentLvlY += 3;
                         nextUpLvlY += 3;
                     } else {
-                        PlayerController.switching = false;
                         GameStateManager.setState(new SpeedVertical1());
                     }
                 }
@@ -155,7 +153,6 @@ public class SpeedFork extends GameState {
                         currentLvlX -= 6;
                         nextRightLvlX -= 6;
                     } else {
-                        PlayerController.switching = false;
                         GameStateManager.setState(new SpeedHorizontal2());
                     }
                 }

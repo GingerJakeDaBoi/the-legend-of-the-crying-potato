@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PlayerController {
-    public static Image playerRight = new ImageIcon("Assets/Potato/NewMainR.png").getImage();
-    public static Image playerLeft = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
+    public static final Image playerRight = new ImageIcon("Assets/Potato/NewMainR.png").getImage();
+    public static final Image playerLeft = new ImageIcon("Assets/Potato/NewMainL.png").getImage();
     public static int x;
     public static int y;
     public static int width;
@@ -15,7 +15,6 @@ public class PlayerController {
     public static int health = 3;
     public static int speed = 5;
     public static boolean isHurting;
-    public static boolean switching;
     public static boolean heartGiven;
     public static boolean speedGiven;
     public static boolean powerGiven;

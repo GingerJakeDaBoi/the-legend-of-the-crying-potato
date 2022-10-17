@@ -101,12 +101,10 @@ public class SpeedHorizontal2 extends GameState {
                 switching = true;
             }
             if(switching) {
-                PlayerController.switching = true;
                 if(nextLvlX > 0) {
                     currentLvlX -= 6;
                     nextLvlX -= 6;
                 } else {
-                    PlayerController.switching = false;
                     GameStateManager.setState(new SpeedCurve2());
                 }
             }

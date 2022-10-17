@@ -101,12 +101,10 @@ public class SpeedVertical1 extends GameState {
                 switching = true;
             }
             if(switching) {
-                PlayerController.switching = true;
                 if(nextLvlY < 0) {
                     currentLvlY += 3;
                     nextLvlY += 3;
                 } else {
-                    PlayerController.switching = false;
                     GameStateManager.setState(new SpeedCurve1());
                 }
             }

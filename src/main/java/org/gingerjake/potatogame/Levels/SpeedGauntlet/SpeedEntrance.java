@@ -11,7 +11,6 @@ import java.awt.*;
 public class SpeedEntrance extends GameState {
     Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
     Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/PathFork.png").getImage();
-
     String playerDirection;
     boolean finished = true; //TODO: change when player reaches end of level on every single level
     boolean switching;
@@ -99,12 +98,10 @@ public class SpeedEntrance extends GameState {
                 switching = true;
             }
             if (switching) {
-                PlayerController.switching = true;
                 if (nextLvlY < 0) {
                     currentLvlY += 3;
                     nextLvlY += 3;
                 } else {
-                    PlayerController.switching = false;
                     GameStateManager.setState(new SpeedFork());
                 }
             }

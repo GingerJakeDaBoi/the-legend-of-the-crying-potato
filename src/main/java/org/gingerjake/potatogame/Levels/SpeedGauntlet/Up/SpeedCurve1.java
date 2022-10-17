@@ -9,8 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SpeedCurve1 extends GameState {
-    Image background = new ImageIcon("Assets/SpeedGauntlet/Curve1.png").getImage();
-    Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Horizontal.png").getImage();
+    final Image background = new ImageIcon("Assets/SpeedGauntlet/Curve1.png").getImage();
+    final Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Horizontal.png").getImage();
     String playerDirection;
     boolean finished = true;
     boolean switching;
@@ -116,12 +116,10 @@ public class SpeedCurve1 extends GameState {
                 switching = true;
             }
             if(switching) {
-                PlayerController.switching = true;
                 if(nextLvlX > 0) {
                     currentLvlX -= 6;
                     nextLvlX -= 6;
                 } else {
-                    PlayerController.switching = false;
                     GameStateManager.setState(new SpeedHorizontal1());
                 }
             }

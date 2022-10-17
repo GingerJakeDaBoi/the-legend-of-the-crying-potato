@@ -14,10 +14,10 @@ public class Fist {
     public static int speed = 2;
     public static boolean visible;
     public static String direction;
-    public static Image left = new ImageIcon("Assets/Attacks/Fist/FistL.png").getImage();
-    public static Image right = new ImageIcon("Assets/Attacks/Fist/FistR.png").getImage();
-    public static Image up = new ImageIcon("Assets/Attacks/Fist/FistU.png").getImage();
-    public static Image down = new ImageIcon("Assets/Attacks/Fist/FistD.png").getImage();
+    public static final Image left = new ImageIcon("Assets/Attacks/Fist/FistL.png").getImage();
+    public static final Image right = new ImageIcon("Assets/Attacks/Fist/FistR.png").getImage();
+    public static final Image up = new ImageIcon("Assets/Attacks/Fist/FistU.png").getImage();
+    public static final Image down = new ImageIcon("Assets/Attacks/Fist/FistD.png").getImage();
 
     public static void start(){
         x = PlayerController.x + PlayerController.width / 3;
