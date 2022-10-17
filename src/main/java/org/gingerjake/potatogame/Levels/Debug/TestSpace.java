@@ -1,6 +1,5 @@
 package org.gingerjake.potatogame.Levels.Debug;
 
-import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
@@ -10,26 +9,21 @@ import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEntrance;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
 
 public class TestSpace extends GameState {
-    Image playerHeart = new ImageIcon("Assets/GUI/Heart.png").getImage();
-    Image playerHeartBroken = new ImageIcon("Assets/GUI/HeartBroken.png").getImage();
     Image background = new ImageIcon("Assets/Dummy/GreenDitherBG.png").getImage();
-    Image fist;
+    String playerDirection;
 
     public TestSpace() {
         super(gsm);
-
-
     }
 
     @Override
     public void init() {
         if (!GamePanel.gameStarted) {
-//            PlayerController.spawn(500, 500, 108, 192);
-
+            PlayerController.spawn(500, 500, 108, 192, 2, "Fist");
         }
+        playerDirection = "right";
         PlayerController.enable();
         GamePanel.gameStarted = true;
 //        Enemy.spawn(136, 118, 128, 128,2,5);
@@ -41,61 +35,33 @@ public class TestSpace extends GameState {
 
         g.drawImage(background, 0, 0, GamePanel.width, GamePanel.height, null);
 
-        g.drawImage(PlayerController.playerRight, PlayerController.x, PlayerController.y, PlayerController.width, PlayerController.height, null);
-
-        if (Fist.visible) {
-            if (Objects.equals(Fist.direction, "left")) {
-                fist = new ImageIcon("Assets/Attacks/Fist/FistL.png").getImage();
-            }
-            if (Objects.equals(Fist.direction, "right")) {
-                fist = new ImageIcon("Assets/Attacks/Fist/FistR.png").getImage();
-            }
-            if (Objects.equals(Fist.direction, "up")) {
-                fist = new ImageIcon("Assets/Attacks/Fist/FistU.png").getImage();
-            }
-            if (Objects.equals(Fist.direction, "down")) {
-                fist = new ImageIcon("Assets/Attacks/Fist/FistD.png").getImage();
-            }
-            g.drawImage(fist, Fist.x, Fist.y, Fist.width, Fist.height, null);
+        if (playerDirection.equals("right")) {
+            g.drawImage(PlayerController.playerRight, PlayerController.x, PlayerController.y,
+                    PlayerController.width, PlayerController.height, null);
+        } else if (playerDirection.equals("left")) {
+            g.drawImage(PlayerController.playerLeft, PlayerController.x, PlayerController.y,
+                    PlayerController.width, PlayerController.height, null);
         }
 
-        if (PlayerController.health == 4) {
-            g.drawImage(playerHeart, 3, 0, 48, 48, null);
-            g.drawImage(playerHeart, 54, 0, 48, 48, null);
-            g.drawImage(playerHeart, 105, 0, 48, 48, null);
-            g.drawImage(playerHeart, 156, 0, 48, 48, null);
-        }
-        if (PlayerController.health == 3) {
-            g.drawImage(playerHeart, 3, 0, 48, 48, null);
-            g.drawImage(playerHeart, 54, 0, 48, 48, null);
-            g.drawImage(playerHeart, 105, 0, 48, 48, null);
-            if (PlayerController.heartGiven) {
-                g.drawImage(playerHeartBroken, 156, 0, 48, 48, null);
-            }
-        }
-        if (PlayerController.health == 2) {
-            g.drawImage(playerHeart, 3, 0, 48, 48, null);
-            g.drawImage(playerHeart, 54, 0, 48, 48, null);
-            g.drawImage(playerHeartBroken, 105, 0, 48, 48, null);
-            if (PlayerController.heartGiven) {
-                g.drawImage(playerHeartBroken, 156, 0, 48, 48, null);
-            }
-        }
-        if (PlayerController.health == 1) {
-            g.drawImage(playerHeart, 3, 0, 48, 48, null);
-            g.drawImage(playerHeartBroken, 54, 0, 48, 48, null);
-            g.drawImage(playerHeartBroken, 105, 0, 48, 48, null);
-            if (PlayerController.heartGiven) {
-                g.drawImage(playerHeartBroken, 156, 0, 48, 48, null);
-            }
-        }
 
-        GameState.debugInfo(g);
+        fistUI(g);
+        heartUI(g);
+
+        debugInfo(g);
 
     }
 
     @Override
     public void tick() {
+        if (PlayerController.righting) {
+            playerDirection = "right";
+        }
+        if (PlayerController.lefting) {
+            playerDirection = "left";
+        }
+
+        PlayerController.tick();
+
         if (PlayerController.x > GamePanel.width - PlayerController.width) {
             PlayerController.x = GamePanel.width - PlayerController.width;
         }
@@ -106,7 +72,7 @@ public class TestSpace extends GameState {
             PlayerController.y = GamePanel.height - PlayerController.height;
         }
         if (PlayerController.y < 0) {
-            if(!SpeedEnd.completed) {
+            if (!SpeedEnd.completed) {
                 GameStateManager.setState(new SpeedEntrance());
             } else {
                 PlayerController.y = 0;

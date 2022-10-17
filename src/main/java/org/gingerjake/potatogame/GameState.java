@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.Objects;
 
 public abstract class GameState {
-    public static boolean debug = true;
+    public static boolean debug = false;
     public abstract void init();
 
     public static GameStateManager gsm;
@@ -21,7 +21,7 @@ public abstract class GameState {
     public static void debugInfo(Graphics g) {
         if(debug) {
             g.setFont(new Font("Arial", Font.BOLD, 20));
-            g.setColor(Color.WHITE);
+            g.setColor(Color.BLACK);
             g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 120);
             g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 200);
             g.drawString("Fist direction: " + Fist.direction, 0, 240);
