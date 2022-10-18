@@ -45,6 +45,8 @@ public class DemoBoss extends GameState {
         }
 
         if (finalBoss.isEnabled()) {
+            g.drawImage(new ImageIcon("Assets/Dummy/Red.png").getImage(), finalBoss.getX(), finalBoss.getY(),
+                    finalBoss.getWidth(), finalBoss.getHeight(), null);
             g.drawImage(finalBoss.getAsset(), finalBoss.getX(), finalBoss.getY(),
                     finalBoss.getWidth(), finalBoss.getHeight(), null);
         }
@@ -66,6 +68,9 @@ public class DemoBoss extends GameState {
         g.drawString("GamePanel width: " + GamePanel.width + "GamePanel Height: " + GamePanel.height, 0, 280);
         g.drawString("Boss threshold: " + finalBoss.getThresholds(), 0, 320);
         g.drawString("Boss phase: " + finalBoss.getPhase(), 0, 360);
+        if(finalBoss.getPhase() == 1) {
+            g.drawString("Ammo direction: " + finalBoss.getAmmoDir(), 0, 400);
+        }
 
     }
 

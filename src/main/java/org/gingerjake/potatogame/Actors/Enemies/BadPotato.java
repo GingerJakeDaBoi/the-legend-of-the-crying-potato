@@ -125,7 +125,7 @@ public class BadPotato {
     private void checkForFist() {
         if (Fist.visible) {
             if (Fist.x + Fist.width > this.x && Fist.x < this.x + this.width && Fist.y + Fist.height > this.y && Fist.y < this.y + this.height) {
-                this.takeDamage(1);
+                this.takeDamage(Fist.power);
                 System.out.println("Hit enemy!");
                 if (Fist.visible) {
                     Fist.visible = false;
