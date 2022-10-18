@@ -85,19 +85,6 @@ public class SpeedCurve1 extends GameState {
 
         PlayerController.tick();
 
-        if (PlayerController.x > GamePanel.width - PlayerController.width) {
-            PlayerController.x = GamePanel.width - PlayerController.width;
-        }
-        if (PlayerController.x < 0) {
-            PlayerController.x = 0;
-        }
-        if (PlayerController.y > GamePanel.height - PlayerController.height) {
-            PlayerController.y = GamePanel.height - PlayerController.height;
-        }
-        if (PlayerController.y < 0) {
-            PlayerController.y = 0;
-        }
-
         if (PlayerController.x + PlayerController.width > hitbox1aX && PlayerController.x < hitbox1aX + hitbox1aW && PlayerController.y + PlayerController.height > hitbox1aY && PlayerController.y < hitbox1aY + hitbox1aH) {
             PlayerController.y = 621 - PlayerController.height;
         }

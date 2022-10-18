@@ -29,7 +29,7 @@ public class DemoBoss extends GameState {
         PlayerController.enable();
         PlayerController.x = 250;
         PlayerController.y = 250;
-        finalBoss = new Boss(1420, 300, 120, 90, 15,
+        finalBoss = new Boss(1420, 300, 120, 90, 30,
                 1, 1, new ImageIcon("Assets/Dummy/EvilPotatoBoss.png").getImage(), new ImageIcon("Assets/Dummy/Red.png").getImage());
         finalBoss.setPhase(0);
 

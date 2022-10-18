@@ -76,19 +76,6 @@ public class SpeedHorizontal2 extends GameState {
 
         PlayerController.tick();
 
-        if (PlayerController.x > GamePanel.width - PlayerController.width) {
-            PlayerController.x = GamePanel.width - PlayerController.width;
-        }
-        if (PlayerController.x < 0) {
-            PlayerController.x = 0;
-        }
-        if (PlayerController.y > GamePanel.height - PlayerController.height) {
-            PlayerController.y = GamePanel.height - PlayerController.height;
-        }
-        if (PlayerController.y < 0) {
-            PlayerController.y = 0;
-        }
-
         if (PlayerController.x + PlayerController.width > hitbox1X && PlayerController.x < hitbox1X + hitbox1W && PlayerController.y + PlayerController.height > hitbox1Y && PlayerController.y < hitbox1Y + hitbox1H) {
             PlayerController.y = 220;
         }

@@ -1,5 +1,6 @@
 package org.gingerjake.potatogame.Levels.SpeedGauntlet;
 
+import org.gingerjake.potatogame.Actors.Enemies.BadPotato;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
@@ -12,7 +13,8 @@ public class SpeedEntrance extends GameState {
     Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
     Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/PathFork.png").getImage();
     String playerDirection;
-    boolean finished = true; //TODO: change when player reaches end of level on every single level
+    BadPotato enemy;
+    boolean finished = false;
     boolean switching;
     int nextLvlX = 0;
     int nextLvlY = -GamePanel.height;
@@ -40,6 +42,9 @@ public class SpeedEntrance extends GameState {
         PlayerController.x = 400;
         PlayerController.y = GamePanel.height - PlayerController.height;
         PlayerController.enable();
+
+        enemy = new BadPotato(450, 50, 64, 64, 5,
+                1, 1, new ImageIcon("Assets/Dummy/Red.png").getImage());
     }
 
     @Override
@@ -53,6 +58,10 @@ public class SpeedEntrance extends GameState {
         } else if (playerDirection.equals("left") && !switching) {
             g.drawImage(PlayerController.playerLeft, PlayerController.x, PlayerController.y,
                     PlayerController.width, PlayerController.height, null);
+        }
+
+        if (enemy.isEnabled()) {
+            g.drawImage(enemy.getAsset(), enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight(), null);
         }
 
         fistUI(g);
@@ -72,18 +81,10 @@ public class SpeedEntrance extends GameState {
         }
 
         PlayerController.tick();
+        enemy.tick();
 
-        if (PlayerController.x > GamePanel.width - PlayerController.width) {
-            PlayerController.x = GamePanel.width - PlayerController.width;
-        }
-        if (PlayerController.x < 0) {
-            PlayerController.x = 0;
-        }
-        if (PlayerController.y > GamePanel.height - PlayerController.height) {
-            PlayerController.y = GamePanel.height - PlayerController.height;
-        }
-        if (PlayerController.y < 0) {
-            PlayerController.y = 0;
+        if(enemy.isDead()) {
+            finished = true;
         }
 
         if (PlayerController.x + PlayerController.width > hitbox1X && PlayerController.x < hitbox1X + hitbox1W && PlayerController.y + PlayerController.height > hitbox1Y && PlayerController.y < hitbox1Y + hitbox1H) {

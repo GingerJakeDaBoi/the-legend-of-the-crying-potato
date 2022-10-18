@@ -2,6 +2,7 @@ package org.gingerjake.potatogame.Actors.Player;
 
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.GamePanel;
+import org.gingerjake.potatogame.GameStateManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,6 +63,8 @@ public class PlayerController {
     }
 
     public static void tick() {
+        String currentLevel = GameStateManager.getState();
+
         if (downing) {
             y += speed;
         }
@@ -75,19 +78,20 @@ public class PlayerController {
             x -= speed;
         }
 
-        if (PlayerController.x > GamePanel.width - PlayerController.width) {
-            PlayerController.x = GamePanel.width - PlayerController.width;
+        if(!currentLevel.equals("TestSpace")) {
+            if (PlayerController.x > GamePanel.width - PlayerController.width) {
+                PlayerController.x = GamePanel.width - PlayerController.width;
+            }
+            if (PlayerController.x < 0) {
+                PlayerController.x = 0;
+            }
+            if (PlayerController.y > GamePanel.height - PlayerController.height) {
+                PlayerController.y = GamePanel.height - PlayerController.height;
+            }
+            if (PlayerController.y < 0) {
+                PlayerController.y = 0;
+            }
         }
-        if (PlayerController.x < 0) {
-            PlayerController.x = 0;
-        }
-        if (PlayerController.y > GamePanel.height - PlayerController.height) {
-            PlayerController.y = GamePanel.height - PlayerController.height;
-        }
-        if (PlayerController.y < 0) {
-            PlayerController.y = 0;
-        }
-
         if (weapon.equals("Fist")) {
             Fist.tick();
         }
