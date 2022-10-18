@@ -1,6 +1,7 @@
 package org.gingerjake.potatogame.Actors.Player.Attacks;
 
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
+import org.gingerjake.potatogame.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,6 +48,22 @@ public class Fist {
                         System.out.println("Fist going down!");
                         y += speed;
                     }
+                }
+                if (x > GamePanel.width - width) {
+                    x = GamePanel.width - width;
+                    visible = false;
+                }
+                if (x < 0) {
+                    x = 0;
+                    visible = false;
+                }
+                if (y > GamePanel.height - height) {
+                    y = GamePanel.height - height;
+                    visible = false;
+                }
+                if (y < 0) {
+                    y = 0;
+                    visible = false;
                 }
             }
         }

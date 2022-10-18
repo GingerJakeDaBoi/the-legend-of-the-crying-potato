@@ -29,8 +29,8 @@ public class DemoBoss extends GameState {
         PlayerController.enable();
         PlayerController.x = 250;
         PlayerController.y = 250;
-        finalBoss = new Boss(1420, 300, 120, 90, 30,
-                1, 1, new ImageIcon("Assets/Dummy/EvilPotatoBoss.png").getImage(),new ImageIcon("Assets/Dummy/Red.png").getImage());
+        finalBoss = new Boss(1420, 300, 120, 90, 15,
+                1, 1, new ImageIcon("Assets/Dummy/EvilPotatoBoss.png").getImage(), new ImageIcon("Assets/Dummy/Red.png").getImage());
         finalBoss.setPhase(0);
 
     }
@@ -50,8 +50,10 @@ public class DemoBoss extends GameState {
             g.drawImage(finalBoss.getAsset(), finalBoss.getX(), finalBoss.getY(),
                     finalBoss.getWidth(), finalBoss.getHeight(), null);
         }
-        if(finalBoss.isShooting()) {
-            g.drawImage(finalBoss.getAmmoAsset(), finalBoss.getAmmoX(), finalBoss.getAmmoY(), 32,32,null);
+        if (finalBoss.isEnabled()) {
+            if (finalBoss.isShooting()) {
+                g.drawImage(finalBoss.getAmmoAsset(), finalBoss.getAmmoX(), finalBoss.getAmmoY(), 32, 32, null);
+            }
         }
 
         fistUI(g);
@@ -68,7 +70,7 @@ public class DemoBoss extends GameState {
         g.drawString("GamePanel width: " + GamePanel.width + "GamePanel Height: " + GamePanel.height, 0, 280);
         g.drawString("Boss threshold: " + finalBoss.getThresholds(), 0, 320);
         g.drawString("Boss phase: " + finalBoss.getPhase(), 0, 360);
-        if(finalBoss.getPhase() == 1) {
+        if (finalBoss.getPhase() == 1) {
             g.drawString("Ammo direction: " + finalBoss.getAmmoDir(), 0, 400);
         }
 
@@ -77,19 +79,8 @@ public class DemoBoss extends GameState {
     @Override
     public void tick() {
         PlayerController.tick();
-        finalBoss.tick();
-
-        if (PlayerController.x > GamePanel.width - PlayerController.width) {
-            PlayerController.x = GamePanel.width - PlayerController.width;
-        }
-        if (PlayerController.x < 0) {
-            PlayerController.x = 0;
-        }
-        if (PlayerController.y > GamePanel.height - PlayerController.height) {
-            PlayerController.y = GamePanel.height - PlayerController.height;
-        }
-        if (PlayerController.y < 0) {
-            PlayerController.y = 0;
+        if (finalBoss.isEnabled()) {
+            finalBoss.tick();
         }
 
         if (PlayerController.righting) {

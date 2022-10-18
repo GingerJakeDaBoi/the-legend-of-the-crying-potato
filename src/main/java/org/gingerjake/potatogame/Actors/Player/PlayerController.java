@@ -1,6 +1,7 @@
 package org.gingerjake.potatogame.Actors.Player;
 
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
+import org.gingerjake.potatogame.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -72,6 +73,19 @@ public class PlayerController {
         }
         if (lefting) {
             x -= speed;
+        }
+
+        if (PlayerController.x > GamePanel.width - PlayerController.width) {
+            PlayerController.x = GamePanel.width - PlayerController.width;
+        }
+        if (PlayerController.x < 0) {
+            PlayerController.x = 0;
+        }
+        if (PlayerController.y > GamePanel.height - PlayerController.height) {
+            PlayerController.y = GamePanel.height - PlayerController.height;
+        }
+        if (PlayerController.y < 0) {
+            PlayerController.y = 0;
         }
 
         if (weapon.equals("Fist")) {

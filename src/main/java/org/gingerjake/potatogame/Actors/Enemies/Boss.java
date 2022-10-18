@@ -162,95 +162,132 @@ public class Boss {
 
                 }
                 case 1 -> {
+                    if (health <= threshold2) {
+                        phase = 2;
+                        this.shooting = false;
+                        speed += 1;
+                        ammoSpeed = 7;
+                    }
                     if (this.x < this.randomX) {
-                        this.x += this.speed;
+                        this.x += 1;
                     } else if (this.x > this.randomX) {
-                        this.x -= this.speed;
+                        this.x -= 1;
                     }
                     if (this.y < this.randomY) {
-                        this.y += this.speed;
+                        this.y += 1;
                     } else if (this.y > this.randomY) {
-                        this.y -= this.speed;
+                        this.y -= 1;
                     }
-                    if (this.x >= GamePanel.width - this.width) {
-                        this.randomX = (int) (Math.random() * 1600);
-                    }
-                    if (this.x <= 0) {
-                        this.randomX = (int) (Math.random() * 1600);
-                    }
-                    if (this.y >= GamePanel.height - this.height) {
-                        this.randomY = (int) (Math.random() * 900);
-                    }
-                    if (this.y <= 0) {
-                        this.randomY = (int) (Math.random() * 900);
-                    }
-                    if (this.randomX == this.x || this.randomY == this.y) {
-                        this.randomX = (int) (Math.random() * 1600);
-                        this.randomY = (int) (Math.random() * 900);
-                    }
-                    if (!this.shooting) {
-                        this.shooting = true;
-                        this.ammoX = this.x;
-                        this.ammoY = this.y;
-
-                        int random = (int) (Math.random() * 8);
-                        if (random == 0) {
-                            this.ammoDir = "up";
-                        } else if (random == 1) {
-                            this.ammoDir = "down";
-                        } else if (random == 2) {
-                            this.ammoDir = "left";
-                        } else if (random == 3) {
-                            this.ammoDir = "right";
-                        } else if (random == 4) {
-                            this.ammoDir = "upleft";
-                        } else if (random == 5) {
-                            this.ammoDir = "upright";
-                        } else if (random == 6) {
-                            this.ammoDir = "downleft";
-                        } else if (random == 7) {
-                            this.ammoDir = "downright";
-                        } else {
-                            this.ammoDir = "up";
-                            this.shooting = false;
-                            System.out.println("Error: Invalid random number for boss ammo direction");
-                        }
-                    } else {
-                        if (!(this.ammoDir == null)) {
-                            switch (this.ammoDir) {
-                                case "up" -> this.ammoY -= ammoSpeed;
-                                case "down" -> this.ammoY += ammoSpeed;
-                                case "left" -> this.ammoX -= ammoSpeed;
-                                case "right" -> this.ammoX += ammoSpeed;
-                                case "upleft" -> {
-                                    this.ammoY -= ammoSpeed;
-                                    this.ammoX -= ammoSpeed;
-                                }
-                                case "upright" -> {
-                                    this.ammoY -= ammoSpeed;
-                                    this.ammoX += ammoSpeed;
-                                }
-                                case "downleft" -> {
-                                    this.ammoY += ammoSpeed;
-                                    this.ammoX -= ammoSpeed;
-                                }
-                                case "downright" -> {
-                                    this.ammoY += ammoSpeed;
-                                    this.ammoX += ammoSpeed;
-                                }
-                            }
-                            checkAmmo();
-                        } else {
-                            this.shooting = false;
-                        }
-                    }
+                    randomPosition();
+                    ammoTick();
                 }
+                case 2 -> {
+                    if (health <= 0) {
+                        phase = 3;
+                        this.shooting = false;
+                        speed += 1;
+                        ammoSpeed = 0;
+                    }
+                    if (this.x < this.randomX) {
+                        this.x += 1;
+                    } else if (this.x > this.randomX) {
+                        this.x -= 1;
+                    }
+                    if (this.y < this.randomY) {
+                        this.y += 1;
+                    } else if (this.y > this.randomY) {
+                        this.y -= 1;
+                    }
+
+                    randomPosition();
+                    ammoTick();
+                }
+                case 3 -> this.enabled = false;
+
             }
         }
 
         checkForFist();
         checkForPlayer();
         checkForDeath();
+    }
+
+    private void randomPosition() {
+        if (this.x >= GamePanel.width - this.width) {
+            this.randomX = (int) (Math.random() * 1600);
+        }
+        if (this.x <= 0) {
+            this.randomX = (int) (Math.random() * 1600);
+        }
+        if (this.y >= GamePanel.height - this.height) {
+            this.randomY = (int) (Math.random() * 900);
+        }
+        if (this.y <= 0) {
+            this.randomY = (int) (Math.random() * 900);
+        }
+        if (this.randomX == this.x || this.randomY == this.y) {
+            this.randomX = (int) (Math.random() * 1600);
+            this.randomY = (int) (Math.random() * 900);
+        }
+    }
+
+    private void ammoTick() {
+        if (!this.shooting) {
+            this.shooting = true;
+            this.ammoX = this.x;
+            this.ammoY = this.y;
+
+            int random = (int) (Math.random() * 8);
+            if (random == 0) {
+                this.ammoDir = "up";
+            } else if (random == 1) {
+                this.ammoDir = "down";
+            } else if (random == 2) {
+                this.ammoDir = "left";
+            } else if (random == 3) {
+                this.ammoDir = "right";
+            } else if (random == 4) {
+                this.ammoDir = "upleft";
+            } else if (random == 5) {
+                this.ammoDir = "upright";
+            } else if (random == 6) {
+                this.ammoDir = "downleft";
+            } else if (random == 7) {
+                this.ammoDir = "downright";
+            } else {
+                this.ammoDir = "up";
+                this.shooting = false;
+                System.out.println("Error: Invalid random number for boss ammo direction");
+            }
+        } else {
+            if (!(this.ammoDir == null)) {
+                switch (this.ammoDir) {
+                    case "up" -> this.ammoY -= ammoSpeed;
+                    case "down" -> this.ammoY += ammoSpeed;
+                    case "left" -> this.ammoX -= ammoSpeed;
+                    case "right" -> this.ammoX += ammoSpeed;
+                    case "upleft" -> {
+                        this.ammoY -= ammoSpeed;
+                        this.ammoX -= ammoSpeed;
+                    }
+                    case "upright" -> {
+                        this.ammoY -= ammoSpeed;
+                        this.ammoX += ammoSpeed;
+                    }
+                    case "downleft" -> {
+                        this.ammoY += ammoSpeed;
+                        this.ammoX -= ammoSpeed;
+                    }
+                    case "downright" -> {
+                        this.ammoY += ammoSpeed;
+                        this.ammoX += ammoSpeed;
+                    }
+                }
+                checkAmmo();
+            } else {
+                this.shooting = false;
+            }
+        }
     }
 
     private void checkAmmo() {
