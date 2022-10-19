@@ -110,7 +110,6 @@ public class Main extends KeyListener {
                     } catch (FileNotFoundException ex) {
                         throw new RuntimeException(ex);
                     }
-                    Controls.endGame();
                     if (PauseMenu.paused) {
                         try {
                             Controls.select();

@@ -10,6 +10,7 @@ import java.awt.*;
 public class PauseMenu extends GameState {
     public static boolean paused;
     public static int Selection;
+    public static boolean gameOver;
 
     public PauseMenu() {
         super(gsm);
@@ -26,13 +27,22 @@ public class PauseMenu extends GameState {
 
     @Override
     public void draw(Graphics g) {
-        g.drawImage(new ImageIcon("Assets/Dummy/PotatoFarmTestBG.jpg").getImage(),0, 0, GamePanel.width, GamePanel.height,null);
+        if (PauseMenu.gameOver) {
+            g.setColor(Color.BLACK);
+            g.drawImage(new ImageIcon("Assets/Dummy/GameOver.png").getImage(), 0, 0, GamePanel.width, GamePanel.height, null);
+        } else {
+            g.drawImage(new ImageIcon("Assets/Dummy/PotatoFarmTestBG.jpg").getImage(), 0, 0, GamePanel.width, GamePanel.height, null);
+        }
         g.setColor(new Color(86, 34, 232, 255));
         g.fillRect(0, 0, GamePanel.width, 60);
 
         g.setFont(new Font("Arial", Font.BOLD, 50));
         g.setColor(Color.WHITE);
-        g.drawString(GameStateManager.version,61,48);
+        if(PauseMenu.gameOver) {
+            g.drawString("Game Over", 61, 48);
+        } else {
+            g.drawString(GameStateManager.version,61,48);
+        }
         g.drawImage(new ImageIcon("Assets/GUI/Heart.png").getImage(), 8, 3, 50, 50, null);
 
         g.setColor(new Color(90, 43, 115, 255));

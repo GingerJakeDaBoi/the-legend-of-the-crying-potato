@@ -4,7 +4,6 @@ import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.Debug.TestSpace;
 import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
-import org.gingerjake.potatogame.Levels.Menus.EndScreen;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 
 import java.io.FileNotFoundException;
@@ -89,10 +88,6 @@ public class Controls {
         if (GamePanel.gameStarted) {
             if (!PauseMenu.paused) {
                 PauseMenu.paused = true;
-                if (EndScreen.gameEnded) {
-                    System.out.println("Thanks for playing!");
-                    System.exit(0);
-                }
                 GameStateManager.pause();
             }
         }
@@ -102,11 +97,6 @@ public class Controls {
         if (PauseMenu.paused) {
             PauseMenu.paused = false;
             GameStateManager.resume();
-            if (EndScreen.gameEnded) {
-                System.out.println("Thanks for playing!");
-                System.exit(0);
-            }
-            GameStateManager.resume();
         }
     }
 
@@ -114,13 +104,6 @@ public class Controls {
         if (!GamePanel.gameStarted) {
             SaveSystem.loadGame();
             GameStateManager.setState(new TestSpace());
-        }
-    }
-
-    public static void endGame() {
-        if (EndScreen.gameEnded) {
-            System.out.println("Thanks for playing!");
-            System.exit(0);
         }
     }
 

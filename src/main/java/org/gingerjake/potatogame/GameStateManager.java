@@ -52,25 +52,29 @@ public class GameStateManager extends KeyListener {
         ControlMenu.enabled = false;
         PlayerController.enable();
 
-        switch (currentLevel) {
-            case "StartScreen" -> setState(new StartScreen());
-            case "TestSpace" -> setState(new TestSpace());
-            case "PauseMenu" -> setState(new PauseMenu());
-            case "ControlMenu" -> setState(new ControlMenu());
-            case "SpeedFork" -> setState(new SpeedFork());
-            case "SpeedEntrance" -> setState(new SpeedEntrance());
-            case "SpeedVertical1" -> setState(new SpeedVertical1());
-            case "SpeedHorizontal1" -> setState(new SpeedHorizontal1());
-            case "SpeedCurve1" -> setState(new SpeedCurve1());
-            case "SpeedCurve2" -> setState(new SpeedCurve2());
-            case "SpeedHorizontal2" -> setState(new SpeedHorizontal2());
-            case "SpeedVertical2" -> setState(new SpeedVertical2());
-            case "SpeedEnd" -> setState(new SpeedEnd());
-            case "DebugLvl" -> setState(new DebugLvl());
-            case "DemoBoss" -> setState(new DemoBoss());
-            default -> {
-                System.out.println("Error: Level not specified in GameStateManager. If you are a player of the game, please report this to the developer!");
-                System.exit(4108);
+        if (PauseMenu.gameOver) {
+            setState(new TestSpace());
+        } else {
+            switch (currentLevel) {
+                case "StartScreen" -> setState(new StartScreen());
+                case "TestSpace" -> setState(new TestSpace());
+                case "PauseMenu" -> setState(new PauseMenu());
+                case "ControlMenu" -> setState(new ControlMenu());
+                case "SpeedFork" -> setState(new SpeedFork());
+                case "SpeedEntrance" -> setState(new SpeedEntrance());
+                case "SpeedVertical1" -> setState(new SpeedVertical1());
+                case "SpeedHorizontal1" -> setState(new SpeedHorizontal1());
+                case "SpeedCurve1" -> setState(new SpeedCurve1());
+                case "SpeedCurve2" -> setState(new SpeedCurve2());
+                case "SpeedHorizontal2" -> setState(new SpeedHorizontal2());
+                case "SpeedVertical2" -> setState(new SpeedVertical2());
+                case "SpeedEnd" -> setState(new SpeedEnd());
+                case "DebugLvl" -> setState(new DebugLvl());
+                case "DemoBoss" -> setState(new DemoBoss());
+                default -> {
+                    System.out.println("Error: Level not specified in GameStateManager. If you are a player of the game, please report this to the developer!");
+                    System.exit(4108);
+                }
             }
         }
     }

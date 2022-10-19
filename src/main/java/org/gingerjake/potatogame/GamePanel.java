@@ -1,7 +1,7 @@
 package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Levels.Menus.EndScreen;
+import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,8 +53,13 @@ public class GamePanel extends JPanel implements Runnable{
             try {
                 Thread.sleep(wait);
                 if(PlayerController.health <= 0) {
-                    GameStateManager.setState(new EndScreen());
-                    PlayerController.health = 3;
+                    PauseMenu.gameOver = true;
+                    GameStateManager.setState(new PauseMenu());
+                    if(PlayerController.heartGiven) {
+                        PlayerController.health = 4;
+                    } else {
+                        PlayerController.health = 3;
+                    }
                 }
 
                 //update width and height of the screen
