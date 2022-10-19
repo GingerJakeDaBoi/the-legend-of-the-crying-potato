@@ -29,7 +29,7 @@ public class PauseMenu extends GameState {
     public void draw(Graphics g) {
         if (PauseMenu.gameOver) {
             g.setColor(Color.BLACK);
-            g.drawImage(new ImageIcon("Assets/Dummy/GameOver.png").getImage(), 0, 0, GamePanel.width, GamePanel.height, null);
+            g.fillRect(0, 0, GamePanel.width, GamePanel.height);
         } else {
             g.drawImage(new ImageIcon("Assets/Dummy/PotatoFarmTestBG.jpg").getImage(), 0, 0, GamePanel.width, GamePanel.height, null);
         }

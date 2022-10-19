@@ -54,6 +54,7 @@ public class GameStateManager extends KeyListener {
 
         if (PauseMenu.gameOver) {
             setState(new TestSpace());
+            PauseMenu.gameOver = false;
         } else {
             switch (currentLevel) {
                 case "StartScreen" -> setState(new StartScreen());
