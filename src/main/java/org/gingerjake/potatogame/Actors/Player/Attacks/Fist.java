@@ -21,8 +21,8 @@ public class Fist {
     public static final Image down = new ImageIcon("Assets/Attacks/Fist/FistD.png").getImage();
 
     public static void start(){
-        x = PlayerController.x + PlayerController.width / 3;
-        y = PlayerController.y + PlayerController.height / 3;
+        x = PlayerController.x;
+        y = PlayerController.y;
         width = 192 / 2;
         height = 192 / 2;
         Fist.visible = true;

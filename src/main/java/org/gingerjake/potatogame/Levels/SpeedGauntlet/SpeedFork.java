@@ -109,8 +109,12 @@ public class SpeedFork extends GameState {
         }
 
         PlayerController.tick();
-        enemy1.tick();
-        enemy2.tick();
+        if(enemy1.isEnabled()) {
+            enemy1.tick();
+        }
+        if(enemy2.isEnabled()) {
+            enemy2.tick();
+        }
 
         if (enemy1.isDead() && enemy2.isDead()) {
             finished = true;

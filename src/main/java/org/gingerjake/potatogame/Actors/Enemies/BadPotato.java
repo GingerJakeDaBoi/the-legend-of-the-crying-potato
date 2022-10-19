@@ -85,14 +85,14 @@ public class BadPotato {
     }
 
     public void tick() {
-        if (PlayerController.x - (PlayerController.width / 2) > this.x) {
+        if (PlayerController.x > this.x) {
             this.x += this.speed;
-        } else if (PlayerController.x + (PlayerController.width / 2) < this.x) {
+        } else if (PlayerController.x < this.x) {
             this.x -= this.speed;
         }
-        if (PlayerController.y + (PlayerController.y / 2)> this.y) {
+        if (PlayerController.y > this.y) {
             this.y += this.speed;
-        } else if (PlayerController.y + (PlayerController.height / 2) < this.y) {
+        } else if (PlayerController.y < this.y) {
             this.y -= this.speed;
         }
 

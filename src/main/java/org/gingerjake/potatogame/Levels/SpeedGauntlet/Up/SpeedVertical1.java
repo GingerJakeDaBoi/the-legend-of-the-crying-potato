@@ -1,5 +1,6 @@
 package org.gingerjake.potatogame.Levels.SpeedGauntlet.Up;
 
+import org.gingerjake.potatogame.Actors.Enemies.BadPotato;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
@@ -12,7 +13,8 @@ public class SpeedVertical1 extends GameState {
     Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
     Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Curve1.png").getImage();
     String playerDirection;
-    boolean finished = true;
+    BadPotato enemy;
+    boolean finished = false;
     boolean switching;
     int nextLvlX = 0;
     int nextLvlY = -GamePanel.height;
@@ -38,11 +40,13 @@ public class SpeedVertical1 extends GameState {
 
     @Override
     public void init() {
-
         PlayerController.x = 400;
         PlayerController.y = GamePanel.height - PlayerController.height;
         PlayerController.enable();
         playerDirection = "right";
+
+        enemy = new BadPotato(450, 50, 64, 64, 5,
+                1, 1, new ImageIcon("Assets/Dummy/Red.png").getImage());
     }
 
     @Override
@@ -56,6 +60,10 @@ public class SpeedVertical1 extends GameState {
         } else if (playerDirection.equals("left") && !switching) {
             g.drawImage(PlayerController.playerLeft, PlayerController.x, PlayerController.y,
                     PlayerController.width, PlayerController.height, null);
+        }
+
+        if(enemy.isEnabled()) {
+            g.drawImage(enemy.getAsset(), enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight(), null);
         }
 
         fistUI(g);
@@ -75,6 +83,13 @@ public class SpeedVertical1 extends GameState {
         }
 
         PlayerController.tick();
+        if(enemy.isEnabled()) {
+            enemy.tick();
+        }
+
+        if(enemy.isDead()) {
+            finished = true;
+        }
 
         if (PlayerController.x + PlayerController.width > hitbox1X && PlayerController.x < hitbox1X + hitbox1W && PlayerController.y + PlayerController.height > hitbox1Y && PlayerController.y < hitbox1Y + hitbox1H) {
             PlayerController.x = hitbox1X - PlayerController.width;

@@ -81,7 +81,9 @@ public class SpeedEntrance extends GameState {
         }
 
         PlayerController.tick();
-        enemy.tick();
+        if(enemy.isEnabled()) {
+            enemy.tick();
+        }
 
         if(enemy.isDead()) {
             finished = true;

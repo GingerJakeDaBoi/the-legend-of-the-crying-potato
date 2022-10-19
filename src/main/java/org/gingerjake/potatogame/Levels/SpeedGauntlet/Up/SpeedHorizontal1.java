@@ -1,5 +1,6 @@
 package org.gingerjake.potatogame.Levels.SpeedGauntlet.Up;
 
+import org.gingerjake.potatogame.Actors.Enemies.BadPotato;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
@@ -14,7 +15,8 @@ public class SpeedHorizontal1 extends GameState {
     Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/End.png").getImage();
 
     String playerDirection;
-    public static boolean finished = true;
+    BadPotato enemy;
+    public static boolean finished = false;
     boolean switching;
     int nextLvlX = GamePanel.width;
     int nextLvlY = 0;
@@ -44,6 +46,9 @@ public class SpeedHorizontal1 extends GameState {
         PlayerController.x = 115;
         PlayerController.y = 300;
         PlayerController.enable();
+
+        enemy = new BadPotato(1350, 300, 64, 64, 5,
+                1, 1, new ImageIcon("Assets/Dummy/Red.png").getImage());
     }
 
     @Override
@@ -57,6 +62,10 @@ public class SpeedHorizontal1 extends GameState {
         } else if (playerDirection.equals("left") && !switching) {
             g.drawImage(PlayerController.playerLeft, PlayerController.x, PlayerController.y,
                     PlayerController.width, PlayerController.height, null);
+        }
+
+        if(enemy.isEnabled()) {
+            g.drawImage(enemy.getAsset(), enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight(), null);
         }
 
         fistUI(g);
@@ -76,6 +85,14 @@ public class SpeedHorizontal1 extends GameState {
         }
 
         PlayerController.tick();
+
+        if(enemy.isEnabled()) {
+            enemy.tick();
+        }
+
+        if(enemy.isDead()) {
+            finished = true;
+        }
 
         if (PlayerController.x + PlayerController.width > hitbox1X && PlayerController.x < hitbox1X + hitbox1W && PlayerController.y + PlayerController.height > hitbox1Y && PlayerController.y < hitbox1Y + hitbox1H) {
             PlayerController.y = 220;
