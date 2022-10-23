@@ -12,46 +12,46 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SpeedFork extends GameState {
-    Image background = new ImageIcon("Assets/SpeedGauntlet/PathFork.png").getImage();
-    Image nextUpLvl = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
-    Image nextRightLvl = new ImageIcon("Assets/SpeedGauntlet/Horizontal.png").getImage();
+    final Image background = new ImageIcon("Assets/SpeedGauntlet/PathFork.png").getImage();
+    final Image nextUpLvl = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
+    final Image nextRightLvl = new ImageIcon("Assets/SpeedGauntlet/Horizontal.png").getImage();
     String playerDirection;
     BadPotato enemy1,enemy2;
     boolean finished = false;
     boolean switching;
     boolean switchUp;
     boolean switchRight;
-    int nextUpLvlX = 0;
+    final int nextUpLvlX = 0;
     int nextUpLvlY = -GamePanel.height;
     int nextRightLvlX = GamePanel.width;
-    int nextRightLvlY = 0;
+    final int nextRightLvlY = 0;
     int currentLvlX = 0;
     int currentLvlY = 0;
     //Hitbox for the top part of the bottom left side
-    int hitbox1aX = 780;
-    int hitbox1aY = 621;
-    int hitbox1aW = GamePanel.width;
-    int hitbox1aH = 1;
+    final int hitbox1aX = 780;
+    final int hitbox1aY = 621;
+    final int hitbox1aW = GamePanel.width;
+    final int hitbox1aH = 1;
     //now the left part
-    int hitbox1bX = 773;
-    int hitbox1bY = 621;
-    int hitbox1bW = 1;
-    int hitbox1bH = GamePanel.height;
+    final int hitbox1bX = 773;
+    final int hitbox1bY = 621;
+    final int hitbox1bW = 1;
+    final int hitbox1bH = GamePanel.height;
     //Hitbox for the bottom part of the top left side
-    int hitbox2aX = 790;
-    int hitbox2aY = 225;
-    int hitbox2aW = GamePanel.width;
-    int hitbox2aH = 1;
+    final int hitbox2aX = 790;
+    final int hitbox2aY = 225;
+    final int hitbox2aW = GamePanel.width;
+    final int hitbox2aH = 1;
     //now the left part
-    int hitbox2bX = 773;
-    int hitbox2bY = 0;
-    int hitbox2bW = 1;
-    int hitbox2bH = 205;
+    final int hitbox2bX = 773;
+    final int hitbox2bY = 0;
+    final int hitbox2bW = 1;
+    final int hitbox2bH = 205;
     //hitbox for the right side
-    int hitbox3X = 0;
-    int hitbox3Y = 0;
-    int hitbox3W = 276;
-    int hitbox3H = 861;
+    final int hitbox3X = 0;
+    final int hitbox3Y = 0;
+    final int hitbox3W = 276;
+    final int hitbox3H = 861;
 
 
     public SpeedFork() {

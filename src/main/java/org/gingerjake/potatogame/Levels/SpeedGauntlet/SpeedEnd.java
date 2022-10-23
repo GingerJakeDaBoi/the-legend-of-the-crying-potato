@@ -12,12 +12,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SpeedEnd extends GameState {
-    Image background = new ImageIcon("Assets/SpeedGauntlet/End.png").getImage();
-    Image boots = new ImageIcon("Assets/Dummy/rock.jpg").getImage();
-    int bootsX = 900;
-    int bootsY = 400;
-    int bootsWidth = 64;
-    int bootsHeight = 64;
+    final Image background = new ImageIcon("Assets/SpeedGauntlet/End.png").getImage();
+    final Image boots = new ImageIcon("Assets/Dummy/rock.jpg").getImage();
+    final int bootsX = 900;
+    final int bootsY = 400;
+    final int bootsWidth = 64;
+    final int bootsHeight = 64;
     String playerDirection;
     public static boolean completed = false;
 

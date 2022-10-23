@@ -17,29 +17,29 @@ public class SpeedCurve1 extends GameState {
     boolean finished = false;
     boolean switching;
     int nextLvlX = GamePanel.width;
-    int nextLvlY = 0;
+    final int nextLvlY = 0;
     int currentLvlX = 0;
-    int currentLvlY = 0;
+    final int currentLvlY = 0;
     //Hitbox for the top part of the bottom left side
-    int hitbox1aX = 780;
-    int hitbox1aY = 621;
-    int hitbox1aW = GamePanel.width;
-    int hitbox1aH = 1;
+    final int hitbox1aX = 780;
+    final int hitbox1aY = 621;
+    final int hitbox1aW = GamePanel.width;
+    final int hitbox1aH = 1;
     //now the left part
-    int hitbox1bX = 773;
-    int hitbox1bY = 621;
-    int hitbox1bW = 1;
-    int hitbox1bH = GamePanel.height;
+    final int hitbox1bX = 773;
+    final int hitbox1bY = 621;
+    final int hitbox1bW = 1;
+    final int hitbox1bH = GamePanel.height;
     //Hitbox for the top side
-    int hitbox2X = 0;
-    int hitbox2Y = 0;
-    int hitbox2W = GamePanel.width;
-    int hitbox2H = 225;
+    final int hitbox2X = 0;
+    final int hitbox2Y = 0;
+    final int hitbox2W = GamePanel.width;
+    final int hitbox2H = 225;
     //hitbox for the right side
-    int hitbox3X = 0;
-    int hitbox3Y = 0;
-    int hitbox3W = 276;
-    int hitbox3H = 861;
+    final int hitbox3X = 0;
+    final int hitbox3Y = 0;
+    final int hitbox3W = 276;
+    final int hitbox3H = 861;
 
 
 

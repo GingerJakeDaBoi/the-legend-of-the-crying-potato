@@ -10,36 +10,36 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SpeedCurve2 extends GameState {
-    Image background = new ImageIcon("Assets/SpeedGauntlet/Curve2.png").getImage();
-    Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Vertical2.png").getImage();
+    final Image background = new ImageIcon("Assets/SpeedGauntlet/Curve2.png").getImage();
+    final Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Vertical2.png").getImage();
     String playerDirection;
     BadPotato enemy;
     boolean finished = false;
     boolean switching;
-    int nextLvlX = 0;
+    final int nextLvlX = 0;
     int nextLvlY = -GamePanel.height;
-    int currentLvlX = 0;
+    final int currentLvlX = 0;
     int currentLvlY = 0;
     //Hitbox for the right part of the top right side
-    int hitbox1aX = 815;
-    int hitbox1aY = 0;
-    int hitbox1aW = 1;
-    int hitbox1aH = 230;
+    final int hitbox1aX = 815;
+    final int hitbox1aY = 0;
+    final int hitbox1aW = 1;
+    final int hitbox1aH = 230;
     //now the bottom
-    int hitbox1bX = 0;
-    int hitbox1bY = 240;
-    int hitbox1bW = 800;
-    int hitbox1bH = 1;
+    final int hitbox1bX = 0;
+    final int hitbox1bY = 240;
+    final int hitbox1bW = 800;
+    final int hitbox1bH = 1;
     //hitbox for the right side
-    int hitbox2X = 1310;
-    int hitbox2Y = 0;
-    int hitbox2W = GamePanel.height;
-    int hitbox2H = GamePanel.width;
+    final int hitbox2X = 1310;
+    final int hitbox2Y = 0;
+    final int hitbox2W = GamePanel.height;
+    final int hitbox2H = GamePanel.width;
     //hitbox for the bottom side
-    int hitbox3X = 0;
-    int hitbox3Y = 622;
-    int hitbox3W = GamePanel.width;
-    int hitbox3H = GamePanel.height;
+    final int hitbox3X = 0;
+    final int hitbox3Y = 622;
+    final int hitbox3W = GamePanel.width;
+    final int hitbox3H = GamePanel.height;
 
 
     public SpeedCurve2() {

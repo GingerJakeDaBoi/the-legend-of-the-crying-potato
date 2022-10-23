@@ -10,26 +10,26 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SpeedVertical1 extends GameState {
-    Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
-    Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Curve1.png").getImage();
+    final Image background = new ImageIcon("Assets/SpeedGauntlet/Vertical.png").getImage();
+    final Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/Curve1.png").getImage();
     String playerDirection;
     BadPotato enemy;
     boolean finished = false;
     boolean switching;
-    int nextLvlX = 0;
+    final int nextLvlX = 0;
     int nextLvlY = -GamePanel.height;
-    int currentLvlX = 0;
+    final int currentLvlX = 0;
     int currentLvlY = 0;
     //Hitbox for the right side
-    int hitbox1X = 773;
-    int hitbox1Y = 0;
-    int hitbox1W = 811;
-    int hitbox1H = 861;
+    final int hitbox1X = 773;
+    final int hitbox1Y = 0;
+    final int hitbox1W = 811;
+    final int hitbox1H = 861;
     //hitbox for the left side
-    int hitbox2X = 0;
-    int hitbox2Y = 0;
-    int hitbox2W = 276;
-    int hitbox2H = 861;
+    final int hitbox2X = 0;
+    final int hitbox2Y = 0;
+    final int hitbox2W = 276;
+    final int hitbox2H = 861;
 
 
 

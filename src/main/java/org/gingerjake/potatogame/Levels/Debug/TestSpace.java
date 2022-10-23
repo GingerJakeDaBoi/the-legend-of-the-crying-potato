@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TestSpace extends GameState {
-    Image background = new ImageIcon("Assets/Dummy/GreenDitherBG.png").getImage();
+    final Image background = new ImageIcon("Assets/Dummy/GreenDitherBG.png").getImage();
     String playerDirection;
 
     public TestSpace() {

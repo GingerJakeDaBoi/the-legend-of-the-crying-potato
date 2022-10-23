@@ -12,7 +12,7 @@ public class Fist {
     public static int width;
     public static int height;
     public static int power = 1;
-    public static int speed = 2;
+    public static final int speed = 2;
     public static boolean visible;
     public static String direction;
     public static final Image left = new ImageIcon("Assets/Attacks/Fist/FistL.png").getImage();

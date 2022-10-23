@@ -178,6 +178,7 @@ public class Boss {
                     } else if (this.y > this.randomY) {
                         this.y -= 1;
                     }
+
                     randomPosition();
                     ammoTick();
                 }

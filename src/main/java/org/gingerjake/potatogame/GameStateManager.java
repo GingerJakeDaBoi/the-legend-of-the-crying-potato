@@ -5,7 +5,6 @@ import org.gingerjake.potatogame.Levels.Debug.DebugLvl;
 import org.gingerjake.potatogame.Levels.DemoBoss;
 import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
-import org.gingerjake.potatogame.Levels.Menus.StartScreen;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedCurve2;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedHorizontal2;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedVertical2;
@@ -27,7 +26,8 @@ public class GameStateManager extends KeyListener {
 
     public GameStateManager() {
         states = new Stack<>();
-        states.push(new StartScreen());
+        states.push(new PauseMenu());
+        pause();
     }
 
     public static void setState(GameState state) {
@@ -57,10 +57,7 @@ public class GameStateManager extends KeyListener {
             PauseMenu.gameOver = false;
         } else {
             switch (currentLevel) {
-                case "StartScreen" -> setState(new StartScreen());
                 case "TestSpace" -> setState(new TestSpace());
-                case "PauseMenu" -> setState(new PauseMenu());
-                case "ControlMenu" -> setState(new ControlMenu());
                 case "SpeedFork" -> setState(new SpeedFork());
                 case "SpeedEntrance" -> setState(new SpeedEntrance());
                 case "SpeedVertical1" -> setState(new SpeedVertical1());
@@ -73,8 +70,8 @@ public class GameStateManager extends KeyListener {
                 case "DebugLvl" -> setState(new DebugLvl());
                 case "DemoBoss" -> setState(new DemoBoss());
                 default -> {
-                    System.out.println("Error: Level not specified in GameStateManager. If you are a player of the game, please report this to the developer!");
-                    System.exit(4108);
+                    System.out.println("Level not specified in GameStateManager. Defaulting to TestSpace.");
+                    setState(new TestSpace());
                 }
             }
         }
