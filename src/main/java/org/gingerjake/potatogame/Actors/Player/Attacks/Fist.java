@@ -1,6 +1,7 @@
 package org.gingerjake.potatogame.Actors.Player.Attacks;
 
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
+import org.gingerjake.potatogame.AudioEngine;
 import org.gingerjake.potatogame.GamePanel;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ public class Fist {
     public static int power = 1;
     public static final int speed = 2;
     public static boolean visible;
+    public static boolean playSound;
     public static String direction;
     public static final Image left = new ImageIcon("Assets/Attacks/Fist/FistL.png").getImage();
     public static final Image right = new ImageIcon("Assets/Attacks/Fist/FistR.png").getImage();
@@ -30,6 +32,11 @@ public class Fist {
 
     public static void tick() {
         if (direction != null) {
+
+            if(playSound) {
+                new AudioEngine("Assets/Sounds/Weapons/shootFist.wav");
+                playSound = false;
+            }
             if(visible) {
                 switch (direction) {
                     case "left" -> {
@@ -52,18 +59,22 @@ public class Fist {
                 if (x > GamePanel.width - width) {
                     x = GamePanel.width - width;
                     visible = false;
+                    playSound = false;
                 }
                 if (x < 0) {
                     x = 0;
                     visible = false;
+                    playSound = false;
                 }
                 if (y > GamePanel.height - height) {
                     y = GamePanel.height - height;
                     visible = false;
+                    playSound = false;
                 }
                 if (y < 0) {
                     y = 0;
                     visible = false;
+                    playSound = false;
                 }
             }
         }

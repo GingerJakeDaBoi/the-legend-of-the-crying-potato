@@ -54,6 +54,7 @@ public class Controls {
 
     public static void fistUp() {
         if (!Fist.visible) {
+            Fist.playSound = true;
             Fist.direction = "up";
             Fist.start();
         }
@@ -61,6 +62,7 @@ public class Controls {
 
     public static void fistDown() {
         if (!Fist.visible) {
+            Fist.playSound = true;
             Fist.direction = "down";
             Fist.start();
         }
@@ -68,6 +70,7 @@ public class Controls {
 
     public static void fistLeft() {
         if (!Fist.visible) {
+            Fist.playSound = true;
             Fist.direction = "left";
             Fist.start();
         }
@@ -75,6 +78,7 @@ public class Controls {
 
     public static void fistRight() {
         if (!Fist.visible) {
+            Fist.playSound = true;
             Fist.direction = "right";
             Fist.start();
         }

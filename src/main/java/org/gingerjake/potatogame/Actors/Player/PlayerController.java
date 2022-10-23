@@ -18,7 +18,6 @@ public class PlayerController {
     public static int speed = 5;
     public static boolean heartGiven;
     public static boolean speedGiven;
-    public static boolean powerGiven;
     public static boolean hurting;
     public static boolean enabled;
     public static boolean uping;
