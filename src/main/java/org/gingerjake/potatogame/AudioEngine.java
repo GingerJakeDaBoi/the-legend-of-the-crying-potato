@@ -10,12 +10,17 @@ public class AudioEngine {
     public AudioEngine(String sound){
         audioFile = new File(sound);
 
-        try {
-            Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(audioFile));
-            clip.start();
-            System.out.println("Playing " + sound);
+        try { //WARNING: You need to make the delay outside this class, because I haven't implemented it yet :P
+            if(audioFile.exists()) {
+                Clip clip = AudioSystem.getClip();
+                clip.open(AudioSystem.getAudioInputStream(audioFile));
+                clip.start();
+                System.out.println("Playing " + sound);
+            } else {
+                System.out.println("File not found.");
+            }
         } catch (Exception e) {
+            System.out.println("Error playing " + sound);
             e.printStackTrace();
         }
     }

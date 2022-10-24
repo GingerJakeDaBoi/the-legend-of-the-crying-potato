@@ -43,7 +43,6 @@ public class TestSpace extends GameState {
                     PlayerController.width, PlayerController.height, null);
         }
 
-
         fistUI(g);
         heartUI(g);
 

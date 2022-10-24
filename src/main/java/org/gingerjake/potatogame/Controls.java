@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Controls {
+    public static String currentMenu;
     public static int controlMode;
 
     public static void menuUp() {
