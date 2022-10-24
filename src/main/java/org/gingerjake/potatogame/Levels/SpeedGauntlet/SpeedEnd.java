@@ -13,7 +13,7 @@ import java.awt.*;
 
 public class SpeedEnd extends GameState {
     final Image background = new ImageIcon("Assets/SpeedGauntlet/End.png").getImage();
-    final Image boots = new ImageIcon("Assets/Dummy/rock.jpg").getImage();
+    final Image boots = new ImageIcon("Assets/Dummy/potion.png").getImage();
     final int bootsX = 900;
     final int bootsY = 400;
     final int bootsWidth = 64;
