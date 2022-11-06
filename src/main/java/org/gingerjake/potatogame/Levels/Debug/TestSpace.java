@@ -4,6 +4,7 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
+import org.gingerjake.potatogame.Levels.HeartGauntlet.HeartEntrance;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEnd;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEntrance;
 
@@ -65,7 +66,7 @@ public class TestSpace extends GameState {
             PlayerController.x = GamePanel.width - PlayerController.width;
         }
         if (PlayerController.x < 0) {
-            PlayerController.x = 0;
+            GameStateManager.setState(new HeartEntrance());
         }
         if (PlayerController.y > GamePanel.height - PlayerController.height) {
             PlayerController.y = GamePanel.height - PlayerController.height;
