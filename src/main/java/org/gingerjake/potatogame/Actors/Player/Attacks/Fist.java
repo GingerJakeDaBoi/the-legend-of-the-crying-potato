@@ -6,6 +6,7 @@ import org.gingerjake.potatogame.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 public class Fist {
     public static int x;
@@ -28,33 +29,17 @@ public class Fist {
         width = 192 / 2;
         height = 192 / 2;
         Fist.visible = true;
+        AudioEngine.playSound(new File("Assets/Sounds/Weapons/shootFist.wav"));
     }
 
     public static void tick() {
         if (direction != null) {
-
-            if(playSound) {
-                new AudioEngine("Assets/Sounds/Weapons/shootFist.wav");
-                playSound = false;
-            }
             if(visible) {
                 switch (direction) {
-                    case "left" -> {
-                        System.out.println("Fist going left!");
-                        x -= speed;
-                    }
-                    case "right" -> {
-                        System.out.println("Fist going right!");
-                        x += speed;
-                    }
-                    case "up" -> {
-                        System.out.println("Fist going up!");
-                        y -= speed;
-                    }
-                    case "down" -> {
-                        System.out.println("Fist going down!");
-                        y += speed;
-                    }
+                    case "left" -> x -= speed;
+                    case "right" -> x += speed;
+                    case "up" -> y -= speed;
+                    case "down" -> y += speed;
                 }
                 if (x > GamePanel.width - width) {
                     x = GamePanel.width - width;

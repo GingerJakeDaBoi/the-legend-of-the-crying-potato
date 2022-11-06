@@ -1,11 +1,13 @@
 package org.gingerjake.potatogame.Actors.Player;
 
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
+import org.gingerjake.potatogame.AudioEngine;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameStateManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 public class PlayerController {
     public static final Image playerRight = new ImageIcon("Assets/Potato/NewMainR.png").getImage();
@@ -30,6 +32,7 @@ public class PlayerController {
         if (!hurting) {
             health -= 1;
             hurting = true;
+            AudioEngine.playSound(new File("Assets/Sounds/Player/hurt.wav"));
 
             //if the player was hurt, they can't be hurt again for 1 second
             new Thread(() -> {

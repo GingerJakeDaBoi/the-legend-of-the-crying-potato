@@ -1,27 +1,26 @@
 package org.gingerjake.potatogame;
 
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
 
 public class AudioEngine {
-    File audioFile;
+    public static synchronized void playSound(final File soundFile) {
+        if(soundFile.exists()) {
+            new Thread(() -> {
+                try {
+                    Clip clip = AudioSystem.getClip();
 
-    public AudioEngine(String sound){
-        audioFile = new File(sound);
-
-        try { //WARNING: You need to make the delay outside this class, because I haven't implemented it yet :P
-            if(audioFile.exists()) {
-                Clip clip = AudioSystem.getClip();
-                clip.open(AudioSystem.getAudioInputStream(audioFile));
-                clip.start();
-                System.out.println("Playing " + sound);
-            } else {
-                System.out.println("File not found.");
-            }
-        } catch (Exception e) {
-            System.out.println("Error playing " + sound);
-            e.printStackTrace();
+                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(soundFile);
+                    clip.open(inputStream);
+                    clip.start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        } else {
+            System.out.println("Sound file not found: " + soundFile.getPath());
         }
     }
 }

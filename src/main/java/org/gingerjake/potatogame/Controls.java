@@ -2,7 +2,6 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Levels.Debug.DebugLvl;
 import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 
@@ -108,7 +107,6 @@ public class Controls {
     public static void startGame() throws FileNotFoundException {
         if (!GamePanel.gameStarted) {
             SaveSystem.loadGame();
-            GameStateManager.setState(new DebugLvl());
         }
     }
 

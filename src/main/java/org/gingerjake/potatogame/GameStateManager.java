@@ -2,6 +2,7 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.Debug.DebugLvl;
+import org.gingerjake.potatogame.Levels.Debug.TestSpace;
 import org.gingerjake.potatogame.Levels.DemoBoss;
 import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
@@ -14,7 +15,6 @@ import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedFork;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedCurve1;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedHorizontal1;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedVertical1;
-import org.gingerjake.potatogame.Levels.Debug.TestSpace;
 
 import java.awt.*;
 import java.util.Stack;
