@@ -5,6 +5,7 @@ import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
 import org.gingerjake.potatogame.Levels.HeartGauntlet.Left.HeartHorizontal1;
+import org.gingerjake.potatogame.Levels.HeartGauntlet.Up.HeartVertical;
 
 import javax.swing.*;
 import java.awt.*;
@@ -60,6 +61,9 @@ public class HeartFork extends GameState {
 
         if(PlayerController.x <= 0) {
             GameStateManager.setState(new HeartHorizontal1());
+        }
+        if(PlayerController.y <= 0) {
+            GameStateManager.setState(new HeartVertical());
         }
 
     }

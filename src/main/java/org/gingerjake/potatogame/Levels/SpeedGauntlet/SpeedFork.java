@@ -28,11 +28,11 @@ public class SpeedFork extends GameState {
     final int nextRightLvlY = 0;
     int currentLvlX = 0;
     int currentLvlY = 0;
-    //Hitbox for the top part of the bottom left side
+    //Hitbox for the top part of the bottom right side
     Hitbox hitbox1a = new Hitbox(780,621,GamePanel.width,1,"up");
     //now the left part
     Hitbox hitbox1b = new Hitbox(773,621,1,GamePanel.height,"left");
-    //Hitbox for the bottom part of the top left side
+    //Hitbox for the bottom part of the top right side
     Hitbox hitbox2a = new Hitbox(790,225,GamePanel.width,1,"down");
     //now the left part
     Hitbox hitbox2b = new Hitbox(773,0,1,205,"left");

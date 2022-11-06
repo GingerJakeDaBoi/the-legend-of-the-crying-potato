@@ -1,4 +1,4 @@
-package org.gingerjake.potatogame.Levels.HeartGauntlet;
+package org.gingerjake.potatogame.Levels.HeartGauntlet.Up;
 
 import org.gingerjake.potatogame.Actors.Hitbox;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
@@ -9,32 +9,35 @@ import org.gingerjake.potatogame.GameStateManager;
 import javax.swing.*;
 import java.awt.*;
 
-public class HeartEntrance extends GameState {
-    final Image background = new ImageIcon("Assets/HeartGauntlet/Horizontal.png").getImage();
-    final Image nextLvl = new ImageIcon("Assets/HeartGauntlet/Curve2.png").getImage();
+public class HeartCurve3 extends GameState {
+    final Image background = new ImageIcon("Assets/HeartGauntlet/Curve1.png").getImage();
+    final Image nextLvl = new ImageIcon("Assets/HeartGauntlet/Horizontal.png").getImage();
     String playerDirection;
-    boolean finished = true; // TODO: Change this to false
+    boolean finished = true;
     boolean switching;
-    int nextLvlX = -GamePanel.width;
+    int nextLvlX = GamePanel.width;
     final int nextLvlY = 0;
     int currentLvlX = 0;
     final int currentLvlY = 0;
     //Hitbox for the top part of the bottom left side
-    Hitbox hitbox1 = new Hitbox(0, 220, GamePanel.width, 1,"down");
-    //Hitbox for the bottom part of the top left side
-    Hitbox hitbox2 = new Hitbox(0,622,GamePanel.width,1,"up");
+    Hitbox hitbox1a = new Hitbox(780, 621, GamePanel.width, 1,"up");
+    //now the left part
+    Hitbox hitbox1b = new Hitbox(773, 621, 1, GamePanel.height, "left");
+    //Hitbox for the top side
+    Hitbox hitbox2 = new Hitbox(275, 220, GamePanel.width, 1, "down");
+    //hitbox for the right side
+    Hitbox hitbox3 = new Hitbox(0, 0, 276, 861, "right");
 
-    public HeartEntrance() {
+    public HeartCurve3() {
         super(gsm);
     }
 
     @Override
     public void init() {
-        PlayerController.x = 1390;
-        PlayerController.y = 322;
+        PlayerController.x = 400;
+        PlayerController.y = GamePanel.height - PlayerController.height;
 
         playerDirection = "left";
-
     }
 
     @Override
@@ -68,22 +71,23 @@ public class HeartEntrance extends GameState {
 
         PlayerController.tick();
 
-        hitbox1.tick();
+        hitbox1a.tick();
+        hitbox1b.tick();
         hitbox2.tick();
+        hitbox3.tick();
 
         if(finished) {
-            if(PlayerController.x <= 0) {
+            if(PlayerController.x == GamePanel.width - PlayerController.width) {
                 switching = true;
             }
             if(switching) {
-                if(nextLvlX < 0) {
-                    currentLvlX += 6;
-                    nextLvlX += 6;
+                if(nextLvlX > 0) {
+                    currentLvlX -= 6;
+                    nextLvlX -= 6;
                 } else {
-                    GameStateManager.setState(new HeartCurve1());
+                    GameStateManager.setState(new HeartHorizontal2());
                 }
             }
         }
-
     }
 }

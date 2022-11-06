@@ -1,4 +1,4 @@
-package org.gingerjake.potatogame.Levels.HeartGauntlet;
+package org.gingerjake.potatogame.Levels.HeartGauntlet.Up;
 
 import org.gingerjake.potatogame.Actors.Hitbox;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
@@ -9,29 +9,28 @@ import org.gingerjake.potatogame.GameStateManager;
 import javax.swing.*;
 import java.awt.*;
 
-public class HeartEntrance extends GameState {
-    final Image background = new ImageIcon("Assets/HeartGauntlet/Horizontal.png").getImage();
-    final Image nextLvl = new ImageIcon("Assets/HeartGauntlet/Curve2.png").getImage();
+public class HeartVertical extends GameState {
+    final Image background = new ImageIcon("Assets/HeartGauntlet/Vertical.png").getImage();
+    final Image nextLvl = new ImageIcon("Assets/HeartGauntlet/Curve1.png").getImage();
     String playerDirection;
-    boolean finished = true; // TODO: Change this to false
+    boolean finished = true;
     boolean switching;
-    int nextLvlX = -GamePanel.width;
-    final int nextLvlY = 0;
-    int currentLvlX = 0;
-    final int currentLvlY = 0;
-    //Hitbox for the top part of the bottom left side
-    Hitbox hitbox1 = new Hitbox(0, 220, GamePanel.width, 1,"down");
-    //Hitbox for the bottom part of the top left side
-    Hitbox hitbox2 = new Hitbox(0,622,GamePanel.width,1,"up");
-
-    public HeartEntrance() {
+    final int nextLvlX = 0;
+    int nextLvlY = -GamePanel.height;
+    final int currentLvlX = 0;
+    int currentLvlY = 0;
+    //Hitbox for the right side
+    Hitbox hitbox1 = new Hitbox(773,0,811,861,"left");
+    //hitbox for the left side
+    Hitbox hitbox2 = new Hitbox(0,0,276,861,"right");
+    public HeartVertical() {
         super(gsm);
     }
 
     @Override
     public void init() {
-        PlayerController.x = 1390;
-        PlayerController.y = 322;
+        PlayerController.x = 400;
+        PlayerController.y = GamePanel.height - PlayerController.height;
 
         playerDirection = "left";
 
@@ -72,15 +71,15 @@ public class HeartEntrance extends GameState {
         hitbox2.tick();
 
         if(finished) {
-            if(PlayerController.x <= 0) {
+            if(PlayerController.y == 0) {
                 switching = true;
             }
             if(switching) {
-                if(nextLvlX < 0) {
-                    currentLvlX += 6;
-                    nextLvlX += 6;
+                if(nextLvlY < 0) {
+                    currentLvlY += 3;
+                    nextLvlY += 3;
                 } else {
-                    GameStateManager.setState(new HeartCurve1());
+                    GameStateManager.setState(new HeartCurve3());
                 }
             }
         }

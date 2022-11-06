@@ -1,37 +1,38 @@
-package org.gingerjake.potatogame.Levels.HeartGauntlet;
+package org.gingerjake.potatogame.Levels.HeartGauntlet.Up;
 
 import org.gingerjake.potatogame.Actors.Hitbox;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
+import org.gingerjake.potatogame.Levels.HeartGauntlet.HeartEnd;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class HeartEntrance extends GameState {
+public class HeartHorizontal2 extends GameState {
     final Image background = new ImageIcon("Assets/HeartGauntlet/Horizontal.png").getImage();
-    final Image nextLvl = new ImageIcon("Assets/HeartGauntlet/Curve2.png").getImage();
+    final Image nextLvl = new ImageIcon("Assets/HeartGauntlet/End.png").getImage();
     String playerDirection;
     boolean finished = true; // TODO: Change this to false
     boolean switching;
-    int nextLvlX = -GamePanel.width;
+    int nextLvlX = GamePanel.width;
     final int nextLvlY = 0;
     int currentLvlX = 0;
     final int currentLvlY = 0;
-    //Hitbox for the top part of the bottom left side
+    //Hitbox for the top part
     Hitbox hitbox1 = new Hitbox(0, 220, GamePanel.width, 1,"down");
-    //Hitbox for the bottom part of the top left side
+    //Hitbox for the bottom part
     Hitbox hitbox2 = new Hitbox(0,622,GamePanel.width,1,"up");
 
-    public HeartEntrance() {
+    public HeartHorizontal2() {
         super(gsm);
     }
 
     @Override
     public void init() {
-        PlayerController.x = 1390;
-        PlayerController.y = 322;
+        PlayerController.x = 115;
+        PlayerController.y = 300;
 
         playerDirection = "left";
 
@@ -72,15 +73,15 @@ public class HeartEntrance extends GameState {
         hitbox2.tick();
 
         if(finished) {
-            if(PlayerController.x <= 0) {
+            if(PlayerController.x == GamePanel.width - PlayerController.width) {
                 switching = true;
             }
             if(switching) {
-                if(nextLvlX < 0) {
-                    currentLvlX += 6;
-                    nextLvlX += 6;
+                if(nextLvlX > 0) {
+                    currentLvlX -= 6;
+                    nextLvlX -= 6;
                 } else {
-                    GameStateManager.setState(new HeartCurve1());
+                    GameStateManager.setState(new HeartEnd());
                 }
             }
         }
