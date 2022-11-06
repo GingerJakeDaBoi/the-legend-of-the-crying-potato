@@ -3,16 +3,13 @@ package org.gingerjake.potatogame.Levels.HeartGauntlet;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
-import org.gingerjake.potatogame.GameStateManager;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class HeartEnd extends GameState {
     final Image background = new ImageIcon("Assets/HeartGauntlet/End.png").getImage();
-    final Image nextLvl = new ImageIcon("Assets/SpeedGauntlet/PathFork.png").getImage();
     String playerDirection;
-    boolean finished = false;
 
     public HeartEnd() {
         super(gsm);
@@ -54,6 +51,8 @@ public class HeartEnd extends GameState {
         if (PlayerController.lefting) {
             playerDirection = "left";
         }
+
+        PlayerController.tick();
 
     }
 }

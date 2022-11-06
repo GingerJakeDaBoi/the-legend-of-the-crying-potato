@@ -5,6 +5,7 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
+import org.gingerjake.potatogame.Actors.Hitbox;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,25 +22,13 @@ public class SpeedCurve2 extends GameState {
     final int currentLvlX = 0;
     int currentLvlY = 0;
     //Hitbox for the right part of the top right side
-    final int hitbox1aX = 815;
-    final int hitbox1aY = 0;
-    final int hitbox1aW = 1;
-    final int hitbox1aH = 230;
+    Hitbox hitbox1a = new Hitbox(815, 0, 1, 230,"right");
     //now the bottom
-    final int hitbox1bX = 0;
-    final int hitbox1bY = 240;
-    final int hitbox1bW = 800;
-    final int hitbox1bH = 1;
+    Hitbox hitbox1b = new Hitbox(0, 240, 800, 1,"down");
     //hitbox for the right side
-    final int hitbox2X = 1310;
-    final int hitbox2Y = 0;
-    final int hitbox2W = GamePanel.height;
-    final int hitbox2H = GamePanel.width;
+    Hitbox hitbox2 = new Hitbox(1310,0,GamePanel.width,GamePanel.height,"left");
     //hitbox for the bottom side
-    final int hitbox3X = 0;
-    final int hitbox3Y = 622;
-    final int hitbox3W = GamePanel.width;
-    final int hitbox3H = GamePanel.height;
+    Hitbox hitbox3 = new Hitbox(0, 622, GamePanel.width, GamePanel.height, "up");
 
 
     public SpeedCurve2() {
@@ -100,18 +89,10 @@ public class SpeedCurve2 extends GameState {
             finished = true;
         }
 
-        if (PlayerController.x + PlayerController.width > hitbox3X && PlayerController.x < hitbox3X + hitbox3W && PlayerController.y + PlayerController.height > hitbox3Y && PlayerController.y < hitbox3Y + hitbox3H) {
-            PlayerController.y = 622 - PlayerController.height;
-        }
-        if (PlayerController.x + PlayerController.width > hitbox2X && PlayerController.x < hitbox2X + hitbox2W && PlayerController.y + PlayerController.height > hitbox2Y && PlayerController.y < hitbox2Y + hitbox2H) {
-            PlayerController.x = hitbox2X - PlayerController.width;
-        }
-        if (PlayerController.x + PlayerController.width > hitbox1aX && PlayerController.x < hitbox1aX + hitbox1aW && PlayerController.y + PlayerController.height > hitbox1aY && PlayerController.y < hitbox1aY + hitbox1aH) {
-            PlayerController.x = hitbox1aX;
-        }
-        if (PlayerController.x + PlayerController.width > hitbox1bX && PlayerController.x < hitbox1bX + hitbox1bW && PlayerController.y + PlayerController.height > hitbox1bY && PlayerController.y < hitbox1bY + hitbox1bH) {
-            PlayerController.y = hitbox1bY;
-        }
+        hitbox1a.tick();
+        hitbox1b.tick();
+        hitbox2.tick();
+        hitbox3.tick();
 
         if (finished) {
             if (PlayerController.y == 0) {

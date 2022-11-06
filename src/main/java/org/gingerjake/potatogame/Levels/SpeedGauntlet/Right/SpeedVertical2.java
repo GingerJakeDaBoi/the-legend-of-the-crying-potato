@@ -5,6 +5,7 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
+import org.gingerjake.potatogame.Actors.Hitbox;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.SpeedEnd;
 
 import javax.swing.*;
@@ -22,17 +23,9 @@ public class SpeedVertical2 extends GameState {
     final int currentLvlX = 0;
     int currentLvlY = 0;
     //Hitbox for the right side
-    final int hitbox1X = 1310;
-    final int hitbox1Y = 0;
-    final int hitbox1W = 811;
-    final int hitbox1H = 861;
+    Hitbox hitbox1 = new Hitbox(1310,0,811,861,"left");
     //hitbox for the left side
-    final int hitbox2X = 0;
-    final int hitbox2Y = 0;
-    final int hitbox2W = 813;
-    final int hitbox2H = 861;
-
-
+    Hitbox hitbox2 = new Hitbox(0,0,813,861,"right");
 
     public SpeedVertical2() {
         super(gsm);
@@ -92,12 +85,8 @@ public class SpeedVertical2 extends GameState {
             finished = true;
         }
 
-        if (PlayerController.x + PlayerController.width > hitbox1X && PlayerController.x < hitbox1X + hitbox1W && PlayerController.y + PlayerController.height > hitbox1Y && PlayerController.y < hitbox1Y + hitbox1H) {
-            PlayerController.x = hitbox1X - PlayerController.width;
-        }
-        if (PlayerController.x + PlayerController.width > hitbox2X && PlayerController.x < hitbox2X + hitbox2W && PlayerController.y + PlayerController.height > hitbox2Y && PlayerController.y < hitbox2Y + hitbox2H) {
-            PlayerController.x = hitbox2W;
-        }
+        hitbox1.tick();
+        hitbox2.tick();
 
         if(finished) {
             if(PlayerController.y == 0) {

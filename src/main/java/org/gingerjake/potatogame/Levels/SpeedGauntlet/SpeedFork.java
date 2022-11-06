@@ -5,6 +5,7 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
+import org.gingerjake.potatogame.Actors.Hitbox;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedHorizontal2;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedVertical1;
 
@@ -28,30 +29,15 @@ public class SpeedFork extends GameState {
     int currentLvlX = 0;
     int currentLvlY = 0;
     //Hitbox for the top part of the bottom left side
-    final int hitbox1aX = 780;
-    final int hitbox1aY = 621;
-    final int hitbox1aW = GamePanel.width;
-    final int hitbox1aH = 1;
+    Hitbox hitbox1a = new Hitbox(780,621,GamePanel.width,1,"up");
     //now the left part
-    final int hitbox1bX = 773;
-    final int hitbox1bY = 621;
-    final int hitbox1bW = 1;
-    final int hitbox1bH = GamePanel.height;
+    Hitbox hitbox1b = new Hitbox(773,621,1,GamePanel.height,"left");
     //Hitbox for the bottom part of the top left side
-    final int hitbox2aX = 790;
-    final int hitbox2aY = 225;
-    final int hitbox2aW = GamePanel.width;
-    final int hitbox2aH = 1;
+    Hitbox hitbox2a = new Hitbox(790,225,GamePanel.width,1,"down");
     //now the left part
-    final int hitbox2bX = 773;
-    final int hitbox2bY = 0;
-    final int hitbox2bW = 1;
-    final int hitbox2bH = 205;
+    Hitbox hitbox2b = new Hitbox(773,0,1,205,"left");
     //hitbox for the right side
-    final int hitbox3X = 0;
-    final int hitbox3Y = 0;
-    final int hitbox3W = 276;
-    final int hitbox3H = 861;
+    Hitbox hitbox3 = new Hitbox(0,0,276,861,"right");
 
 
     public SpeedFork() {
@@ -120,21 +106,12 @@ public class SpeedFork extends GameState {
             finished = true;
         }
 
-        if (PlayerController.x + PlayerController.width > hitbox1aX && PlayerController.x < hitbox1aX + hitbox1aW && PlayerController.y + PlayerController.height > hitbox1aY && PlayerController.y < hitbox1aY + hitbox1aH) {
-            PlayerController.y = 621 - PlayerController.height;
-        }
-        if (PlayerController.x + PlayerController.width > hitbox1bX && PlayerController.x < hitbox1bX + hitbox1bW && PlayerController.y + PlayerController.height > hitbox1bY && PlayerController.y < hitbox1bY + hitbox1bH) {
-            PlayerController.x = 773 - PlayerController.width;
-        }
-        if (PlayerController.x + PlayerController.width > hitbox2aX && PlayerController.x < hitbox2aX + hitbox2aW && PlayerController.y + PlayerController.height > hitbox2aY && PlayerController.y < hitbox2aY + hitbox2aH) {
-            PlayerController.y = 225;
-        }
-        if (PlayerController.x + PlayerController.width > hitbox2bX && PlayerController.x < hitbox2bX + hitbox2bW && PlayerController.y + PlayerController.height > hitbox2bY && PlayerController.y < hitbox2bY + hitbox2bH) {
-            PlayerController.x = 773 - PlayerController.width;
-        }
-        if (PlayerController.x + PlayerController.width > hitbox3X && PlayerController.x < hitbox3X + hitbox3W && PlayerController.y + PlayerController.height > hitbox3Y && PlayerController.y < hitbox3Y + hitbox3H) {
-            PlayerController.x = hitbox3W;
-        }
+        hitbox1a.tick();
+        hitbox1b.tick();
+        hitbox2a.tick();
+        hitbox2b.tick();
+        hitbox3.tick();
+
         if (finished) {
             if (PlayerController.y == 0) {
                 switching = true;
