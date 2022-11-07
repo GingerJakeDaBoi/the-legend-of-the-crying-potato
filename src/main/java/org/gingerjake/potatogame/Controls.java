@@ -13,38 +13,41 @@ public class Controls {
     public static int controlMode;
 
     public static void menuLeft() {
-        if(PauseMenu.verticalSelection == -1) {
-            if (PauseMenu.paused) {
-                if (PauseMenu.horizontalSelection > 0) {
-                    PauseMenu.horizontalSelection--;
-                    PauseMenu.verticalSelection++;
-                    PauseMenu.verticalSelection++;
-                }
+        if (Objects.equals(Controls.currentMenu, "Pause") || Objects.equals(Controls.currentMenu, "GameOver")) {
+            if(PauseMenu.horizontalSelection > 0) {
+                PauseMenu.horizontalSelection--;
             }
         } else {
-            PauseMenu.horizontalSelection = 0;
-            if (PauseMenu.verticalSelection > 2) {
-                PauseMenu.verticalSelection = 2;
+            if(PauseMenu.horizontalSelection > 0) {
+                PauseMenu.horizontalSelection--;
+                if(PauseMenu.verticalSelection > 2) {
+                    PauseMenu.verticalSelection = 2;
+                }
             }
         }
     }
 
     public static void menuRight() {
-        if(PauseMenu.verticalSelection == -1) {
-            if (PauseMenu.paused) {
-                if (PauseMenu.horizontalSelection < 2) {
+        if(Objects.equals(Controls.currentMenu, "Pause") || Objects.equals(Controls.currentMenu, "GameOver")) {
+            if(PauseMenu.horizontalSelection < 2) {
+                PauseMenu.horizontalSelection++;
+            }
+        }
+        if(Objects.equals(Controls.currentMenu, "Settings")) {
+            if(PauseMenu.horizontalSelection < 1 && PauseMenu.verticalSelection != -1) {
+                PauseMenu.horizontalSelection++;
+            }
+            if(PauseMenu.verticalSelection == -1) {
+                if(PauseMenu.horizontalSelection < 2) {
                     PauseMenu.horizontalSelection++;
                 }
             }
-        } else {
-            PauseMenu.horizontalSelection = 1;
-            PauseMenu.verticalSelection = 0;
         }
     }
 
     public static void menuUp() {
         if (PauseMenu.paused) {
-            if(!Objects.equals(Controls.currentMenu, "Pause") || !Objects.equals(Controls.currentMenu, "GameOver")) {
+            if(!(Objects.equals(Controls.currentMenu, "Pause") || Objects.equals(Controls.currentMenu, "GameOver"))) {
                 if (PauseMenu.verticalSelection > 0) {
                     PauseMenu.verticalSelection--;
                 }
@@ -176,23 +179,7 @@ public class Controls {
     }
 
     public static void select() throws IOException {
-        if (PauseMenu.paused) {
-            if(PauseMenu.verticalSelection == -1) {
-                if (PauseMenu.horizontalSelection == 0) {
-                    GameStateManager.resume();
-                } else if (PauseMenu.horizontalSelection == 1) {
-                    Controls.currentMenu = "Settings";
-                    PauseMenu.verticalSelection = 0;
-                    PauseMenu.horizontalSelection = 0;
-                } else if (PauseMenu.horizontalSelection == 2) {
-                    System.out.println("Thanks for playing!");
-                    System.exit(0);
-                } else {
-                    System.out.println("Error: Invalid selection");
-                    System.exit(1);
-                }
-            }
-        }
+        PauseMenu.select();
     }
 }
 

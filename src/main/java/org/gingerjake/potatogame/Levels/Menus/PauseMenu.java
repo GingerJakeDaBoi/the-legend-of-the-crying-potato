@@ -15,6 +15,44 @@ public class PauseMenu extends GameState {
         super(gsm);
     }
 
+    public static void select() {
+        if (paused) {
+            switch (Controls.currentMenu) {
+                case "Pause":
+                case "GameOver":
+                    switch (horizontalSelection) {
+                        case 0 -> GameStateManager.resume();
+                        case 1 -> Controls.currentMenu = "Settings";
+                        case 2 -> System.exit(0);
+                    }
+                    break;
+                case "Settings":
+                    if(horizontalSelection == 1) {
+                        switch (Settings.activeSetting) {
+                            case "Controls":
+                                switch (verticalSelection) {
+                                    case 0 -> Controls.controlMode = 0;
+                                    case 1 -> Controls.controlMode = 1;
+                                }
+                                break;
+                            case "Keybindings":
+                                switch (verticalSelection) {
+                                    case 0 -> Settings.moveUp = "W";
+                                    case 1 -> Settings.moveDown = "S";
+                                    case 2 -> Settings.moveLeft = "A";
+                                    case 3 -> Settings.moveRight = "D";
+                                    case 4 -> Settings.attackUp = "Up";
+                                    case 5 -> Settings.attackDown = "Down";
+                                    case 6 -> Settings.attackLeft = "Left";
+                                    case 7 -> Settings.attackRight = "Right";
+                                    case 8 -> Settings.pause = "Escape";
+                                }
+                        }
+                    }
+            }
+        }
+    }
+
     @Override
     public void init() {
         Controls.currentMenu = "Pause";
