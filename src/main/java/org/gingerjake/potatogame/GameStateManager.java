@@ -14,7 +14,6 @@ import org.gingerjake.potatogame.Levels.HeartGauntlet.Left.HeartHorizontal1;
 import org.gingerjake.potatogame.Levels.HeartGauntlet.Up.HeartCurve3;
 import org.gingerjake.potatogame.Levels.HeartGauntlet.Up.HeartHorizontal2;
 import org.gingerjake.potatogame.Levels.HeartGauntlet.Up.HeartVertical;
-import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedCurve2;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedHorizontal2;
@@ -59,7 +58,6 @@ public class GameStateManager extends KeyListener {
 
     public static void resume() {
         PauseMenu.paused = false;
-        ControlMenu.enabled = false;
         PlayerController.enable();
 
         if (PauseMenu.gameOver) {
@@ -92,7 +90,7 @@ public class GameStateManager extends KeyListener {
 
                 default -> {
                     System.out.println("Level not specified in GameStateManager. Defaulting to TestSpace.");
-                    setState(new DebugLvl());
+                    setState(new TestSpace());
                 }
             }
         }

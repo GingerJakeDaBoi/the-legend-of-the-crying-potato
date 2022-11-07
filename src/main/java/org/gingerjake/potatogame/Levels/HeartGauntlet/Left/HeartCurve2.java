@@ -4,7 +4,6 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.HeartGauntlet.HeartFork;
 
 import javax.swing.*;
 import java.awt.*;

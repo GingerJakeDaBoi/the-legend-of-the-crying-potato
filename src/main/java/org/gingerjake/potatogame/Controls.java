@@ -2,36 +2,105 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Controls {
     public static String currentMenu;
     public static int controlMode;
 
+    public static void menuLeft() {
+        if(PauseMenu.verticalSelection == -1) {
+            if (PauseMenu.paused) {
+                if (PauseMenu.horizontalSelection > 0) {
+                    PauseMenu.horizontalSelection--;
+                    PauseMenu.verticalSelection++;
+                    PauseMenu.verticalSelection++;
+                }
+            }
+        } else {
+            PauseMenu.horizontalSelection = 0;
+            if (PauseMenu.verticalSelection > 2) {
+                PauseMenu.verticalSelection = 2;
+            }
+        }
+    }
+
+    public static void menuRight() {
+        if(PauseMenu.verticalSelection == -1) {
+            if (PauseMenu.paused) {
+                if (PauseMenu.horizontalSelection < 2) {
+                    PauseMenu.horizontalSelection++;
+                }
+            }
+        } else {
+            PauseMenu.horizontalSelection = 1;
+            PauseMenu.verticalSelection = 0;
+        }
+    }
+
     public static void menuUp() {
         if (PauseMenu.paused) {
-            if (ControlMenu.enabled) {
-                if (ControlMenu.Selection > 0) {
-                    ControlMenu.Selection--;
+            if(!Objects.equals(Controls.currentMenu, "Pause") || !Objects.equals(Controls.currentMenu, "GameOver")) {
+                if (PauseMenu.verticalSelection > 0) {
+                    PauseMenu.verticalSelection--;
                 }
-            } else if (PauseMenu.Selection > 0) {
-                PauseMenu.Selection--;
+                if (PauseMenu.verticalSelection == -1) {
+                    PauseMenu.verticalSelection = 2;
+                    PauseMenu.horizontalSelection = 0;
+                }
             }
         }
     }
 
     public static void menuDown() {
         if (PauseMenu.paused) {
-            if (ControlMenu.enabled) {
-                if (ControlMenu.Selection < 1) {
-                    ControlMenu.Selection++;
+            if(!Objects.equals(Controls.currentMenu, "Pause") || !Objects.equals(Controls.currentMenu, "GameOver")) {
+                if(PauseMenu.horizontalSelection == 0) {
+                    if (PauseMenu.verticalSelection != -1) {
+                        if (PauseMenu.verticalSelection < Settings.settings.length) {
+                            PauseMenu.verticalSelection++;
+                        }
+                        if (PauseMenu.verticalSelection == Settings.settings.length - 1) {
+                            PauseMenu.verticalSelection = -1;
+                        }
+                    }
+                } else if(PauseMenu.horizontalSelection == 1) {
+                    if (PauseMenu.verticalSelection != -1) {
+                        switch (Settings.activeSetting) {
+                            case ("Controls") -> {
+                                if (PauseMenu.verticalSelection < Settings.controlModes.length) {
+                                    PauseMenu.verticalSelection++;
+                                }
+                                if (PauseMenu.verticalSelection == Settings.controlModes.length) {
+                                    PauseMenu.verticalSelection = -1;
+                                    PauseMenu.horizontalSelection = 0;
+                                }
+                            }
+                            case ("Audio") -> {
+                                if (PauseMenu.verticalSelection < Settings.audioModes.length) {
+                                    PauseMenu.verticalSelection++;
+                                }
+                                if (PauseMenu.verticalSelection == Settings.audioModes.length) {
+                                    PauseMenu.verticalSelection = -1;
+                                    PauseMenu.horizontalSelection = 0;
+                                }
+                            }
+                            case ("Keybindings") -> {
+                                if (PauseMenu.verticalSelection < Settings.keybinds.length) {
+                                    PauseMenu.verticalSelection++;
+                                }
+                                if (PauseMenu.verticalSelection == Settings.keybinds.length) {
+                                    PauseMenu.verticalSelection = -1;
+                                    PauseMenu.horizontalSelection = 0;
+                                }
+                            }
+                        }
+                    }
                 }
-            } else if (PauseMenu.Selection < 2) {
-                PauseMenu.Selection++;
             }
         }
     }
@@ -54,7 +123,6 @@ public class Controls {
 
     public static void fistUp() {
         if (!Fist.visible) {
-            Fist.playSound = true;
             Fist.direction = "up";
             Fist.start();
         }
@@ -62,7 +130,6 @@ public class Controls {
 
     public static void fistDown() {
         if (!Fist.visible) {
-            Fist.playSound = true;
             Fist.direction = "down";
             Fist.start();
         }
@@ -70,7 +137,6 @@ public class Controls {
 
     public static void fistLeft() {
         if (!Fist.visible) {
-            Fist.playSound = true;
             Fist.direction = "left";
             Fist.start();
         }
@@ -78,7 +144,6 @@ public class Controls {
 
     public static void fistRight() {
         if (!Fist.visible) {
-            Fist.playSound = true;
             Fist.direction = "right";
             Fist.start();
         }
@@ -112,25 +177,20 @@ public class Controls {
 
     public static void select() throws IOException {
         if (PauseMenu.paused) {
-            if (ControlMenu.enabled) {
-                if (ControlMenu.Selection == 0) {
-                    controlMode = 0;
-                    SaveSystem.saveGame();
+            if(PauseMenu.verticalSelection == -1) {
+                if (PauseMenu.horizontalSelection == 0) {
+                    GameStateManager.resume();
+                } else if (PauseMenu.horizontalSelection == 1) {
+                    Controls.currentMenu = "Settings";
+                    PauseMenu.verticalSelection = 0;
+                    PauseMenu.horizontalSelection = 0;
+                } else if (PauseMenu.horizontalSelection == 2) {
+                    System.out.println("Thanks for playing!");
+                    System.exit(0);
+                } else {
+                    System.out.println("Error: Invalid selection");
+                    System.exit(1);
                 }
-                if (ControlMenu.Selection == 1) {
-                    controlMode = 1;
-                    SaveSystem.saveGame();
-                }
-            } else if (PauseMenu.Selection == 0) {
-                GameStateManager.resume();
-            } else if (PauseMenu.Selection == 1) {
-                GameStateManager.setState(new ControlMenu());
-            } else if (PauseMenu.Selection == 2) {
-                System.out.println("Thanks for playing!");
-                System.exit(0);
-            } else {
-                System.out.println("Error: Invalid selection");
-                System.exit(1);
             }
         }
     }
