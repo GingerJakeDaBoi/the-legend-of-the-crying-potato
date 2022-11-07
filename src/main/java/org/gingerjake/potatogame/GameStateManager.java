@@ -4,6 +4,16 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.Debug.DebugLvl;
 import org.gingerjake.potatogame.Levels.Debug.TestSpace;
 import org.gingerjake.potatogame.Levels.DemoBoss;
+import org.gingerjake.potatogame.Levels.HeartGauntlet.HeartCurve1;
+import org.gingerjake.potatogame.Levels.HeartGauntlet.HeartEnd;
+import org.gingerjake.potatogame.Levels.HeartGauntlet.HeartEntrance;
+import org.gingerjake.potatogame.Levels.HeartGauntlet.HeartFork;
+import org.gingerjake.potatogame.Levels.HeartGauntlet.Left.HeartCurve2;
+import org.gingerjake.potatogame.Levels.HeartGauntlet.Left.HeartCurveS;
+import org.gingerjake.potatogame.Levels.HeartGauntlet.Left.HeartHorizontal1;
+import org.gingerjake.potatogame.Levels.HeartGauntlet.Up.HeartCurve3;
+import org.gingerjake.potatogame.Levels.HeartGauntlet.Up.HeartHorizontal2;
+import org.gingerjake.potatogame.Levels.HeartGauntlet.Up.HeartVertical;
 import org.gingerjake.potatogame.Levels.Menus.ControlMenu;
 import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedCurve2;
@@ -69,9 +79,20 @@ public class GameStateManager extends KeyListener {
                 case "SpeedEnd" -> setState(new SpeedEnd());
                 case "DebugLvl" -> setState(new DebugLvl());
                 case "DemoBoss" -> setState(new DemoBoss());
+                case "HeartCurve2" -> setState(new HeartCurve2());
+                case "HeartCurveS" -> setState(new HeartCurveS());
+                case "HeartHorizontal2" -> setState(new HeartHorizontal2());
+                case "HeartCurve3" -> setState(new HeartCurve3());
+                case "HeartEnd" -> setState(new HeartEnd());
+                case "HeartFork" -> setState(new HeartFork());
+                case "HeartEntrance" -> setState(new HeartEntrance());
+                case "HeartCurve1" -> setState(new HeartCurve1());
+                case "HeartHorizontal1" -> setState(new HeartHorizontal1());
+                case "HeartVertical" -> setState(new HeartVertical());
+
                 default -> {
                     System.out.println("Level not specified in GameStateManager. Defaulting to TestSpace.");
-                    setState(new TestSpace());
+                    setState(new DebugLvl());
                 }
             }
         }
