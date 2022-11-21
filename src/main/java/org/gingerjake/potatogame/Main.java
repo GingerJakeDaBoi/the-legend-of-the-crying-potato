@@ -2,13 +2,10 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.DemoBoss;
-import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class Main extends KeyListener {
 
@@ -30,56 +27,25 @@ public class Main extends KeyListener {
 
         manager.addKeyEventDispatcher(e -> {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
-                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    Controls.menuLeft();
-                }
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    Controls.menuRight();
-                }
-                if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    Controls.menuUp();
-                }
-                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    Controls.menuDown();
-                }
-                if (!PauseMenu.paused) {
-                    if (Controls.controlMode == 0) {
-                        if (e.getKeyCode() == KeyEvent.VK_UP) {
-                            Controls.moveUp();
-                        }
-                        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                            Controls.moveDown();
-                        }
-                        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                            Controls.moveLeft();
-
-                        }
-                        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                            Controls.moveRight();
-                        }
-                    }
-                    if (Controls.controlMode == 1) {
-                        if (e.getKeyCode() == KeyEvent.VK_I) {
-                            Controls.moveUp();
-                        }
-                        if (e.getKeyCode() == KeyEvent.VK_K) {
-                            Controls.moveDown();
-                        }
-                        if (e.getKeyCode() == KeyEvent.VK_J) {
-                            Controls.moveLeft();
-                        }
-                        if (e.getKeyCode() == KeyEvent.VK_L) {
-                            Controls.moveRight();
-                        }
-                    }
-                }
-
                 if (e.getKeyCode() == KeyEvent.VK_P) {
                     PlayerController.giveSpeed();
                     PlayerController.giveDamage();
                     PlayerController.giveHeart();
                     PlayerController.health = 4;
                     GameStateManager.setState(new DemoBoss());
+                }
+
+                if(e.getKeyCode() == KeyEvent.VK_UP) {
+                    Controls.moveUp();
+                }
+                if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    Controls.moveDown();
+                }
+                if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    Controls.moveLeft();
+                }
+                if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    Controls.moveRight();
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_W) {
@@ -93,28 +59,6 @@ public class Main extends KeyListener {
                 }
                 if (e.getKeyCode() == KeyEvent.VK_D) {
                     Controls.fistRight();
-                }
-
-                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    if (!PauseMenu.paused) {
-                        Controls.pause();
-                    } else {
-                        Controls.resume();
-                    }
-                }
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    try {
-                        Controls.startGame();
-                    } catch (FileNotFoundException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    if (PauseMenu.paused) {
-                        try {
-                            Controls.select();
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    }
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {

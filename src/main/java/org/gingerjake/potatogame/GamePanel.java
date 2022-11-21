@@ -1,7 +1,6 @@
 package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Levels.Menus.PauseMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,9 +51,8 @@ public class GamePanel extends JPanel implements Runnable{
             if(wait <=0) wait = 5;
             try {
                 Thread.sleep(wait);
+                GameStateManager.currentLevel = GameStateManager.getState();
                 if(PlayerController.health <= 0) {
-                    PauseMenu.gameOver = true;
-                    GameStateManager.setState(new PauseMenu());
                     if(PlayerController.heartGiven) {
                         PlayerController.health = 4;
                     } else {
