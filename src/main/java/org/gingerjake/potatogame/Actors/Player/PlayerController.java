@@ -154,6 +154,4 @@ public class PlayerController {
             Fist.powerUp();
         }
     }
-
-
 }

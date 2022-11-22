@@ -10,11 +10,11 @@ import org.gingerjake.potatogame.GameState;
 import javax.swing.*;
 import java.awt.*;
 
-public class DemoBoss extends GameState {
+public class BossPrototypeFinal extends GameState {
     String playerDirection;
     Boss finalBoss;
 
-    public DemoBoss() {
+    public BossPrototypeFinal() {
         super(gsm);
     }
 

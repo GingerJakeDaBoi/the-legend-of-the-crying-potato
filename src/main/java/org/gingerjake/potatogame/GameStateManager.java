@@ -5,7 +5,7 @@ import org.gingerjake.potatogame.Levels.Debug.TestSpace;
 import java.awt.*;
 import java.util.Stack;
 
-public class GameStateManager extends KeyListener {
+public class GameStateManager {
     public static final String version = "RMAKE-inDev";
     static String currentLevel;
     public static Stack<GameState> states;

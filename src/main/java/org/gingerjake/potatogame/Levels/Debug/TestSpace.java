@@ -65,13 +65,17 @@ public class TestSpace extends GameState {
             PlayerController.x = GamePanel.width - PlayerController.width;
         }
         if (PlayerController.x < 0) {
-            GameStateManager.setState(new HeartEntrance());
+            if(GameState.heartEnabled) {
+                GameStateManager.setState(new HeartEntrance());
+            } else {
+                PlayerController.x = 0;
+            }
         }
         if (PlayerController.y > GamePanel.height - PlayerController.height) {
             PlayerController.y = GamePanel.height - PlayerController.height;
         }
         if (PlayerController.y < 0) {
-            if (!SpeedEnd.completed) {
+            if (!SpeedEnd.completed && GameState.speedEnabled) {
                 GameStateManager.setState(new SpeedEntrance());
             } else {
                 PlayerController.y = 0;

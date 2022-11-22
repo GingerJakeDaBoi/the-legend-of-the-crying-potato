@@ -1,7 +1,7 @@
 package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Levels.DemoBoss;
+import org.gingerjake.potatogame.Levels.BossPrototypeFinal;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +32,7 @@ public class Main extends KeyListener {
                     PlayerController.giveDamage();
                     PlayerController.giveHeart();
                     PlayerController.health = 4;
-                    GameStateManager.setState(new DemoBoss());
+                    GameStateManager.setState(new BossPrototypeFinal());
                 }
 
                 if(e.getKeyCode() == KeyEvent.VK_UP) {
