@@ -1,6 +1,5 @@
-package org.gingerjake.potatogame.Actors.Player.Attacks;
+package org.gingerjake.potatogame.Actors.Player;
 
-import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.AudioEngine;
 import org.gingerjake.potatogame.GamePanel;
 

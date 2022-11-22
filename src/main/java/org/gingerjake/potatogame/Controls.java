@@ -1,6 +1,6 @@
 package org.gingerjake.potatogame;
 
-import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
+import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 
 public class Controls {

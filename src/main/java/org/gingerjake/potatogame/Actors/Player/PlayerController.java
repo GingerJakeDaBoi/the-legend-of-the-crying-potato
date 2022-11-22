@@ -1,6 +1,5 @@
 package org.gingerjake.potatogame.Actors.Player;
 
-import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
 import org.gingerjake.potatogame.AudioEngine;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameStateManager;
@@ -60,10 +59,6 @@ public class PlayerController {
 
     public static void enable() {
         enabled = true;
-    }
-
-    public static void disable() {
-        enabled = false;
     }
 
     public static void tick() {

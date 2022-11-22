@@ -1,6 +1,6 @@
 package org.gingerjake.potatogame.Actors.Enemies;
 
-import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
+import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 

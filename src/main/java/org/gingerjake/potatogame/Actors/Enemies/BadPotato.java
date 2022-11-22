@@ -1,6 +1,6 @@
 package org.gingerjake.potatogame.Actors.Enemies;
 
-import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
+import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 
 import java.awt.*;
@@ -78,10 +78,6 @@ public class BadPotato {
 
     public int getHealth() {
         return health;
-    }
-
-    public int getSpeed() {
-        return speed;
     }
 
     public void tick() {

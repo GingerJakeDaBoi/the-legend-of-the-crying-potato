@@ -1,7 +1,7 @@
 package org.gingerjake.potatogame;
 
 
-import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
+import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 
 import javax.swing.*;
@@ -12,7 +12,7 @@ public abstract class GameState {
     public static final boolean debug = true;
     public static final boolean speedEnabled = false;
     public static final boolean heartEnabled = false;
-    public static final boolean powerEnabled = false;
+
     public abstract void init();
 
     public static GameStateManager gsm;

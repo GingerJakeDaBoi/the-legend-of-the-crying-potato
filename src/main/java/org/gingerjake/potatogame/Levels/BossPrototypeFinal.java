@@ -1,7 +1,7 @@
 package org.gingerjake.potatogame.Levels;
 
 import org.gingerjake.potatogame.Actors.Enemies.Boss;
-import org.gingerjake.potatogame.Actors.Player.Attacks.Fist;
+import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Controls;
 import org.gingerjake.potatogame.GamePanel;
