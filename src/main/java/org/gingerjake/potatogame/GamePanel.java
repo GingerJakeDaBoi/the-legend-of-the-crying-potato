@@ -53,11 +53,8 @@ public class GamePanel extends JPanel implements Runnable{
                 Thread.sleep(wait);
                 GameStateManager.currentLevel = GameStateManager.getState();
                 if(PlayerController.health <= 0) {
-                    if(PlayerController.heartGiven) {
-                        PlayerController.health = 4;
-                    } else {
-                        PlayerController.health = 3;
-                    }
+                    System.out.println("haha loser");
+                    System.exit(0);
                 }
 
                 //update width and height of the screen

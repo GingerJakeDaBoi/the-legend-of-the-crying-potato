@@ -17,7 +17,9 @@ public class PlayerController {
     public static int width;
     public static int height;
     public static int health = 3;
-    public static int speed = 5;
+    public static int speed;
+    public static int velocityX;
+    public static int velocityY;
     public static boolean heartGiven;
     public static boolean speedGiven;
     public static boolean hurting;
@@ -67,18 +69,52 @@ public class PlayerController {
     public static void tick() {
         String currentLevel = GameStateManager.getState();
 
-        if (downing) {
-            y += speed;
+        if(uping) {
+            if(velocityY > -speed) {
+                velocityY--;
+            }
+            if(downing) {
+                velocityY = 0;
+            }
+        } else if(velocityY < 0) {
+            velocityY++;
         }
-        if (uping) {
-            y -= speed;
+
+        if(downing) {
+            if(velocityY < speed) {
+                velocityY++;
+            }
+            if(uping) {
+                velocityY = 0;
+            }
+        } else if(velocityY > 0) {
+            velocityY--;
         }
-        if (righting) {
-            x += speed;
+
+        if(lefting) {
+            if(velocityX > -speed) {
+                velocityX--;
+            }
+            if(righting) {
+                velocityX = 0;
+            }
+        } else if(velocityX < 0) {
+            velocityX++;
         }
-        if (lefting) {
-            x -= speed;
+
+        if(righting) {
+            if(velocityX < speed) {
+                velocityX++;
+            }
+            if(lefting) {
+                velocityX = 0;
+            }
+        } else if(velocityX > 0) {
+            velocityX--;
         }
+
+        x += (velocityX / 20);
+        y += (velocityY / 20) ;
 
         if(!currentLevel.equals("TestSpace")) {
             if (PlayerController.x > GamePanel.width - PlayerController.width) {
