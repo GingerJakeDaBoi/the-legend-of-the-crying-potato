@@ -2,6 +2,7 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.BossPrototypeFinal;
+import org.gingerjake.potatogame.Levels.GameMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,6 +64,18 @@ public class Main extends KeyListener {
 
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     Controls.cancelFist();
+                }
+
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    if(GameMenu.isPaused) {
+                        Controls.resume();
+                    } else {
+                        Controls.pause();
+                    }
+                }
+
+                if (e.getKeyCode() == KeyEvent.VK_ENTER && GameMenu.isPaused) {
+                    GameMenu.select();
                 }
             }
             if (e.getID() == KeyEvent.KEY_RELEASED) {

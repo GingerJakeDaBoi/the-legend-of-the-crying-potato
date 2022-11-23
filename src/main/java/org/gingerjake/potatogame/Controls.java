@@ -2,23 +2,36 @@ package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
+import org.gingerjake.potatogame.Levels.GameMenu;
 
 public class Controls {
     public static int controlMode;
     public static void moveUp() {
-        PlayerController.uping = true;
+        if (!GameMenu.isPaused) {
+            PlayerController.uping = true;
+        }
     }
 
     public static void moveDown() {
-        PlayerController.downing = true;
+        if (!GameMenu.isPaused) {
+            PlayerController.downing = true;
+        }
     }
 
     public static void moveLeft() {
-        PlayerController.lefting = true;
+        if (!GameMenu.isPaused) {
+            PlayerController.lefting = true;
+        } else {
+            GameMenu.menuLeft();
+        }
     }
 
     public static void moveRight() {
-        PlayerController.righting = true;
+        if (!GameMenu.isPaused) {
+            PlayerController.righting = true;
+        } else {
+            GameMenu.menuRight();
+        }
     }
 
     public static void fistUp() {
@@ -51,6 +64,22 @@ public class Controls {
 
     public static void cancelFist() {
         Fist.visible = false;
+    }
+
+    public static void pause() {
+        if (GamePanel.gameStarted) {
+            if (!GameMenu.isPaused) {
+                GameMenu.isPaused = true;
+                GameStateManager.pause();
+            }
+        }
+    }
+
+    public static void resume() {
+        if (GameMenu.isPaused) {
+            GameMenu.isPaused = false;
+            GameStateManager.resume();
+        }
     }
 }
 

@@ -61,6 +61,10 @@ public class PlayerController {
         enabled = true;
     }
 
+    public static void disable() {
+        enabled = false;
+    }
+
     public static void tick() {
         String currentLevel = GameStateManager.getState();
 
