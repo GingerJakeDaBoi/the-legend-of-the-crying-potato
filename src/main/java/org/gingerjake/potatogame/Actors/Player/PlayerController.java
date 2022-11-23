@@ -143,7 +143,7 @@ public class PlayerController {
 
     public static void giveSpeed() {
         if (!speedGiven) {
-            speed += 3;
+            speed += 40;
             speedGiven = true;
         }
     }
