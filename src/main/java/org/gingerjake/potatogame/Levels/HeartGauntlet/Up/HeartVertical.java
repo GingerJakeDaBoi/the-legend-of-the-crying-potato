@@ -13,16 +13,16 @@ public class HeartVertical extends GameState {
     final Image background = new ImageIcon("Assets/HeartGauntlet/Vertical.png").getImage();
     final Image nextLvl = new ImageIcon("Assets/HeartGauntlet/Curve1.png").getImage();
     String playerDirection;
-    boolean finished = true;
+    final boolean finished = true;
     boolean switching;
     final int nextLvlX = 0;
     int nextLvlY = -GamePanel.height;
     final int currentLvlX = 0;
     int currentLvlY = 0;
     //Hitbox for the right side
-    Hitbox hitbox1 = new Hitbox(773,0,811,861,"left");
+    final Hitbox hitbox1 = new Hitbox(773,0,811,861,"left");
     //hitbox for the left side
-    Hitbox hitbox2 = new Hitbox(0,0,276,861,"right");
+    final Hitbox hitbox2 = new Hitbox(0,0,276,861,"right");
     public HeartVertical() {
         super(gsm);
     }

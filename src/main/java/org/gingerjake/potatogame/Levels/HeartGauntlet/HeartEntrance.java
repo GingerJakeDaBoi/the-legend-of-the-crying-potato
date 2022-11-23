@@ -13,16 +13,16 @@ public class HeartEntrance extends GameState {
     final Image background = new ImageIcon("Assets/HeartGauntlet/Horizontal.png").getImage();
     final Image nextLvl = new ImageIcon("Assets/HeartGauntlet/Curve2.png").getImage();
     String playerDirection;
-    boolean finished = true; // TODO: Change this to false
+    final boolean finished = true; // TODO: Change this to false
     boolean switching;
     int nextLvlX = -GamePanel.width;
     final int nextLvlY = 0;
     int currentLvlX = 0;
     final int currentLvlY = 0;
     //Hitbox for the top part of the bottom left side
-    Hitbox hitbox1 = new Hitbox(0, 220, GamePanel.width, 1,"down");
+    final Hitbox hitbox1 = new Hitbox(0, 220, GamePanel.width, 1,"down");
     //Hitbox for the bottom part of the top left side
-    Hitbox hitbox2 = new Hitbox(0,622,GamePanel.width,1,"up");
+    final Hitbox hitbox2 = new Hitbox(0,622,GamePanel.width,1,"up");
 
     public HeartEntrance() {
         super(gsm);

@@ -13,20 +13,20 @@ public class HeartCurve3 extends GameState {
     final Image background = new ImageIcon("Assets/HeartGauntlet/Curve1.png").getImage();
     final Image nextLvl = new ImageIcon("Assets/HeartGauntlet/Horizontal.png").getImage();
     String playerDirection;
-    boolean finished = true;
+    final boolean finished = true;
     boolean switching;
     int nextLvlX = GamePanel.width;
     final int nextLvlY = 0;
     int currentLvlX = 0;
     final int currentLvlY = 0;
     //Hitbox for the top part of the bottom left side
-    Hitbox hitbox1a = new Hitbox(780, 621, GamePanel.width, 1,"up");
+    final Hitbox hitbox1a = new Hitbox(780, 621, GamePanel.width, 1,"up");
     //now the left part
-    Hitbox hitbox1b = new Hitbox(773, 621, 1, GamePanel.height, "left");
+    final Hitbox hitbox1b = new Hitbox(773, 621, 1, GamePanel.height, "left");
     //Hitbox for the top side
-    Hitbox hitbox2 = new Hitbox(275, 220, GamePanel.width, 1, "down");
+    final Hitbox hitbox2 = new Hitbox(275, 220, GamePanel.width, 1, "down");
     //hitbox for the right side
-    Hitbox hitbox3 = new Hitbox(0, 0, 276, 861, "right");
+    final Hitbox hitbox3 = new Hitbox(0, 0, 276, 861, "right");
 
     public HeartCurve3() {
         super(gsm);

@@ -62,16 +62,17 @@ public abstract class GameState {
             g.drawImage(playerHeart, 156, 0, 48, 48, null);
         }
         if (PlayerController.health == 3) {
-            g.drawImage(playerHeart, 3, 0, 48, 48, null);
-            g.drawImage(playerHeart, 54, 0, 48, 48, null);
-            g.drawImage(playerHeart, 105, 0, 48, 48, null);
+            for (int i = 3; i <= 105; i += 51) {
+                g.drawImage(playerHeart, i, 0, 48, 48, null);
+            }
             if (PlayerController.heartGiven) {
                 g.drawImage(playerHeartBroken, 156, 0, 48, 48, null);
             }
         }
         if (PlayerController.health == 2) {
-            g.drawImage(playerHeart, 3, 0, 48, 48, null);
-            g.drawImage(playerHeart, 54, 0, 48, 48, null);
+            for (int i : new int[]{3, 54}) {
+                g.drawImage(playerHeart, i, 0, 48, 48, null);
+            }
             g.drawImage(playerHeartBroken, 105, 0, 48, 48, null);
             if (PlayerController.heartGiven) {
                 g.drawImage(playerHeartBroken, 156, 0, 48, 48, null);

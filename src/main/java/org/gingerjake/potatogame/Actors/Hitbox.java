@@ -3,11 +3,11 @@ package org.gingerjake.potatogame.Actors;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 
 public class Hitbox {
-    int x;
-    int y;
-    int width;
-    int height;
-    String direction;
+    final int x;
+    final int y;
+    final int width;
+    final int height;
+    final String direction;
 
     public Hitbox(int x, int y, int width, int height, String pushDirection) {
         this.x = x;

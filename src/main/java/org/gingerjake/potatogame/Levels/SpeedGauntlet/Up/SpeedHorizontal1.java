@@ -24,9 +24,9 @@ public class SpeedHorizontal1 extends GameState {
     int currentLvlX = 0;
     final int currentLvlY = 0;
     //Hitbox for the top part of the bottom left side
-    Hitbox hitbox1 = new Hitbox(0,220,GamePanel.width,1,"down");
+    final Hitbox hitbox1 = new Hitbox(0,220,GamePanel.width,1,"down");
     //Hitbox for the bottom part of the top left side
-    Hitbox hitbox2 = new Hitbox(0,622,GamePanel.width,1,"up");
+    final Hitbox hitbox2 = new Hitbox(0,622,GamePanel.width,1,"up");
 
     public SpeedHorizontal1() {
         super(gsm);

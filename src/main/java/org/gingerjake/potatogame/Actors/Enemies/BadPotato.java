@@ -52,10 +52,6 @@ public class BadPotato {
         return asset;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public void setY(int y) {
         this.y = y;
     }
@@ -107,26 +103,29 @@ public class BadPotato {
     }
 
     private void checkForPlayer() {
-        if(this.enabled) {
-            if(PlayerController.enabled) {
-                if(PlayerController.x + PlayerController.width > this.x && PlayerController.x < this.x + this.width && PlayerController.y + PlayerController.height > this.y && PlayerController.y < this.y + this.height) {
-                    PlayerController.hurt();
-                }
-            } else {
-                this.setEnabled(false);
+        if (!this.enabled) {
+            return;
+        }
+        if (!PlayerController.enabled) {
+            this.setEnabled(false);
+        } else {
+            if(PlayerController.x + PlayerController.width > this.x && PlayerController.x < this.x + this.width && PlayerController.y + PlayerController.height > this.y && PlayerController.y < this.y + this.height) {
+                PlayerController.hurt();
             }
         }
     }
 
     private void checkForFist() {
+        if (!Fist.visible) {
+            return;
+        }
+        if (Fist.x + Fist.width <= this.x || Fist.x >= this.x + this.width || Fist.y + Fist.height <= this.y || Fist.y >= this.y + this.height) {
+            return;
+        }
+        this.takeDamage(Fist.power);
+        System.out.println("Hit enemy!");
         if (Fist.visible) {
-            if (Fist.x + Fist.width > this.x && Fist.x < this.x + this.width && Fist.y + Fist.height > this.y && Fist.y < this.y + this.height) {
-                this.takeDamage(Fist.power);
-                System.out.println("Hit enemy!");
-                if (Fist.visible) {
-                    Fist.visible = false;
-                }
-            }
+            Fist.visible = false;
         }
     }
 }

@@ -22,13 +22,13 @@ public class SpeedCurve2 extends GameState {
     final int currentLvlX = 0;
     int currentLvlY = 0;
     //Hitbox for the right part of the top right side
-    Hitbox hitbox1a = new Hitbox(815, 0, 1, 230,"right");
+    final Hitbox hitbox1a = new Hitbox(815, 0, 1, 230,"right");
     //now the bottom
-    Hitbox hitbox1b = new Hitbox(0, 240, 800, 1,"down");
+    final Hitbox hitbox1b = new Hitbox(0, 240, 800, 1,"down");
     //hitbox for the right side
-    Hitbox hitbox2 = new Hitbox(1310,0,GamePanel.width,GamePanel.height,"left");
+    final Hitbox hitbox2 = new Hitbox(1310,0,GamePanel.width,GamePanel.height,"left");
     //hitbox for the bottom side
-    Hitbox hitbox3 = new Hitbox(0, 622, GamePanel.width, GamePanel.height, "up");
+    final Hitbox hitbox3 = new Hitbox(0, 622, GamePanel.width, GamePanel.height, "up");
 
 
     public SpeedCurve2() {
