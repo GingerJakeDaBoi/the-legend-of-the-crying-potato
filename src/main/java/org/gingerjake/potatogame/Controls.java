@@ -9,12 +9,16 @@ public class Controls {
     public static void moveUp() {
         if (!GameMenu.isPaused) {
             PlayerController.uping = true;
+        } else {
+            GameMenu.menuUp();
         }
     }
 
     public static void moveDown() {
         if (!GameMenu.isPaused) {
             PlayerController.downing = true;
+        } else {
+            GameMenu.menuDown();
         }
     }
 

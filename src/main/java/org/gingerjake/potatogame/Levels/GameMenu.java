@@ -1,10 +1,7 @@
 package org.gingerjake.potatogame.Levels;
 
+import org.gingerjake.potatogame.*;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Controls;
-import org.gingerjake.potatogame.GamePanel;
-import org.gingerjake.potatogame.GameState;
-import org.gingerjake.potatogame.GameStateManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +9,11 @@ import java.awt.*;
 public class GameMenu extends GameState {
     public static boolean isPaused;
     public static boolean isGameOver;
+    public static boolean optionsOpened;
     int randomImage;
-    public static int selectedOption;
+    public static int selectedOptionH;
+    public static int selectedOptionV;
+
     public GameMenu() {
         super(gsm);
     }
@@ -21,20 +21,27 @@ public class GameMenu extends GameState {
     @Override
     public void init() {
         PlayerController.disable();
-        isPaused = PlayerController.health > 0;
+        isPaused = true;
         randomImage = (int) (Math.random() * 3 + 1);
-        selectedOption = 0;
+        selectedOptionH = 0;
     }
 
     @Override
     public void draw(Graphics g) {
-        switch (randomImage) {
-            case 1 ->
-                    g.drawImage(new ImageIcon("Assets/Dummy/Menu1.png").getImage(), 0, 0, GamePanel.width, GamePanel.height, null);
-            case 2 ->
-                    g.drawImage(new ImageIcon("Assets/Dummy/Menu2.jpg").getImage(), 0, 0, GamePanel.width, GamePanel.height, null);
-            case 3 ->
-                    g.drawImage(new ImageIcon("Assets/Dummy/Menu3.png").getImage(), 0, 0, GamePanel.width, GamePanel.height, null);
+        if(!optionsOpened) {
+            switch (randomImage) {
+                case 1 -> g.drawImage(new ImageIcon("Assets/Dummy/Menu1.png").getImage(), 0, 0, GamePanel.width, GamePanel.height, null);
+                case 2 -> g.drawImage(new ImageIcon("Assets/Dummy/Menu2.jpg").getImage(), 0, 0, GamePanel.width, GamePanel.height, null);
+                case 3 -> g.drawImage(new ImageIcon("Assets/Dummy/Menu3.png").getImage(), 0, 0, GamePanel.width, GamePanel.height, null);
+            }
+        } else {
+            g.setColor(new Color(120, 120, 120, 255));
+            g.drawRect(0,0,GamePanel.width,GamePanel.height);
+            for (int i = 85; i < GamePanel.height - 85; i += 50) {
+                g.setColor(new Color(128, 128, 128, 255));
+                g.fillRect(0,i,GamePanel.width,8);
+            }
+            g.fillRect(GamePanel.width/2,0,8,GamePanel.height);
         }
 
         g.setColor(Color.WHITE);
@@ -56,21 +63,23 @@ public class GameMenu extends GameState {
         g.fillRect(0, GamePanel.height - 85, GamePanel.width, 85);
 
         g.setColor(Color.WHITE);
-        if (isPaused) {
-            g.setColor(new Color(126, 126, 126, 255));
-            switch (selectedOption) {
+
+        g.setColor(new Color(100, 100, 100, 255));
+        if(selectedOptionV == 0) {
+            switch (selectedOptionH) {
                 case 0 -> g.fillRect(0, GamePanel.height - 85, 240, GamePanel.height);
                 case 1 -> g.fillRect(240, GamePanel.height - 85, 240, GamePanel.height);
                 case 2 -> g.fillRect(480, GamePanel.height - 85, 160, GamePanel.height);
             }
-
-            g.setColor(Color.WHITE);
-            g.drawString("Resume", 20, GamePanel.height - 25);
-            g.drawString("Options", 260, GamePanel.height - 25);
-            g.drawString("Quit", 500, GamePanel.height - 25);
-        } else if (isGameOver) {
-            g.drawString("Press ESC to return to main menu", 20, GamePanel.height - 25);
         }
+
+        g.setColor(Color.WHITE);
+        g.drawString("Resume", 20, GamePanel.height - 25);
+        g.drawString("Options", 260, GamePanel.height - 25);
+        g.drawString("Quit", 500, GamePanel.height - 25);
+
+        g.setColor(Color.BLACK);
+        g.drawString("H: " + selectedOptionH + "V: " + selectedOptionV,GamePanel.width/2,GamePanel.height/2);
     }
 
     @Override
@@ -79,26 +88,44 @@ public class GameMenu extends GameState {
     }
 
     public static void select() {
-        switch (selectedOption) {
-            case 0 -> Controls.resume();
-            case 1 -> {
-                //GameStateManager.setState(new Options());
-            }
-            case 2 -> {
-                System.out.println("Thanks for playing!");
-                System.exit(0);
+        if(!optionsOpened || selectedOptionV == 0) {
+            switch (selectedOptionH) {
+                case 0 -> Controls.resume();
+                case 1 -> {
+                    optionsOpened = true;
+                    selectedOptionV = Settings.settings.length;
+                    selectedOptionH = 0;
+                    System.out.println("Options length set to: " + selectedOptionV);
+                }
+                case 2 -> {
+                    System.out.println("Thanks for playing!");
+                    System.exit(0);
+                }
             }
         }
     }
+
+    public static void menuUp() {
+        if(selectedOptionV < Settings.settings.length && optionsOpened) {
+            selectedOptionV++;
+        }
+    }
+
+    public static void menuDown() {
+        if(selectedOptionV > 0 && optionsOpened) {
+            selectedOptionV--;
+        }
+    }
+
     public static void menuLeft() {
-        if (selectedOption > 0) {
-            selectedOption--;
+        if (selectedOptionH > 0) {
+            selectedOptionH--;
         }
     }
 
     public static void menuRight() {
-        if (selectedOption < 2) {
-            selectedOption++;
+        if (selectedOptionH < 2) {
+            selectedOptionH++;
         }
     }
 }
