@@ -24,6 +24,7 @@ public class GameMenu extends GameState {
         isPaused = true;
         randomImage = (int) (Math.random() * 3 + 1);
         selectedOptionH = 0;
+        optionsOpened = false;
     }
 
     @Override

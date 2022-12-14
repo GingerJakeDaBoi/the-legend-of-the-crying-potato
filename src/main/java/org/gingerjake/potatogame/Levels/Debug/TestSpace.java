@@ -22,12 +22,11 @@ public class TestSpace extends GameState {
     @Override
     public void init() {
         if (!GamePanel.gameStarted) {
-            PlayerController.spawn(500, 500, 108, 192, 80, "Fist");
+            PlayerController.spawn(500, 500, 108, 192, 30, "Fist");
         }
         playerDirection = "right";
         PlayerController.enable();
         GamePanel.gameStarted = true;
-
     }
 
     @Override

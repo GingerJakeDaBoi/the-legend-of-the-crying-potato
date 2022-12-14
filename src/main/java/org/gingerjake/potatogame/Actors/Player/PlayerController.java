@@ -19,7 +19,6 @@ public class PlayerController {
     public static int speed;
     public static int velocityX;
     public static int velocityY;
-    public static boolean velocityMovement = true;
     public static boolean heartGiven;
     public static boolean speedGiven;
     public static boolean hurting;
@@ -68,68 +67,68 @@ public class PlayerController {
 
     public static void tick() {
         String currentLevel = GameStateManager.getState();
-        if(velocityMovement) {
-            if (uping) {
-                if (velocityY > -speed) {
-                    velocityY--;
-                }
-                if (downing) {
-                    velocityY = 0;
-                }
-            } else if (velocityY < 0) {
-                velocityY++;
-            }
-
-            if (downing) {
-                if (velocityY < speed) {
-                    velocityY++;
-                }
-                if (uping) {
-                    velocityY = 0;
-                }
-            } else if (velocityY > 0) {
+        if (uping) {
+            if (velocityY > -speed) {
                 velocityY--;
             }
-
-            if (lefting) {
-                if (velocityX > -speed) {
-                    velocityX--;
-                }
-                if (righting) {
-                    velocityX = 0;
-                }
-            } else if (velocityX < 0) {
-                velocityX++;
+            if (downing) {
+                velocityY = 0;
             }
+        } else if (velocityY < 0) {
+            velocityY++;
+        }
 
-            if (righting) {
-                if (velocityX < speed) {
-                    velocityX++;
-                }
-                if (lefting) {
-                    velocityX = 0;
-                }
-            } else if (velocityX > 0) {
+        if (downing) {
+            if (velocityY < speed) {
+                velocityY++;
+            }
+            if (uping) {
+                velocityY = 0;
+            }
+        } else if (velocityY > 0) {
+            velocityY--;
+        }
+
+        if (lefting) {
+            if (velocityX > -speed) {
                 velocityX--;
             }
-        } else {
-            if(uping) { //GAINING SPEED DOES NOT AFFECT THESE VALUES
-                y-=2;
+            if (righting) {
+                velocityX = 0;
             }
-            if(downing) {
-                y+=2;
-            }
-            if(lefting) {
-                x-=2;
-            }
-            if(righting) {
-                x+=2;
-            }
+        } else if (velocityX < 0) {
+            velocityX++;
         }
-        x += (velocityX / 20);
-        y += (velocityY / 20) ;
 
-        if(!currentLevel.equals("TestSpace")) {
+        if (righting) {
+            if (velocityX < speed) {
+                velocityX++;
+            }
+            if (lefting) {
+                velocityX = 0;
+            }
+        } else if (velocityX > 0) {
+            velocityX--;
+        }
+
+        x += velocityX/10;
+        y += velocityY/10;
+
+
+        if (uping) { //GAINING SPEED DOES NOT AFFECT THESE VALUES
+            y -= 1;
+        }
+        if (downing) {
+            y += 1;
+        }
+        if (lefting) {
+            x -= 1;
+        }
+        if (righting) {
+            x += 1;
+        }
+
+        if (!currentLevel.equals("TestSpace")) {
             if (PlayerController.x > GamePanel.width - PlayerController.width) {
                 PlayerController.x = GamePanel.width - PlayerController.width;
             }
