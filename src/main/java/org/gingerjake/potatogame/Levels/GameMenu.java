@@ -91,7 +91,7 @@ public class GameMenu extends GameState {
     public static void select() {
         if(!optionsOpened || selectedOptionV == 0) {
             switch (selectedOptionH) {
-                case 0 -> Controls.resume();
+                case 0 -> GameStateManager.resume();
                 case 1 -> {
                     optionsOpened = true;
                     selectedOptionV = Settings.settings.length;

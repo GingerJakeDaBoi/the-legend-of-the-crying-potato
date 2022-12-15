@@ -55,10 +55,9 @@ public class GamePanel extends JPanel implements Runnable{
                 if(PlayerController.health <= 0) {
                     GameMenu.isGameOver = true;
                     GameStateManager.setState(new GameMenu());
+                    PlayerController.health = 3;
                     if(PlayerController.heartGiven) {
                         PlayerController.health = 4;
-                    } else {
-                        PlayerController.health = 3;
                     }
                 }
 

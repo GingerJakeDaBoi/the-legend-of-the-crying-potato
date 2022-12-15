@@ -31,8 +31,7 @@ public abstract class GameState {
             g.drawString("Current Level: " + GameStateManager.currentLevel, 0, 160);
             g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 200);
             g.drawString("Fist direction: " + Fist.direction, 0, 240);
-            g.drawString("Control Mode: " + Controls.controlMode, 0, 280);
-            g.drawString("GamePanel width: " + GamePanel.width + "GamePanel Height: " + GamePanel.height, 0, 320);
+            g.drawString("GamePanel width: " + GamePanel.width + "GamePanel Height: " + GamePanel.height, 0, 280);
         }
     }
 

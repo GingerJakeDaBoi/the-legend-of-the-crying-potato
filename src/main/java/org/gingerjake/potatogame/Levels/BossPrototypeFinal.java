@@ -3,7 +3,6 @@ package org.gingerjake.potatogame.Levels;
 import org.gingerjake.potatogame.Actors.Enemies.Boss;
 import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Controls;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 
@@ -66,12 +65,11 @@ public class BossPrototypeFinal extends GameState {
         g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 120);
         g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 160);
         g.drawString("Fist direction: " + Fist.direction, 0, 200);
-        g.drawString("Control Mode: " + Controls.controlMode, 0, 240);
-        g.drawString("GamePanel width: " + GamePanel.width + "GamePanel Height: " + GamePanel.height, 0, 280);
-        g.drawString("Boss threshold: " + finalBoss.getThresholds(), 0, 320);
-        g.drawString("Boss phase: " + finalBoss.getPhase(), 0, 360);
+        g.drawString("GamePanel width: " + GamePanel.width + "GamePanel Height: " + GamePanel.height, 0, 240);
+        g.drawString("Boss threshold: " + finalBoss.getThresholds(), 0, 280);
+        g.drawString("Boss phase: " + finalBoss.getPhase(), 0, 320);
         if (finalBoss.getPhase() == 1) {
-            g.drawString("Ammo direction: " + finalBoss.getAmmoDir(), 0, 400);
+            g.drawString("Ammo direction: " + finalBoss.getAmmoDir(), 0, 260);
         }
 
     }

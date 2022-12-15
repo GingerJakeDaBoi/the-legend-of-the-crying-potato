@@ -47,15 +47,20 @@ public class GameStateManager {
     }
 
     public static void pause() {
-        //TODO: Record X and Y of enemy and player, and then resume from that point in case levels set those values themselves.
-        GameMenu.isPaused = true;
-        currentLevel = getState();
+        if (GamePanel.gameStarted && !GameMenu.isPaused) {
+            GameMenu.isPaused = true;
+        }
 
+        //TODO: Record X and Y of enemy and player, and then resume from that point in case levels set those values themselves.
+        currentLevel = getState();
         setState(new GameMenu());
     }
 
     public static void resume() {
-        GameMenu.isPaused = false;
+        if (GameMenu.isPaused) {
+            GameMenu.isPaused = false;
+        }
+
         PlayerController.enable();
 
         if (GameMenu.isGameOver) {

@@ -1,5 +1,6 @@
 package org.gingerjake.potatogame;
 
+import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.Levels.BossPrototypeFinal;
 import org.gingerjake.potatogame.Levels.GameMenu;
@@ -37,40 +38,56 @@ public class Main extends KeyListener {
                 }
 
                 if(e.getKeyCode() == KeyEvent.VK_UP) {
-                    Controls.moveUp();
+                    if (!GameMenu.isPaused) {
+                        PlayerController.uping = true;
+                    } else {
+                        GameMenu.menuUp();
+                    }
                 }
                 if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    Controls.moveDown();
+                    if (!GameMenu.isPaused) {
+                        PlayerController.downing = true;
+                    } else {
+                        GameMenu.menuDown();
+                    }
                 }
                 if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    Controls.moveLeft();
+                    if (!GameMenu.isPaused) {
+                        PlayerController.lefting = true;
+                    } else {
+                        GameMenu.menuLeft();
+                    }
                 }
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    Controls.moveRight();
+                    if (!GameMenu.isPaused) {
+                        PlayerController.righting = true;
+                    } else {
+                        GameMenu.menuRight();
+                    }
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_W) {
-                    Controls.fistUp();
+                    Fist.up();
                 }
                 if (e.getKeyCode() == KeyEvent.VK_S) {
-                    Controls.fistDown();
+                    Fist.down();
                 }
                 if (e.getKeyCode() == KeyEvent.VK_A) {
-                    Controls.fistLeft();
+                    Fist.left();
                 }
                 if (e.getKeyCode() == KeyEvent.VK_D) {
-                    Controls.fistRight();
+                    Fist.right();
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    Controls.cancelFist();
+                    Fist.cancel();
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     if(GameMenu.isPaused) {
-                        Controls.resume();
+                        GameStateManager.resume();
                     } else {
-                        Controls.pause();
+                        GameStateManager.pause();
                     }
                 }
 

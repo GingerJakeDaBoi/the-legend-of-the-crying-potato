@@ -21,13 +21,45 @@ public class Fist {
     public static final Image up = new ImageIcon("Assets/Attacks/Fist/FistU.png").getImage();
     public static final Image down = new ImageIcon("Assets/Attacks/Fist/FistD.png").getImage();
 
-    public static void start(){
+    public static void start() {
         x = PlayerController.x;
         y = PlayerController.y;
         width = 192 / 2;
         height = 192 / 2;
         Fist.visible = true;
         AudioEngine.playSound(new File("Assets/Sounds/Weapons/shootFist.wav"));
+    }
+
+    public static void up() {
+        if (!visible) {
+            direction = "up";
+            start();
+        }
+    }
+
+    public static void down() {
+        if (!visible) {
+            direction = "down";
+            start();
+        }
+    }
+
+    public static void left() {
+        if (!visible) {
+            direction = "left";
+            start();
+        }
+    }
+
+    public static void right() {
+        if (!visible) {
+            direction = "right";
+            start();
+        }
+    }
+
+    public static void cancel() {
+        visible = false;
     }
 
     public static void tick() {
