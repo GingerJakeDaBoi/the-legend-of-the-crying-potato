@@ -1,11 +1,10 @@
 package org.gingerjake.potatogame.Levels;
 
 import org.gingerjake.potatogame.Actors.Enemies.Boss;
-import org.gingerjake.potatogame.Actors.Player.Fist;
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
-import org.gingerjake.potatogame.Controls;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
+import org.gingerjake.potatogame.GameStateManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +12,7 @@ import java.awt.*;
 public class BossPrototypeFinal extends GameState {
     String playerDirection;
     Boss finalBoss;
+    public static boolean bossOn = false;
 
     public BossPrototypeFinal() {
         super(gsm);
@@ -26,6 +26,7 @@ public class BossPrototypeFinal extends GameState {
             PlayerController.spawn(GamePanel.width / 2, GamePanel.height / 2, 108, 192, 10, "Fist");
             GamePanel.gameStarted = true;
         }
+        bossOn = true;
         PlayerController.enable();
         PlayerController.x = 250;
         PlayerController.y = 250;
@@ -62,17 +63,7 @@ public class BossPrototypeFinal extends GameState {
         //debugInfo(g);
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.setColor(Color.BLACK);
-        g.drawString("Boss Health: " + finalBoss.getHealth(), 0, 80);
-        g.drawString("Player Location: " + PlayerController.x + ", " + PlayerController.y, 0, 120);
-        g.drawString("Fist Location: " + Fist.x + ", " + Fist.y, 0, 160);
-        g.drawString("Fist direction: " + Fist.direction, 0, 200);
-        g.drawString("Control Mode: " + Controls.controlMode, 0, 240);
-        g.drawString("GamePanel width: " + GamePanel.width + "GamePanel Height: " + GamePanel.height, 0, 280);
-        g.drawString("Boss threshold: " + finalBoss.getThresholds(), 0, 320);
-        g.drawString("Boss phase: " + finalBoss.getPhase(), 0, 360);
-        if (finalBoss.getPhase() == 1) {
-            g.drawString("Ammo direction: " + finalBoss.getAmmoDir(), 0, 400);
-        }
+        g.drawString("Boss Health: " + ((double) finalBoss.getHealth() / 30) * 100, 0, 80);
 
     }
 
@@ -81,6 +72,8 @@ public class BossPrototypeFinal extends GameState {
         PlayerController.tick();
         if (finalBoss.isEnabled()) {
             finalBoss.tick();
+        } else {
+            GameStateManager.setState(new EndScreen());
         }
 
         if (PlayerController.righting) {

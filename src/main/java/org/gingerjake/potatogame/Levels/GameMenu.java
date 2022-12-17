@@ -76,11 +76,12 @@ public class GameMenu extends GameState {
 
         g.setColor(Color.WHITE);
         g.drawString("Resume", 20, GamePanel.height - 25);
-        g.drawString("Options", 260, GamePanel.height - 25);
-        g.drawString("Quit", 500, GamePanel.height - 25);
+        g.drawString("Quit", 260, GamePanel.height - 25);
+        //g.drawString("Quit", 500, GamePanel.height - 25);
 
         g.setColor(Color.BLACK);
-        g.drawString("H: " + selectedOptionH + "V: " + selectedOptionV,GamePanel.width/2,GamePanel.height/2);
+        //g.drawString("H: " + selectedOptionH + "V: " + selectedOptionV,GamePanel.width/2,
+        // GamePanel.height/2);
     }
 
     @Override
@@ -92,13 +93,13 @@ public class GameMenu extends GameState {
         if(!optionsOpened || selectedOptionV == 0) {
             switch (selectedOptionH) {
                 case 0 -> Controls.resume();
-                case 1 -> {
+                /*case 1 -> {
                     optionsOpened = true;
                     selectedOptionV = Settings.settings.length;
                     selectedOptionH = 0;
                     System.out.println("Options length set to: " + selectedOptionV);
-                }
-                case 2 -> {
+                }*/
+                case 1 -> {
                     System.out.println("Thanks for playing!");
                     System.exit(0);
                 }
@@ -125,7 +126,7 @@ public class GameMenu extends GameState {
     }
 
     public static void menuRight() {
-        if (selectedOptionH < 2) {
+        if (selectedOptionH < 1) {
             selectedOptionH++;
         }
     }

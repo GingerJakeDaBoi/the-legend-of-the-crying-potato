@@ -1,6 +1,7 @@
 package org.gingerjake.potatogame;
 
 import org.gingerjake.potatogame.Actors.Player.PlayerController;
+import org.gingerjake.potatogame.Levels.BossPrototypeFinal;
 import org.gingerjake.potatogame.Levels.GameMenu;
 
 import javax.swing.*;
@@ -54,7 +55,12 @@ public class GamePanel extends JPanel implements Runnable{
                 Thread.sleep(wait);
                 if(PlayerController.health <= 0) {
                     GameMenu.isGameOver = true;
-                    GameStateManager.setState(new GameMenu());
+                    if(BossPrototypeFinal.bossOn) {
+                        GameStateManager.setState(new BossPrototypeFinal());
+                    } else {
+                        GameStateManager.setState(new GameMenu());
+                    }
+
                     if(PlayerController.heartGiven) {
                         PlayerController.health = 4;
                     } else {

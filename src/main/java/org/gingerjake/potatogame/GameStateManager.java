@@ -30,12 +30,12 @@ import java.util.Stack;
 
 public class GameStateManager {
     public static final String version = "RMAKE-inDev";
-    public static String currentLevel;
+    public static String currentLevel = "null";
     public static Stack<GameState> states;
 
     public GameStateManager() {
         states = new Stack<>();
-        states.push(new TestSpace());
+        states.push(new GameMenu());
     }
 
     public static void setState(GameState state) {
@@ -59,7 +59,11 @@ public class GameStateManager {
         PlayerController.enable();
 
         if (GameMenu.isGameOver) {
-            setState(new TestSpace());
+            if (BossPrototypeFinal.bossOn) {
+                setState(new BossPrototypeFinal());
+            } else {
+                setState(new TestSpace());
+            }
             GameMenu.isGameOver = false;
         } else {
             switch (currentLevel) {
@@ -74,7 +78,7 @@ public class GameStateManager {
                 case "SpeedVertical2" -> setState(new SpeedVertical2());
                 case "SpeedEnd" -> setState(new SpeedEnd());
                 case "DebugLvl" -> setState(new DebugLvl());
-                case "DemoBoss" -> setState(new BossPrototypeFinal());
+                case "BossPrototypeFinal" -> setState(new BossPrototypeFinal());
                 case "HeartCurve2" -> setState(new HeartCurve2());
                 case "HeartCurveS" -> setState(new HeartCurveS());
                 case "HeartHorizontal2" -> setState(new HeartHorizontal2());
@@ -87,8 +91,13 @@ public class GameStateManager {
                 case "HeartVertical" -> setState(new HeartVertical());
 
                 default -> {
-                    System.out.println("Level not specified in GameStateManager. Defaulting to TestSpace.");
-                    setState(new TestSpace());
+                    System.out.println("Level not specified in GameStateManager. Defaulting to " +
+                            "TestSpace or Boss.");
+                    if(BossPrototypeFinal.bossOn) {
+                        setState(new BossPrototypeFinal());
+                    } else {
+                        setState(new TestSpace());
+                    }
                 }
             }
         }

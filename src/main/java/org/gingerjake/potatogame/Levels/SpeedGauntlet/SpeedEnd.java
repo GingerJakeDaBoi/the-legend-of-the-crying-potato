@@ -4,7 +4,7 @@ import org.gingerjake.potatogame.Actors.Player.PlayerController;
 import org.gingerjake.potatogame.GamePanel;
 import org.gingerjake.potatogame.GameState;
 import org.gingerjake.potatogame.GameStateManager;
-import org.gingerjake.potatogame.Levels.Debug.TestSpace;
+import org.gingerjake.potatogame.Levels.BossPrototypeFinal;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Right.SpeedVertical2;
 import org.gingerjake.potatogame.Levels.SpeedGauntlet.Up.SpeedHorizontal1;
 
@@ -60,12 +60,6 @@ public class SpeedEnd extends GameState {
         fistUI(g);
         heartUI(g);
 
-        if (PlayerController.x + PlayerController.width > bootsX && PlayerController.x < bootsX + bootsWidth && PlayerController.y + PlayerController.height > bootsY && PlayerController.y < bootsY + bootsHeight) {
-            new Thread(PlayerController::giveSpeed).start();
-            GameStateManager.setState(new TestSpace());
-            completed = true;
-        }
-
         debugInfo(g);
 
 
@@ -84,8 +78,10 @@ public class SpeedEnd extends GameState {
 
         if (PlayerController.x + PlayerController.width > bootsX && PlayerController.x < bootsX + bootsWidth && PlayerController.y + PlayerController.height > bootsY && PlayerController.y < bootsY + bootsHeight) {
             PlayerController.giveSpeed();
-            GameStateManager.setState(new TestSpace());
-            completed = true;
+            PlayerController.giveDamage();
+            PlayerController.giveHeart();
+            PlayerController.health = 4;
+            GameStateManager.setState(new BossPrototypeFinal());
         }
 
     }
