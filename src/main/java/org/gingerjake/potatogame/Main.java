@@ -40,15 +40,11 @@ public class Main extends KeyListener {
                 if(e.getKeyCode() == KeyEvent.VK_UP) {
                     if (!GameMenu.isPaused) {
                         PlayerController.uping = true;
-                    } else {
-                        GameMenu.menuUp();
                     }
                 }
                 if(e.getKeyCode() == KeyEvent.VK_DOWN) {
                     if (!GameMenu.isPaused) {
                         PlayerController.downing = true;
-                    } else {
-                        GameMenu.menuDown();
                     }
                 }
                 if(e.getKeyCode() == KeyEvent.VK_LEFT) {
